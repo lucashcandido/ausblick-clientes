@@ -1,1 +1,24 @@
-# ausblick-clientes
+# Ausblick – Clientes
+
+Liste der möglichen Kunden von Ausblick: wen wir schon kontaktiert haben, mit **Telefonnummer, Ort und Webadresse**. Aufgebaut wie `work.castcomercial.com`.
+
+- **Liste:** Name, Rubro, Telefon (antippen = anrufen), Ort, Web (antippen = öffnen), Status und letzter Kontakt (Datum, wer, was).
+- **Status:** Sin contactar · Contactado · Interesado · Cliente · No interesado. Filter oben, Suche über alle Felder.
+- **Kontakte:** Im Kunden „Registrar contacto“ → Datum, Notiz und Name des Geräts werden gespeichert. Der erste Kontakt setzt den Status auf „Contactado“.
+- **Doppelte:** Beim Anlegen warnt die App, wenn Name, Telefon oder Web schon existieren.
+- **Export:** Configuración → Exportar lista (CSV, öffnet in Excel).
+- **Sprachen:** Español, English, Deutsch. Beim ersten Öffnen nach Gerätesprache (sonst Spanisch), umschaltbar oben im Einrichtungsbildschirm und in der Configuración; die Wahl bleibt pro Gerät gespeichert. Die Daten selbst sind sprachunabhängig.
+
+## Daten und Zugang
+
+- **Daten:** im privaten Repo `ausblick-clientes-data`, eine Datei `clientes.json`. Neuere Änderung gewinnt pro Kunde, Kontakte von zwei Geräten werden zusammengeführt. Offline-Änderungen werden später gespeichert.
+- **Token:** Fine-grained Personal Access Token, der **nur** `ausblick-clientes-data` erreicht (Repository permissions → Contents: Read and write).
+- **Code:** Wer die App zum ersten Mal mit dem Token einrichtet („Primera vez (token)“), bekommt einen 12-stelligen Code und die Datei `access.json` (Token mit AES-GCM/PBKDF2 aus dem Code verschlüsselt). `access.json` kommt in dieses Repo; alle anderen Geräte brauchen dann nur noch Name + Code. Ohne den Code ist die Datei nutzlos.
+- **Token erneuert:** Mit dem neuen Token einmal „Primera vez“ machen und die neue `access.json` hochladen – die anderen Geräte holen sich den neuen Token automatisch, wenn der Code gleich bleibt (Configuración → Cambiar nombre o acceso → Primera vez, gleiches Gerät behält den Code).
+
+## Einrichtung (einmalig)
+
+1. Repo `ausblick-clientes` (öffentlich, für GitHub Pages) und `ausblick-clientes-data` (privat, leer) anlegen.
+2. Diese Dateien nach `ausblick-clientes` pushen, Settings → Pages → Branch `main` / root.
+3. Token erstellen (siehe oben), App öffnen → „Primera vez (token)“ → `access.json` herunterladen und in `ausblick-clientes` hochladen.
+4. Optional eigene Domain (z. B. `clientes.ausblicksistemas.com`) per `CNAME`.
