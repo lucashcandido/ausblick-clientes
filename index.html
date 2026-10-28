@@ -276,6 +276,14 @@ var telHref = function(v){ var s = String(v || '').trim(); return s ? 'tel:' + (
 var waHref = function(v){ var d = digits(v); if(d.length < 8) return ''; if(String(v).trim().charAt(0) !== '+' && d.indexOf('54') !== 0) d = '549' + d.replace(/^0/, ''); return 'https://wa.me/' + d; };
 /* website: accept "www.x.com.ar", "x.com" or a full address; only http(s) becomes a link */
 var webHref = function(v){ var s = String(v || '').trim(); if(!s) return ''; if(!/^[a-z][a-z0-9+.-]*:/i.test(s)) s = 'https://' + s; return /^https?:\/\//i.test(s) ? s : ''; };
+/* Google Maps for a customer: the typed address; without one, the coordinates from a map link in the notes */
+var mapHref = function(x){
+  var m = String(x.notas || '').match(/[?&]q=(-?\d+\.\d+),(-?\d+\.\d+)|mlat=(-?\d+\.\d+)&mlon=(-?\d+\.\d+)/), coords = m ? (m[1] || m[3]) + ',' + (m[2] || m[4]) : '';
+  var l = String(x.lugar || '').trim(), usable = l && !/ver mapa/i.test(l) && /\d/.test(l);
+  if(usable) return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(l.replace(/\bCABA\b/, 'Ciudad Autónoma de Buenos Aires') + (/,/.test(l) ? '' : ', Buenos Aires') + ', Argentina');
+  if(coords) return 'https://www.google.com/maps/search/?api=1&query=' + coords;
+  return l ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(l + ', Argentina') : '';
+};
 var webHost = function(v){ var h = webHref(v); if(!h) return String(v || ''); try{ var u = new URL(h); return u.hostname.replace(/^www\./, '') + (u.pathname.length > 1 ? u.pathname.replace(/\/$/, '') : ''); }catch(e){ return String(v); } };
 var norm = function(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
 
@@ -440,7 +448,7 @@ function render(){
     return '<li class="item" data-id="' + esc(x.id) + '"><div class="ih"><div class="iname">' + esc(x.n) + (x.r ? '<small>' + esc(x.r) + '</small>' : '') + '</div><span class="badge b-' + esc(x.est || 'nuevo') + '">' + esc(estName(x.est)) + '</span></div>' +
       '<div class="info">' +
         (x.tel ? '<a href="' + esc(telHref(x.tel)) + '" data-stop>' + ICON.tel + esc(x.tel) + '</a>' : '<span class="none">' + ICON.tel + esc(t('no_tel')) + '</span>') +
-        (x.lugar ? '<span>' + ICON.pin + esc(x.lugar) + '</span>' : '<span class="none">' + ICON.pin + esc(t('no_place')) + '</span>') +
+        (x.lugar ? (mapHref(x) ? '<a href="' + esc(mapHref(x)) + '" target="_blank" rel="noopener noreferrer" data-stop>' + ICON.pin + esc(x.lugar) + '</a>' : '<span>' + ICON.pin + esc(x.lugar) + '</span>') : '<span class="none">' + ICON.pin + esc(t('no_place')) + '</span>') +
         (x.web ? (w ? '<a href="' + esc(w) + '" target="_blank" rel="noopener noreferrer" data-stop>' + ICON.web + esc(webHost(x.web)) + '</a>' : '<span>' + ICON.web + esc(x.web) + '</span>') : '<span class="none">' + ICON.web + esc(t('no_web')) + '</span>') +
       '</div>' +
       (l ? '<div class="last">' + esc(t('last', dayText(l.d))) + (l.by ? ' · ' + esc(l.by) : '') + (l.n ? ' — ' + esc(l.n) : '') + '</div>' : '') +
@@ -464,7 +472,7 @@ function edit(orig){
   var x = orig ? copy(orig) : { id: uid(), n: '', r: '', tel: '', lugar: '', web: '', est: 'nuevo', notas: '', log: [], c: Date.now() };
   var f = function(id, label, val, extra){ return '<div class="field"><label for="' + id + '">' + label + '</label><input id="' + id + '" value="' + esc(val) + '" autocomplete="off" ' + (extra || '') + '></div>'; };
   var ph = function(k){ return 'placeholder="' + esc(t(k)) + '"'; };
-  var mapUrl = (String(x.notas || '').match(/https:\/\/(maps\.google\.com|www\.google\.com\/maps|www\.openstreetmap\.org)\/[^\s·]*/) || [''])[0];
+  var mapUrl = orig ? mapHref(x) : '';
   var html = '<h3>' + esc(orig ? orig.n : t('add')) + '</h3>' +
     (orig && (x.tel || webHref(x.web) || mapUrl) ? '<div class="quick">' + (x.tel ? '<a href="' + esc(telHref(x.tel)) + '">' + esc(t('call')) + '</a>' : '') + (waHref(x.tel) ? '<a href="' + esc(waHref(x.tel)) + '" target="_blank" rel="noopener noreferrer">WhatsApp</a>' : '') + (webHref(x.web) ? '<a href="' + esc(webHref(x.web)) + '" target="_blank" rel="noopener noreferrer">' + esc(t('open_web')) + '</a>' : '') + (mapUrl ? '<a href="' + esc(mapUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(t('map')) + '</a>' : '') + '</div>' : '') +
     f('eN', esc(t('f_name')) + ' <span class="req">*</span>', x.n, 'autocapitalize="words"') +
