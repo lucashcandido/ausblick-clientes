@@ -6,6 +6,7 @@ Liste der möglichen Kunden von Ausblick: wen wir schon kontaktiert haben, mit *
 - **Status:** Sin contactar · Contactado · Interesado · Cliente · No interesado. Filter oben, Suche über alle Felder.
 - **Kontakte:** Im Kunden „Registrar contacto“ → Datum, Notiz und Name des Geräts werden gespeichert. Der erste Kontakt setzt den Status auf „Contactado“.
 - **Doppelte:** Beim Anlegen warnt die App, wenn Name, Telefon oder Web schon existieren.
+- **Filter „Con teléfono“**, Liste seitenweise (100 pro Seite), Button „Ver mapa“ wenn in den Notizen ein Kartenlink steht.
 - **Export:** Configuración → Exportar lista (CSV, öffnet in Excel).
 - **Sprachen:** Español, English, Deutsch. Beim ersten Öffnen nach Gerätesprache (sonst Spanisch), umschaltbar oben im Einrichtungsbildschirm und in der Configuración; die Wahl bleibt pro Gerät gespeichert. Die Daten selbst sind sprachunabhängig.
 
@@ -22,3 +23,7 @@ Liste der möglichen Kunden von Ausblick: wen wir schon kontaktiert haben, mit *
 2. Diese Dateien nach `ausblick-clientes` pushen, Settings → Pages → Branch `main` / root.
 3. Token erstellen (siehe oben), App öffnen → „Primera vez (token)“ → `access.json` herunterladen und in `ausblick-clientes` hochladen.
 4. Optional eigene Domain (z. B. `clientes.ausblicksistemas.com`) per `CNAME`.
+
+## Datenquellen der importierten Parkplätze
+
+GCBA „Garajes Comerciales“ (CC BY 2.5 AR) und © OpenStreetMap-Mitwirkende (ODbL). Details im Daten-Repo.
