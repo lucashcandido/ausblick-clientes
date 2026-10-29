@@ -47,8 +47,8 @@ main{max-width:760px;margin:0 auto;padding:12px 16px calc(32px + env(safe-area-i
 @media (max-width:520px){.grid2{grid-template-columns:1fr}}
 .hint{color:var(--muted);font-size:14px;margin:6px 0 0}
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px}
-.tabs button,.chips button,.est button{border:2px solid var(--line);border-radius:12px;background:var(--card);font-weight:700;cursor:pointer;padding:8px 10px;font-size:15px}
-.tabs button.on,.chips button.on,.est button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.tabs button,.chips button,.est button,.views button{border:2px solid var(--line);border-radius:12px;background:var(--card);font-weight:700;cursor:pointer;padding:8px 10px;font-size:15px}
+.tabs button.on,.chips button.on,.est button.on,.views button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
 .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;font-size:24px;letter-spacing:.06em;text-align:center;padding:12px;border:2px dashed var(--accent);border-radius:12px;margin:8px 0 12px;user-select:all}
 .bar{display:flex;gap:8px;margin-bottom:10px}
 .chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
@@ -91,6 +91,9 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#171a21;color:#fff;border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:center;z-index:60;width:max-content;max-width:calc(100% - 32px);font-size:16px}
 .toast button{background:none;border:0;color:#9db8ff;font-weight:700;cursor:pointer;font-size:16px}
 .req{color:var(--out)}
+.views{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px} .views button{padding:10px;font-size:16px} .views .n{color:var(--muted);font-weight:600;margin-left:6px} .views button.on .n{color:inherit}
+.sortbar{display:flex;gap:8px;margin-top:10px} .sortbar .btn{flex:1;min-height:46px;font-size:16px;padding:0 10px}
+li.hint{list-style:none;color:var(--muted);font-size:14px;padding:0 4px 4px}
 .lang{display:flex;gap:4px;flex:none}
 .lang button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:5px 8px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted)}
 .lang button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
@@ -127,6 +130,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
       <button class="icon" id="gear" type="button" data-ta="settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     </div>
     <div class="bar"><input class="search" id="q" type="search" data-tp="search" autocomplete="off"></div>
+    <div class="views" id="views"></div>
     <div class="chips" id="chips"></div>
     <ul class="list" id="list"></ul>
   </section>
@@ -156,7 +160,7 @@ es: { locale:'es-AR', title:'Clientes', setup_sub:'Configuración del dispositiv
   token_hint:'Fine-grained token con acceso <b>solo</b> al repositorio de datos, permiso «Contents: Read and write».', repo:'Repositorio de datos',
   go:'Preparar dispositivo', back:'Volver sin cambios', add:'Nuevo cliente', settings:'Configuración', search:'Buscar nombre, teléfono, lugar, web…',
   est_nuevo:'Sin contactar', est_contactado:'Contactado', est_interesado:'Interesado', est_cliente:'Cliente', est_descartado:'No interesado',
-  f_todos:'Todos', f_contel:'Con teléfono', more:'Mostrar más ({0} restantes)', map:'Ver mapa', f_contactado:'Contactados', f_interesado:'Interesados', f_cliente:'Clientes', f_descartado:'No interesados',
+  v_sort:'Sort in', v_all:'Todos', sort_hint:'Tocá la dirección para verla en Google Maps y marcá si la cochera existe. Con un teléfono cargado pasa sola a Todos.', exists:'✓ Existe', notexists:'✕ No existe', moved:'{0} → Todos', sort_empty:'No queda nada por revisar.', f_todos:'Todos', f_contel:'Con teléfono', more:'Mostrar más ({0} restantes)', map:'Ver mapa', f_contactado:'Contactados', f_interesado:'Interesados', f_cliente:'Clientes', f_descartado:'No interesados',
   today:'hoy', yesterday:'ayer',
   err_name:'Escribí tu nombre.', err_code12:'Escribí el código completo (12 letras y números).', err_token:'Pegá el token de GitHub.',
   err_repo:'Repositorio: usuario/nombre, por ejemplo {0}.', preparing:'Preparando…', e_code:'Código incorrecto.',
@@ -184,7 +188,7 @@ en: { locale:'en-US', title:'Customers', setup_sub:'Device setup', tab_code:'I h
   token_hint:'Fine-grained token with access <b>only</b> to the data repository, permission “Contents: Read and write”.', repo:'Data repository',
   go:'Set up device', back:'Back without changes', add:'New customer', settings:'Settings', search:'Search name, phone, place, website…',
   est_nuevo:'Not contacted', est_contactado:'Contacted', est_interesado:'Interested', est_cliente:'Customer', est_descartado:'Not interested',
-  f_todos:'All', f_contel:'With phone', more:'Show more ({0} left)', map:'Show map', f_contactado:'Contacted', f_interesado:'Interested', f_cliente:'Customers', f_descartado:'Not interested',
+  v_sort:'Sort in', v_all:'All', sort_hint:'Tap the address to see it on Google Maps and mark whether the garage exists. Adding a phone number moves it to All automatically.', exists:'✓ Exists', notexists:'✕ Doesn’t exist', moved:'{0} → All', sort_empty:'Nothing left to sort.', f_todos:'All', f_contel:'With phone', more:'Show more ({0} left)', map:'Show map', f_contactado:'Contacted', f_interesado:'Interested', f_cliente:'Customers', f_descartado:'Not interested',
   today:'today', yesterday:'yesterday',
   err_name:'Enter your name.', err_code12:'Enter the full code (12 letters and numbers).', err_token:'Paste the GitHub token.',
   err_repo:'Repository: user/name, for example {0}.', preparing:'Setting up…', e_code:'Wrong code.',
@@ -212,7 +216,7 @@ de: { locale:'de-DE', title:'Kunden', setup_sub:'Geräte-Einrichtung', tab_code:
   token_hint:'Fine-grained Token mit Zugriff <b>nur</b> auf das Daten-Repository, Berechtigung „Contents: Read and write“.', repo:'Daten-Repository',
   go:'Gerät einrichten', back:'Zurück ohne Änderungen', add:'Neuer Kunde', settings:'Einstellungen', search:'Name, Telefon, Ort, Website suchen…',
   est_nuevo:'Nicht kontaktiert', est_contactado:'Kontaktiert', est_interesado:'Interessiert', est_cliente:'Kunde', est_descartado:'Kein Interesse',
-  f_todos:'Alle', f_contel:'Mit Telefon', more:'Mehr anzeigen (noch {0})', map:'Karte', f_contactado:'Kontaktiert', f_interesado:'Interessiert', f_cliente:'Kunden', f_descartado:'Kein Interesse',
+  v_sort:'Sort in', v_all:'Alle', sort_hint:'Tippe auf die Adresse, um sie in Google Maps zu sehen, und markiere, ob die Garage existiert. Mit Telefonnummer kommt sie automatisch zu Alle.', exists:'✓ Existiert', notexists:'✕ Existiert nicht', moved:'{0} → Alle', sort_empty:'Nichts mehr einzusortieren.', f_todos:'Alle', f_contel:'Mit Telefon', more:'Mehr anzeigen (noch {0})', map:'Karte', f_contactado:'Kontaktiert', f_interesado:'Interessiert', f_cliente:'Kunden', f_descartado:'Kein Interesse',
   today:'heute', yesterday:'gestern',
   err_name:'Gib deinen Namen ein.', err_code12:'Gib den ganzen Code ein (12 Buchstaben und Zahlen).', err_token:'Füge den GitHub-Token ein.',
   err_repo:'Repository: Nutzer/Name, zum Beispiel {0}.', preparing:'Wird eingerichtet…', e_code:'Falscher Code.',
@@ -290,7 +294,7 @@ var norm = function(s){ return String(s || '').toLowerCase().normalize('NFD').re
 var cfg = store.get(KEY.cfg, null);              /* {repo, token, code, name} */
 var data = store.get(KEY.data, {});              /* id -> {id, n, r, tel, lugar, web, est, notas, log:[{d, n, by, t}], c, t, del} */
 var dirty = store.get(KEY.dirty, false);         /* local changes not yet saved */
-var filter = 'todos', query = '', PAGE = 100, shown = PAGE;
+var filter = 'todos', query = '', PAGE = 100, shown = PAGE, view = store.get('ac.view', 'all');
 var sync = { busy: false, timer: 0, again: false, label: null };
 
 /* ---------- screens ---------- */
@@ -416,6 +420,9 @@ $('#sGo').onclick = async function(){
 var live = function(){ return Object.keys(data).map(function(k){ return data[k]; }).filter(function(x){ return x && !x.del; }); };
 var byDate = function(a, b){ return (b.d || '').localeCompare(a.d || '') || (b.t || 0) - (a.t || 0); };
 var lastLog = function(x){ return (x.log || []).slice().sort(byDate)[0] || null; };
+/* "Sort in": imported garages nobody has checked yet. A phone number or a contact means it exists. */
+var IMPORTED = /^(gcba|osm)-/;
+var pending = function(x){ if(x.ok === true || digits(x.tel).length >= 6 || (x.log || []).length) return false; return x.ok === false || IMPORTED.test(x.id); };
 var FILTERS = ['todos', 'contel', 'nuevo', 'contactado', 'interesado', 'cliente', 'descartado'];
 var filterName = function(f){ return f === 'nuevo' ? t('est_nuevo') : t('f_' + f); };
 /* "Contacted" = everyone we already reached, whatever came out of it */
@@ -427,11 +434,14 @@ var ICON = {
 };
 function render(){
   if(!cfg) return;
-  var all = live();
+  var everything = live(), sorting = everything.filter(pending), all = everything.filter(function(x){ return !pending(x); });
+  if(view === 'sort' && !sorting.length && !everything.length) view = 'all';
+  $('#views').innerHTML = [['sort', sorting.length], ['all', all.length]].map(function(v){ return '<button type="button" data-v="' + v[0] + '"' + (view === v[0] ? ' class="on"' : '') + '>' + esc(t('v_' + v[0])) + '<span class="n">' + v[1] + '</span></button>'; }).join('');
+  $('#chips').hidden = view === 'sort';
   $('#chips').innerHTML = FILTERS.map(function(f){ var n = all.filter(function(x){ return inFilter(x, f); }).length; return '<button type="button" data-f="' + f + '"' + (filter === f ? ' class="on"' : '') + '>' + esc(filterName(f)) + '<span class="n">' + n + '</span></button>'; }).join('');
   var q = norm(query).trim(), qd = digits(query);
-  var rows = all.filter(function(x){
-    if(!inFilter(x, filter)) return false;
+  var rows = (view === 'sort' ? sorting : all).filter(function(x){
+    if(view !== 'sort' && !inFilter(x, filter)) return false;
     if(!q) return true;
     var hay = norm([x.n, x.r, x.lugar, x.web, x.tel, x.notas].join(' '));
     return q.split(/\s+/).every(function(w){ return hay.indexOf(w) >= 0; }) || (qd.length >= 3 && digits(x.tel).indexOf(qd) >= 0);
@@ -439,11 +449,11 @@ function render(){
   /* most recently contacted first; never contacted after, newest entries first */
   rows.sort(function(a, b){ var la = lastLog(a), lb = lastLog(b); if(la && lb) return byDate(la, lb); if(la || lb) return la ? -1 : 1; return (b.c || 0) - (a.c || 0); });
   if(!rows.length){
-    $('#list').innerHTML = '<li class="empty">' + (all.length ? esc(t('no_match')) : t('empty')) + '</li>';
+    $('#list').innerHTML = '<li class="empty">' + (view === 'sort' ? esc(t(sorting.length ? 'no_match' : 'sort_empty')) : all.length ? esc(t('no_match')) : t('empty')) + '</li>';
     return;
   }
   var total = rows.length; rows = rows.slice(0, shown);
-  $('#list').innerHTML = rows.map(function(x){
+  $('#list').innerHTML = (view === 'sort' ? '<li class="hint">' + esc(t('sort_hint')) + '</li>' : '') + rows.map(function(x){
     var l = lastLog(x), w = webHref(x.web);
     return '<li class="item" data-id="' + esc(x.id) + '"><div class="ih"><div class="iname">' + esc(x.n) + (x.r ? '<small>' + esc(x.r) + '</small>' : '') + '</div><span class="badge b-' + esc(x.est || 'nuevo') + '">' + esc(estName(x.est)) + '</span></div>' +
       '<div class="info">' +
@@ -452,12 +462,23 @@ function render(){
         (x.web ? (w ? '<a href="' + esc(w) + '" target="_blank" rel="noopener noreferrer" data-stop>' + ICON.web + esc(webHost(x.web)) + '</a>' : '<span>' + ICON.web + esc(x.web) + '</span>') : '<span class="none">' + ICON.web + esc(t('no_web')) + '</span>') +
       '</div>' +
       (l ? '<div class="last">' + esc(t('last', dayText(l.d))) + (l.by ? ' · ' + esc(l.by) : '') + (l.n ? ' — ' + esc(l.n) : '') + '</div>' : '') +
+      (view === 'sort' ? '<div class="sortbar"><button class="btn go" type="button" data-ok="' + esc(x.id) + '">' + esc(t('exists')) + '</button><button class="btn danger" type="button" data-no="' + esc(x.id) + '">' + esc(t('notexists')) + '</button></div>' : '') +
       '</li>';
   }).join('') + (total > rows.length ? '<li><button class="btn wide" id="more" type="button">' + esc(t('more', total - rows.length)) + '</button></li>' : '');
 }
 $('#chips').addEventListener('click', function(e){ var b = e.target.closest('[data-f]'); if(b){ filter = b.dataset.f; shown = PAGE; render(); } });
 $('#q').addEventListener('input', function(){ query = this.value; shown = PAGE; render(); });
-$('#list').addEventListener('click', function(e){ if(e.target.closest('#more')){ shown += PAGE * 2; render(); return; } if(e.target.closest('[data-stop]')) return; var li = e.target.closest('[data-id]'); if(li) edit(data[li.dataset.id]); });
+$('#views').addEventListener('click', function(e){ var b = e.target.closest('[data-v]'); if(b){ view = b.dataset.v; store.set('ac.view', view); shown = PAGE; render(); window.scrollTo(0, 0); } });
+$('#list').addEventListener('click', function(e){
+  var ok = e.target.closest('[data-ok]'), no = e.target.closest('[data-no]');
+  if(ok || no){
+    var orig = data[(ok || no).getAttribute(ok ? 'data-ok' : 'data-no')]; if(!orig) return;
+    var g = copy(orig);
+    if(ok){ g.ok = true; touch(g); toast(t('moved', orig.n), t('undo'), function(){ var b = copy(orig); touch(b); }); }
+    else { g.del = true; touch(g); toast(t('deleted', orig.n), t('undo'), function(){ var b = copy(orig); delete b.del; touch(b); }); }
+    return;
+  }
+  if(e.target.closest('#more')){ shown += PAGE * 2; render(); return; } if(e.target.closest('[data-stop]')) return; var li = e.target.closest('[data-id]'); if(li) edit(data[li.dataset.id]); });
 $('#add').onclick = function(){ edit(null); };
 
 function touch(x){ x.t = Date.now(); data[x.id] = x; dirty = true; store.set(KEY.data, data); store.set(KEY.dirty, dirty); render(); syncSoon(); }
@@ -469,7 +490,7 @@ function twin(x){
 }
 
 function edit(orig){
-  var x = orig ? copy(orig) : { id: uid(), n: '', r: '', tel: '', lugar: '', web: '', est: 'nuevo', notas: '', log: [], c: Date.now() };
+  var x = orig ? copy(orig) : { id: uid(), n: '', r: '', tel: '', lugar: '', web: '', est: 'nuevo', notas: '', log: [], c: Date.now(), ok: true };
   var f = function(id, label, val, extra){ return '<div class="field"><label for="' + id + '">' + label + '</label><input id="' + id + '" value="' + esc(val) + '" autocomplete="off" ' + (extra || '') + '></div>'; };
   var ph = function(k){ return 'placeholder="' + esc(t(k)) + '"'; };
   var mapUrl = orig ? mapHref(x) : '';
@@ -513,6 +534,7 @@ function edit(orig){
       if(tw){ forceTwin = true; msg(th('twin', tw.n, tw.est && tw.est !== 'nuevo' ? ' (' + estName(tw.est) + ')' : ''), 'warn'); return; }
       close(el);
       var prev = orig ? copy(orig) : null;
+      if(digits(x.tel).length >= 6 || (x.log || []).length) x.ok = true;
       touch(x);
       toast(orig ? t('saved') : t('added', x.n), t('undo'), function(){ if(prev) touch(prev); else { var g = copy(x); g.del = true; touch(g); } });
     };
