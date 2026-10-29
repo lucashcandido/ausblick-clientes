@@ -73,7 +73,7 @@ main{max-width:760px;margin:0 auto;padding:12px 16px calc(32px + env(safe-area-i
 .info .none{color:var(--muted)}
 .last{margin-top:6px;font-size:14px;color:var(--muted)}
 .empty{color:var(--muted);padding:14px 16px;background:var(--card);border:1px dashed var(--line);border-radius:14px}
-.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)} .pill.err,.pill.wait{cursor:pointer;text-decoration:underline dotted}
 .pill i{width:9px;height:9px;border-radius:50%;background:var(--muted)}
 .pill.ok i{background:var(--in)} .pill.wait i{background:var(--warn)} .pill.err i{background:var(--out)}
 .ov{position:fixed;inset:0;background:rgba(10,14,22,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
@@ -181,7 +181,7 @@ es: { locale:'es-AR', title:'Clientes', setup_sub:'Configuración del dispositiv
   csv:['Nombre', 'Rubro', 'Teléfono', 'Lugar', 'Web', 'Estado', 'Último contacto', 'Por', 'Contactos', 'Notas'],
   dev_of:'Dispositivo de <b>{0}</b>', data_in:'Datos en {0}', language:'Idioma', g_share:'Compartir acceso (código)', g_csv:'Exportar lista (CSV para Excel)',
   g_sync:'Sincronizar ahora', g_setup:'Cambiar nombre o acceso', close:'Cerrar',
-  s_saving:'Guardando…', s_saved:'Guardado {0}', s_expired:'Token vencido: hay que renovarlo', s_later:'Sin conexión – se guarda después', s_offline:'Sin conexión' },
+  s_saving:'Guardando…', s_saved:'Guardado {0}', s_expired:'Token vencido: hay que renovarlo', s_later:'Sin conexión – se guarda después', s_offline:'Sin conexión', s_error:'Error {0} – tocá para ver', s_later_err:'Error {0} – no se guardó', err_title:'Problema de sincronización', err_retry:'Reintentar' },
 en: { locale:'en-US', title:'Customers', setup_sub:'Device setup', tab_code:'I have the code', tab_token:'First time (token)',
   name:'Your name', name_hint:'Saved with every contact, so we know who called whom.', code:'Access code',
   code_hint:'Whoever set up the app first has it (Settings → Share access).', token:'GitHub token',
@@ -209,7 +209,7 @@ en: { locale:'en-US', title:'Customers', setup_sub:'Device setup', tab_code:'I h
   csv:['Name', 'Industry', 'Phone', 'Place', 'Website', 'Status', 'Last contact', 'By', 'Contacts', 'Notes'],
   dev_of:'Device of <b>{0}</b>', data_in:'Data in {0}', language:'Language', g_share:'Share access (code)', g_csv:'Export list (CSV for Excel)',
   g_sync:'Sync now', g_setup:'Change name or access', close:'Close',
-  s_saving:'Saving…', s_saved:'Saved {0}', s_expired:'Token expired: it needs renewing', s_later:'Offline – will save later', s_offline:'Offline' },
+  s_saving:'Saving…', s_saved:'Saved {0}', s_expired:'Token expired: it needs renewing', s_later:'Offline – will save later', s_offline:'Offline', s_error:'Error {0} – tap for details', s_later_err:'Error {0} – not saved', err_title:'Sync problem', err_retry:'Try again' },
 de: { locale:'de-DE', title:'Kunden', setup_sub:'Geräte-Einrichtung', tab_code:'Ich habe den Code', tab_token:'Erstes Mal (Token)',
   name:'Dein Name', name_hint:'Wird bei jedem Kontakt gespeichert, damit wir wissen, wer wen angerufen hat.', code:'Zugangscode',
   code_hint:'Hat, wer die App zuerst eingerichtet hat (Einstellungen → Zugang teilen).', token:'GitHub-Token',
@@ -237,7 +237,7 @@ de: { locale:'de-DE', title:'Kunden', setup_sub:'Geräte-Einrichtung', tab_code:
   csv:['Name', 'Branche', 'Telefon', 'Ort', 'Website', 'Status', 'Letzter Kontakt', 'Von', 'Kontakte', 'Notizen'],
   dev_of:'Gerät von <b>{0}</b>', data_in:'Daten in {0}', language:'Sprache', g_share:'Zugang teilen (Code)', g_csv:'Liste exportieren (CSV für Excel)',
   g_sync:'Jetzt synchronisieren', g_setup:'Name oder Zugang ändern', close:'Schließen',
-  s_saving:'Speichert…', s_saved:'Gespeichert {0}', s_expired:'Token abgelaufen: muss erneuert werden', s_later:'Offline – wird später gespeichert', s_offline:'Offline' }
+  s_saving:'Speichert…', s_saved:'Gespeichert {0}', s_expired:'Token abgelaufen: muss erneuert werden', s_later:'Offline – wird später gespeichert', s_offline:'Offline', s_error:'Fehler {0} – antippen für Details', s_later_err:'Fehler {0} – nicht gespeichert', err_title:'Problem beim Synchronisieren', err_retry:'Nochmal versuchen' }
 };
 var lang = store.get(KEY.lang, null);
 if(!TX[lang]){ var nl = String(navigator.language || '').slice(0, 2).toLowerCase(); lang = TX[nl] ? nl : 'es'; }
@@ -583,6 +583,10 @@ function toast(text, act, fn){
 
 /* ---------- saving to GitHub ---------- */
 function setSync(st, k, arg){ sync.label = [st, k, arg]; var p = $('#sync'); p.className = 'pill ' + st; p.lastChild.textContent = k === '…' ? '…' : t(k, arg); }
+$('#sync').addEventListener('click', function(){
+  if(!sync.err || !/err|wait/.test(this.className)) return;
+  modal('<h3>' + esc(t('err_title')) + '</h3><p style="overflow-wrap:anywhere;font-family:ui-monospace,Menlo,monospace;font-size:14px">' + esc(sync.err.detail) + '</p><p class="hint">' + esc(new Date(sync.err.at).toLocaleString(t('locale'))) + ' · navigator.onLine=' + sync.err.online + ' · ' + esc(cfg.repo) + '</p><div class="row2"><button class="btn" data-close type="button">' + esc(t('close')) + '</button><button class="btn primary" id="errRetry" type="button">' + esc(t('err_retry')) + '</button></div>', function(el){ $('#errRetry', el).onclick = function(){ close(el); syncNow(); }; });
+});
 function syncSoon(){ clearTimeout(sync.timer); setSync('wait', 's_saving'); sync.timer = setTimeout(syncNow, 1200); }
 function api(opt){
   opt = opt || {}; opt.headers = Object.assign({ Authorization: 'Bearer ' + cfg.token, Accept: 'application/vnd.github+json' }, opt.headers || {}); opt.cache = 'no-store';
@@ -601,12 +605,17 @@ function merge(remote){
   });
   return changed;
 }
+/* the error with GitHub's own explanation, so the problem can be seen on the device */
+async function httpErr(r, what){
+  var m = ''; try{ var j = await r.clone().json(); m = j.message || ''; if(j.errors) m += ' ' + JSON.stringify(j.errors); }catch(e){ try{ m = (await r.text()).slice(0, 200); }catch(x){} }
+  var e = new Error('http ' + r.status); e.status = r.status; e.detail = what + ' ' + r.status + (m ? ': ' + m : ''); return e;
+}
 async function load(){
   var r = await api();
   if(r.status === 404) return { sha: null, c: {} };
-  if(!r.ok) throw new Error('http ' + r.status);
+  if(!r.ok) throw await httpErr(r, 'GET');
   var j = await r.json(), txt = j.content ? b64d(j.content) : '';
-  if(!txt && j.size){ var rr = await api({ headers: { Accept: 'application/vnd.github.raw' } }); if(!rr.ok) throw new Error('http ' + rr.status); txt = await rr.text(); }
+  if(!txt && j.size){ var rr = await api({ headers: { Accept: 'application/vnd.github.raw' } }); if(!rr.ok) throw await httpErr(rr, 'GET raw'); txt = await rr.text(); }
   var o = JSON.parse(txt || '{}');
   return { sha: j.sha, c: o.c || {} };
 }
@@ -617,9 +626,10 @@ async function save(){
     if(cur.sha) body.sha = cur.sha;
     var r = await api({ method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     if(r.ok) return;
-    if(r.status !== 409 && r.status !== 422) throw new Error('http ' + r.status);
+    if(r.status !== 409 && r.status !== 422) throw await httpErr(r, 'PUT');
+    sync.lastConflict = await httpErr(r, 'PUT');
   }
-  throw new Error('conflict');
+  throw sync.lastConflict;
 }
 async function syncNow(){
   if(!cfg) return;
@@ -629,14 +639,19 @@ async function syncNow(){
     if(dirty){ dirty = false; store.set(KEY.dirty, dirty); try{ await save(); }catch(e){ dirty = true; store.set(KEY.dirty, dirty); throw e; } }
     else { var cur = await load(); merge(cur.c); }
     store.set(KEY.data, data);
-    setSync('ok', 's_saved', hm(Date.now()));
+    sync.err = null; setSync('ok', 's_saved', hm(Date.now()));
   }catch(e){
     if(/http 401/.test(e.message)){
       var fresh = null; try{ fresh = await openAccess(cfg.code); }catch(x){}
       if(fresh && fresh.token !== cfg.token){ cfg.token = fresh.token; cfg.repo = fresh.repo; store.set(KEY.cfg, cfg); sync.busy = false; return syncNow(); }   /* someone replaced the token */
       setSync('err', 's_expired');
     }
-    else setSync(dirty ? 'wait' : 'err', dirty ? 's_later' : 's_offline');
+    else {
+      sync.err = { at: Date.now(), detail: e.detail || (e.name + ': ' + e.message), online: navigator.onLine };
+      try{ console.error('[ausblick sync]', sync.err.detail, e); }catch(x){}
+      if(e.status) setSync(dirty ? 'wait' : 'err', dirty ? 's_later_err' : 's_error', e.status);
+      else setSync(dirty ? 'wait' : 'err', dirty ? 's_later' : 's_offline');
+    }
   }
   sync.busy = false; render();
   if(sync.again){ sync.again = false; syncNow(); }
