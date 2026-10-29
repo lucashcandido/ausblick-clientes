@@ -91,6 +91,11 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#171a21;color:#fff;border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:center;z-index:60;width:max-content;max-width:calc(100% - 32px);font-size:16px}
 .toast button{background:none;border:0;color:#9db8ff;font-weight:700;cursor:pointer;font-size:16px}
 .req{color:var(--out)}
+.bar select{flex:0 0 auto;max-width:45%;padding:12px 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);font-size:15px}
+@media (max-width:520px){.bar{flex-wrap:wrap} .bar select{max-width:none;flex:1 1 100%}}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px} .tag{font-size:12px;font-weight:700;color:var(--vio);background:var(--vio-soft);border-radius:6px;padding:1px 7px}
+.cats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px} .cats button{border:2px solid var(--line);border-radius:999px;background:var(--card);font-weight:700;cursor:pointer;padding:6px 12px;font-size:14px}
+.cats button.on{border-color:var(--vio);background:var(--vio-soft);color:var(--vio)}
 .views{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px} .views button{padding:10px;font-size:16px} .views .n{color:var(--muted);font-weight:600;margin-left:6px} .views button.on .n{color:inherit}
 .sortbar{display:flex;gap:8px;margin-top:10px} .sortbar .btn{flex:1;min-height:46px;font-size:16px;padding:0 10px}
 li.hint{list-style:none;color:var(--muted);font-size:14px;padding:0 4px 4px}
@@ -129,7 +134,7 @@ li.hint{list-style:none;color:var(--muted);font-size:14px;padding:0 4px 4px}
       <button class="icon add" id="add" type="button" data-ta="add"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
       <button class="icon" id="gear" type="button" data-ta="settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     </div>
-    <div class="bar"><input class="search" id="q" type="search" data-tp="search" autocomplete="off"></div>
+    <div class="bar"><input class="search" id="q" type="search" data-tp="search" autocomplete="off"><select id="cat" data-ta="f_cats"></select></div>
     <div class="views" id="views"></div>
     <div class="chips" id="chips"></div>
     <ul class="list" id="list"></ul>
@@ -172,13 +177,13 @@ es: { locale:'es-AR', title:'Clientes', setup_sub:'Configuración del dispositiv
   dl_access:'Descargar access.json', done:'Listo', no_match:'Nada coincide con la búsqueda.', empty:'Todavía no hay clientes. Tocá <b>+</b> para cargar el primero.',
   no_tel:'sin teléfono', no_place:'sin lugar', no_web:'sin web', last:'Último contacto {0}', call:'Llamar', open_web:'Abrir web',
   f_name:'Nombre de la empresa', f_rubro:'Rubro', ph_rubro:'Ferretería, estacionamiento…', f_tel:'Teléfono', f_place:'Lugar', ph_place:'Ciudad, barrio o dirección',
-  f_web:'Página web', f_state:'Estado', f_notes:'Notas', ph_notes:'Con quién hablar, qué necesitan, horarios…', contacts:'Contactos',
+  cat_parking:'Cocheras', f_cats:'Categorías', cat_all:'Todas las categorías', cat_none:'Sin categoría', ph_cat:'Nueva categoría', cat_add:'Agregar', f_web:'Página web', f_state:'Estado', f_notes:'Notas', ph_notes:'Con quién hablar, qué necesitan, horarios…', contacts:'Contactos',
   ph_log:'Qué pasó (ej. llamé, hablé con Juan, mandé presupuesto)', date:'Fecha', log_btn:'Registrar contacto', delete:'Eliminar', cancel:'Cancelar', save:'Guardar',
   log_contacted:'contactado', log_none:'Todavía sin contactar.', log_added:'Contacto agregado. Tocá <b>Guardar</b> para guardarlo.',
   err_cname:'Escribí el nombre de la empresa.', err_web:'La página web no parece una dirección válida.',
   twin:'Ya existe <b>{0}</b> con el mismo nombre, teléfono o web{1}. Tocá <b>Guardar</b> otra vez si igual es otro cliente.',
   saved:'Guardado.', added:'{0} agregado.', deleted:'{0} eliminado.', undo:'Deshacer',
-  csv:['Nombre', 'Rubro', 'Teléfono', 'Lugar', 'Web', 'Estado', 'Último contacto', 'Por', 'Contactos', 'Notas'],
+  csv:['Nombre', 'Categorías', 'Rubro', 'Teléfono', 'Lugar', 'Web', 'Estado', 'Último contacto', 'Por', 'Contactos', 'Notas'],
   dev_of:'Dispositivo de <b>{0}</b>', data_in:'Datos en {0}', language:'Idioma', g_share:'Compartir acceso (código)', g_csv:'Exportar lista (CSV para Excel)',
   g_sync:'Sincronizar ahora', g_setup:'Cambiar nombre o acceso', close:'Cerrar',
   s_saving:'Guardando…', s_saved:'Guardado {0}', s_expired:'Token vencido: hay que renovarlo', s_later:'Sin conexión – se guarda después', s_offline:'Sin conexión', s_error:'Error {0} – tocá para ver', s_later_err:'Error {0} – no se guardó', err_title:'Problema de sincronización', err_retry:'Reintentar', err_write:'El token puede leer pero no guardar. En GitHub → Settings → Developer settings → Fine-grained tokens → Edit, poné «Contents» en «Read and write» para ausblick-clientes-data. El token sigue igual; después tocá Reintentar.' },
@@ -200,13 +205,13 @@ en: { locale:'en-US', title:'Customers', setup_sub:'Device setup', tab_code:'I h
   dl_access:'Download access.json', done:'Done', no_match:'Nothing matches the search.', empty:'No customers yet. Tap <b>+</b> to add the first one.',
   no_tel:'no phone', no_place:'no place', no_web:'no website', last:'Last contact {0}', call:'Call', open_web:'Open website',
   f_name:'Company name', f_rubro:'Industry', ph_rubro:'Hardware store, parking lot…', f_tel:'Phone', f_place:'Place', ph_place:'City, neighborhood or address',
-  f_web:'Website', f_state:'Status', f_notes:'Notes', ph_notes:'Who to talk to, what they need, opening hours…', contacts:'Contacts',
+  cat_parking:'Parking lot', f_cats:'Categories', cat_all:'All categories', cat_none:'No category', ph_cat:'New category', cat_add:'Add', f_web:'Website', f_state:'Status', f_notes:'Notes', ph_notes:'Who to talk to, what they need, opening hours…', contacts:'Contacts',
   ph_log:'What happened (e.g. called, spoke with Juan, sent a quote)', date:'Date', log_btn:'Log contact', delete:'Delete', cancel:'Cancel', save:'Save',
   log_contacted:'contacted', log_none:'Not contacted yet.', log_added:'Contact added. Tap <b>Save</b> to keep it.',
   err_cname:'Enter the company name.', err_web:'The website does not look like a valid address.',
   twin:'<b>{0}</b> already exists with the same name, phone or website{1}. Tap <b>Save</b> again if it really is a different customer.',
   saved:'Saved.', added:'{0} added.', deleted:'{0} deleted.', undo:'Undo',
-  csv:['Name', 'Industry', 'Phone', 'Place', 'Website', 'Status', 'Last contact', 'By', 'Contacts', 'Notes'],
+  csv:['Name', 'Categories', 'Industry', 'Phone', 'Place', 'Website', 'Status', 'Last contact', 'By', 'Contacts', 'Notes'],
   dev_of:'Device of <b>{0}</b>', data_in:'Data in {0}', language:'Language', g_share:'Share access (code)', g_csv:'Export list (CSV for Excel)',
   g_sync:'Sync now', g_setup:'Change name or access', close:'Close',
   s_saving:'Saving…', s_saved:'Saved {0}', s_expired:'Token expired: it needs renewing', s_later:'Offline – will save later', s_offline:'Offline', s_error:'Error {0} – tap for details', s_later_err:'Error {0} – not saved', err_title:'Sync problem', err_retry:'Try again', err_write:'The token can read but not save. On GitHub → Settings → Developer settings → Fine-grained tokens → Edit, set “Contents” to “Read and write” for ausblick-clientes-data. The token stays the same; then tap Try again.' },
@@ -228,13 +233,13 @@ de: { locale:'de-DE', title:'Kunden', setup_sub:'Geräte-Einrichtung', tab_code:
   dl_access:'access.json herunterladen', done:'Fertig', no_match:'Nichts passt zur Suche.', empty:'Noch keine Kunden. Tippe auf <b>+</b>, um den ersten anzulegen.',
   no_tel:'kein Telefon', no_place:'kein Ort', no_web:'keine Website', last:'Letzter Kontakt {0}', call:'Anrufen', open_web:'Website öffnen',
   f_name:'Firmenname', f_rubro:'Branche', ph_rubro:'Eisenwarenladen, Parkplatz…', f_tel:'Telefon', f_place:'Ort', ph_place:'Stadt, Viertel oder Adresse',
-  f_web:'Website', f_state:'Status', f_notes:'Notizen', ph_notes:'Ansprechpartner, was sie brauchen, Öffnungszeiten…', contacts:'Kontakte',
+  cat_parking:'Parkplatz', f_cats:'Kategorien', cat_all:'Alle Kategorien', cat_none:'Ohne Kategorie', ph_cat:'Neue Kategorie', cat_add:'Hinzufügen', f_web:'Website', f_state:'Status', f_notes:'Notizen', ph_notes:'Ansprechpartner, was sie brauchen, Öffnungszeiten…', contacts:'Kontakte',
   ph_log:'Was war (z. B. angerufen, mit Juan gesprochen, Angebot geschickt)', date:'Datum', log_btn:'Kontakt eintragen', delete:'Löschen', cancel:'Abbrechen', save:'Speichern',
   log_contacted:'kontaktiert', log_none:'Noch nicht kontaktiert.', log_added:'Kontakt hinzugefügt. Tippe auf <b>Speichern</b>, um ihn zu sichern.',
   err_cname:'Gib den Firmennamen ein.', err_web:'Die Website sieht nicht nach einer gültigen Adresse aus.',
   twin:'<b>{0}</b> gibt es schon mit gleichem Namen, Telefon oder Website{1}. Tippe nochmal auf <b>Speichern</b>, wenn es trotzdem ein anderer Kunde ist.',
   saved:'Gespeichert.', added:'{0} hinzugefügt.', deleted:'{0} gelöscht.', undo:'Rückgängig',
-  csv:['Name', 'Branche', 'Telefon', 'Ort', 'Website', 'Status', 'Letzter Kontakt', 'Von', 'Kontakte', 'Notizen'],
+  csv:['Name', 'Kategorien', 'Branche', 'Telefon', 'Ort', 'Website', 'Status', 'Letzter Kontakt', 'Von', 'Kontakte', 'Notizen'],
   dev_of:'Gerät von <b>{0}</b>', data_in:'Daten in {0}', language:'Sprache', g_share:'Zugang teilen (Code)', g_csv:'Liste exportieren (CSV für Excel)',
   g_sync:'Jetzt synchronisieren', g_setup:'Name oder Zugang ändern', close:'Schließen',
   s_saving:'Speichert…', s_saved:'Gespeichert {0}', s_expired:'Token abgelaufen: muss erneuert werden', s_later:'Offline – wird später gespeichert', s_offline:'Offline', s_error:'Fehler {0} – antippen für Details', s_later_err:'Fehler {0} – nicht gespeichert', err_title:'Problem beim Synchronisieren', err_retry:'Nochmal versuchen', err_write:'Der Token darf lesen, aber nicht speichern. Auf GitHub → Settings → Developer settings → Fine-grained tokens → Edit „Contents“ auf „Read and write“ für ausblick-clientes-data stellen. Der Token bleibt gleich; danach Nochmal versuchen.' }
@@ -292,7 +297,17 @@ var webHost = function(v){ var h = webHref(v); if(!h) return String(v || ''); tr
 var norm = function(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
 
 var cfg = store.get(KEY.cfg, null);              /* {repo, token, code, name} */
-var data = store.get(KEY.data, {});              /* id -> {id, n, r, tel, lugar, web, est, notas, log:[{d, n, by, t}], c, t, del} */
+var data = store.get(KEY.data, {});              /* id -> {id, n, r, tel, lugar, web, est, notas, cat:[…], log:[{d, n, by, t}], c, t, del} */
+/* categories: built-in keys are shown translated (parking → Cocheras / Parking lot / Parkplatz), anything else as typed.
+   Everyone created before categories existed is a parking lot; done the same way on every device, without touching t. */
+var BUILTIN_CATS = ['parking'], CAT_START = Date.UTC(2026, 9, 29, 13, 0);
+var withCat = function(x){ if(x && !Array.isArray(x.cat) && (x.c || 0) < CAT_START) x.cat = ['parking']; return x; };
+Object.keys(data).forEach(function(k){ withCat(data[k]); });
+var catName = function(c){ return BUILTIN_CATS.indexOf(c) >= 0 ? t('cat_' + c) : c; };
+var catKey = function(label){ var l = String(label || '').trim().replace(/\s+/g, ' '); if(!l) return ''; var ln = norm(l);
+  for(var i = 0; i < BUILTIN_CATS.length; i++){ var b = BUILTIN_CATS[i]; if(ln === b || Object.keys(TX).some(function(k){ return norm(TX[k]['cat_' + b]) === ln; })) return b; }
+  return l; };
+var catFilter = '';
 var dirty = store.get(KEY.dirty, false);         /* local changes not yet saved */
 var filter = 'todos', query = '', PAGE = 100, shown = PAGE, view = store.get('ac.view', 'all');
 var sync = { busy: false, timer: 0, again: false, label: null };
@@ -439,11 +454,17 @@ function render(){
   $('#views').innerHTML = [['sort', sorting.length], ['all', all.length]].map(function(v){ return '<button type="button" data-v="' + v[0] + '"' + (view === v[0] ? ' class="on"' : '') + '>' + esc(t('v_' + v[0])) + '<span class="n">' + v[1] + '</span></button>'; }).join('');
   $('#chips').hidden = view === 'sort';
   $('#chips').innerHTML = FILTERS.map(function(f){ var n = all.filter(function(x){ return inFilter(x, f); }).length; return '<button type="button" data-f="' + f + '"' + (filter === f ? ' class="on"' : '') + '>' + esc(filterName(f)) + '<span class="n">' + n + '</span></button>'; }).join('');
+  var base = view === 'sort' ? sorting : all, cc = {}, none = 0;
+  base.forEach(function(x){ var cs = x.cat || []; if(!cs.length) none++; cs.forEach(function(c){ cc[c] = (cc[c] || 0) + 1; }); });
+  allCats().forEach(function(c){ if(!(c in cc)) cc[c] = 0; });
+  if(catFilter && catFilter !== '-' && !(catFilter in cc)) catFilter = '';
+  $('#cat').innerHTML = '<option value="">' + esc(t('cat_all')) + '</option>' + Object.keys(cc).sort(function(a, b){ return norm(catName(a)).localeCompare(norm(catName(b))); }).map(function(c){ return '<option value="' + esc(c) + '"' + (catFilter === c ? ' selected' : '') + '>' + esc(catName(c)) + ' (' + cc[c] + ')</option>'; }).join('') + (none ? '<option value="-"' + (catFilter === '-' ? ' selected' : '') + '>' + esc(t('cat_none')) + ' (' + none + ')</option>' : '');
   var q = norm(query).trim(), qd = digits(query);
-  var rows = (view === 'sort' ? sorting : all).filter(function(x){
+  var rows = base.filter(function(x){
     if(view !== 'sort' && !inFilter(x, filter)) return false;
+    if(catFilter && (catFilter === '-' ? (x.cat || []).length : (x.cat || []).indexOf(catFilter) < 0)) return false;
     if(!q) return true;
-    var hay = norm([x.n, x.r, x.lugar, x.web, x.tel, x.notas].join(' '));
+    var hay = norm([x.n, x.r, x.lugar, x.web, x.tel, x.notas].concat((x.cat || []).map(catName)).join(' '));
     return q.split(/\s+/).every(function(w){ return hay.indexOf(w) >= 0; }) || (qd.length >= 3 && digits(x.tel).indexOf(qd) >= 0);
   });
   /* most recently contacted first; never contacted after, newest entries first */
@@ -455,7 +476,7 @@ function render(){
   var total = rows.length; rows = rows.slice(0, shown);
   $('#list').innerHTML = (view === 'sort' ? '<li class="hint">' + esc(t('sort_hint')) + '</li>' : '') + rows.map(function(x){
     var l = lastLog(x), w = webHref(x.web);
-    return '<li class="item" data-id="' + esc(x.id) + '"><div class="ih"><div class="iname">' + esc(x.n) + (x.r ? '<small>' + esc(x.r) + '</small>' : '') + '</div><span class="badge b-' + esc(x.est || 'nuevo') + '">' + esc(estName(x.est)) + '</span></div>' +
+    return '<li class="item" data-id="' + esc(x.id) + '"><div class="ih"><div class="iname">' + esc(x.n) + (x.r ? '<small>' + esc(x.r) + '</small>' : '') + ((x.cat || []).length ? '<div class="tags">' + x.cat.map(function(c){ return '<span class="tag">' + esc(catName(c)) + '</span>'; }).join('') + '</div>' : '') + '</div><span class="badge b-' + esc(x.est || 'nuevo') + '">' + esc(estName(x.est)) + '</span></div>' +
       '<div class="info">' +
         (x.tel ? '<a href="' + esc(telHref(x.tel)) + '" data-stop>' + ICON.tel + esc(x.tel) + '</a>' : '<span class="none">' + ICON.tel + esc(t('no_tel')) + '</span>') +
         (x.lugar ? (mapHref(x) ? '<a href="' + esc(mapHref(x)) + '" target="_blank" rel="noopener noreferrer" data-stop>' + ICON.pin + esc(x.lugar) + '</a>' : '<span>' + ICON.pin + esc(x.lugar) + '</span>') : '<span class="none">' + ICON.pin + esc(t('no_place')) + '</span>') +
@@ -468,6 +489,8 @@ function render(){
 }
 $('#chips').addEventListener('click', function(e){ var b = e.target.closest('[data-f]'); if(b){ filter = b.dataset.f; shown = PAGE; render(); } });
 $('#q').addEventListener('input', function(){ query = this.value; shown = PAGE; render(); });
+$('#cat').addEventListener('change', function(){ catFilter = this.value; shown = PAGE; render(); });
+function allCats(){ var seen = {}; BUILTIN_CATS.forEach(function(c){ seen[c] = 1; }); live().forEach(function(x){ (x.cat || []).forEach(function(c){ seen[c] = 1; }); }); return Object.keys(seen); }
 $('#views').addEventListener('click', function(e){ var b = e.target.closest('[data-v]'); if(b){ view = b.dataset.v; store.set('ac.view', view); shown = PAGE; render(); window.scrollTo(0, 0); } });
 $('#list').addEventListener('click', function(e){
   var ok = e.target.closest('[data-ok]'), no = e.target.closest('[data-no]');
@@ -490,7 +513,8 @@ function twin(x){
 }
 
 function edit(orig){
-  var x = orig ? copy(orig) : { id: uid(), n: '', r: '', tel: '', lugar: '', web: '', est: 'nuevo', notas: '', log: [], c: Date.now(), ok: true };
+  var x = orig ? copy(orig) : { id: uid(), n: '', r: '', tel: '', lugar: '', web: '', est: 'nuevo', notas: '', cat: catFilter && catFilter !== '-' ? [catFilter] : [], log: [], c: Date.now(), ok: true };
+  x.cat = (x.cat || []).slice();
   var f = function(id, label, val, extra){ return '<div class="field"><label for="' + id + '">' + label + '</label><input id="' + id + '" value="' + esc(val) + '" autocomplete="off" ' + (extra || '') + '></div>'; };
   var ph = function(k){ return 'placeholder="' + esc(t(k)) + '"'; };
   var mapUrl = orig ? mapHref(x) : '';
@@ -499,6 +523,7 @@ function edit(orig){
     f('eN', esc(t('f_name')) + ' <span class="req">*</span>', x.n, 'autocapitalize="words"') +
     '<div class="grid2">' + f('eR', esc(t('f_rubro')), x.r, ph('ph_rubro') + ' autocapitalize="sentences"') + f('eTel', esc(t('f_tel')), x.tel, 'type="tel" inputmode="tel" placeholder="+54 9 11 2345-6789"') + '</div>' +
     '<div class="grid2">' + f('eL', esc(t('f_place')), x.lugar, ph('ph_place') + ' autocapitalize="words"') + f('eW', esc(t('f_web')), x.web, 'type="url" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="www.ejemplo.com.ar"') + '</div>' +
+    '<div class="field"><span class="lbl">' + esc(t('f_cats')) + '</span><div class="cats" id="eCats"></div><div class="addlog"><input id="eCatN" ' + ph('ph_cat') + ' autocomplete="off" list="eCatL"><datalist id="eCatL"></datalist><button class="btn" id="eCatA" type="button" style="min-height:46px">' + esc(t('cat_add')) + '</button></div></div>' +
     '<div class="field"><span class="lbl">' + esc(t('f_state')) + '</span><div class="est" id="eEst">' + EST.map(function(s){ return '<button type="button" data-e="' + s + '"' + (x.est === s ? ' class="on"' : '') + '>' + esc(estName(s)) + '</button>'; }).join('') + '</div></div>' +
     '<div class="field"><label for="eNo">' + esc(t('f_notes')) + '</label><textarea id="eNo" ' + ph('ph_notes') + '>' + esc(x.notas) + '</textarea></div>' +
     '<hr><span class="lbl">' + esc(t('contacts')) + '</span><ul class="log" id="eLog"></ul>' +
@@ -514,6 +539,17 @@ function edit(orig){
       $('#eLog', el).innerHTML = l.length ? l.map(function(e){ return '<li>' + (e.n ? esc(e.n) : '<i>' + esc(t('log_contacted')) + '</i>') + '<small>' + esc(dayText(e.d)) + (e.by ? ' · ' + esc(e.by) : '') + '</small></li>'; }).join('') : '<li style="border-color:var(--line)"><small>' + esc(t('log_none')) + '</small></li>';
     };
     drawLog();
+    var drawCats = function(){
+      var cs = allCats(); x.cat.forEach(function(c){ if(cs.indexOf(c) < 0) cs.push(c); });
+      cs.sort(function(a, b){ return norm(catName(a)).localeCompare(norm(catName(b))); });
+      $('#eCats', el).innerHTML = cs.map(function(c){ return '<button type="button" data-c="' + esc(c) + '"' + (x.cat.indexOf(c) >= 0 ? ' class="on"' : '') + '>' + esc(catName(c)) + '</button>'; }).join('');
+      $('#eCatL', el).innerHTML = cs.map(function(c){ return '<option value="' + esc(catName(c)) + '">'; }).join('');
+    };
+    drawCats();
+    $('#eCats', el).onclick = function(e){ var b = e.target.closest('[data-c]'); if(!b) return; var c = b.getAttribute('data-c'), i = x.cat.indexOf(c); if(i >= 0) x.cat.splice(i, 1); else x.cat.push(c); drawCats(); };
+    var addCat = function(){ var k = catKey($('#eCatN', el).value); if(!k) return; if(x.cat.indexOf(k) < 0) x.cat.push(k); $('#eCatN', el).value = ''; drawCats(); };
+    $('#eCatA', el).onclick = addCat;
+    $('#eCatN', el).onkeydown = function(e){ if(e.key === 'Enter'){ e.preventDefault(); addCat(); } };
     $('#eLd', el).value = todayIso(); $('#eLd', el).max = todayIso();
     $('#eEst', el).onclick = function(e){ var b = e.target.closest('[data-e]'); if(!b) return; x.est = b.dataset.e; [].forEach.call(el.querySelectorAll('#eEst button'), function(o){ o.classList.toggle('on', o === b); }); };
     $('#eLg', el).onclick = function(){
@@ -527,6 +563,7 @@ function edit(orig){
     var forceTwin = false;
     $('#eOk', el).onclick = function(){
       read();
+      if($('#eCatN', el).value.trim()) addCat();
       if($('#eLn', el).value.trim()){ $('#eLg', el).click(); }
       if(!x.n){ msg(esc(t('err_cname'))); $('#eN', el).focus(); return; }
       if(x.web && !webHref(x.web)){ msg(esc(t('err_web'))); return; }
@@ -550,7 +587,7 @@ function edit(orig){
 function csv(){
   var q = function(v){ v = String(v == null ? '' : v); return /[",;\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
   var rows = [TX[lang].csv];
-  live().sort(function(a, b){ return norm(a.n).localeCompare(norm(b.n)); }).forEach(function(x){ var l = lastLog(x); rows.push([x.n, x.r, x.tel, x.lugar, x.web, estName(x.est), l ? l.d : '', l ? l.by : '', (x.log || []).length, x.notas]); });
+  live().sort(function(a, b){ return norm(a.n).localeCompare(norm(b.n)); }).forEach(function(x){ var l = lastLog(x); rows.push([x.n, (x.cat || []).map(catName).join(', '), x.r, x.tel, x.lugar, x.web, estName(x.est), l ? l.d : '', l ? l.by : '', (x.log || []).length, x.notas]); });
   return '﻿' + rows.map(function(r){ return r.map(q).join(';'); }).join('\r\n') + '\r\n';
 }
 $('#gear').onclick = function(){
@@ -596,7 +633,7 @@ function api(opt){
 function merge(remote){
   var changed = false;
   Object.keys(remote || {}).forEach(function(id){
-    var r = remote[id], l = data[id];
+    var r = withCat(remote[id]), l = data[id];
     if(!r) return;
     if(!l){ data[id] = r; changed = true; return; }
     var win = (r.t || 0) > (l.t || 0) ? copy(r) : l, seen = {}, log = [];

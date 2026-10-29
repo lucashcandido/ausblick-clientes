@@ -7,6 +7,7 @@ Liste der möglichen Kunden von Ausblick: wen wir schon kontaktiert haben, mit *
 - **Kontakte:** Im Kunden „Registrar contacto“ → Datum, Notiz und Name des Geräts werden gespeichert. Der erste Kontakt setzt den Status auf „Contactado“.
 - **Doppelte:** Beim Anlegen warnt die App, wenn Name, Telefon oder Web schon existieren.
 - **Sort in / Alle:** Importierte Garagen starten unter „Sort in“. Dort pro Eintrag „✓ Existe“ (→ Alle) oder „✕ No existe“ (wird gelöscht, mit Rückgängig). Mit Telefonnummer oder eingetragenem Kontakt gilt ein Eintrag automatisch als existierend; selbst angelegte Kunden kommen direkt zu Alle. Adresse antippen öffnet Google Maps.
+- **Kategorien:** pro Kunde beliebig viele (im Kundenfenster an-/abwählen oder neue anlegen), Filter neben der Suche. Eingebaut: „Cocheras / Parking lot / Parkplatz“ (Schlüssel `parking`, je nach Sprache angezeigt); eigene Kategorien so wie eingegeben. Alle Kunden, die vor dem 29.10.2026 angelegt wurden, haben automatisch „Parkplatz“.
 - **Filter „Con teléfono“**, Liste seitenweise (100 pro Seite), Button „Ver mapa“ wenn in den Notizen ein Kartenlink steht.
 - **Export:** Configuración → Exportar lista (CSV, öffnet in Excel).
 - **Sprachen:** Español, English, Deutsch. Beim ersten Öffnen nach Gerätesprache (sonst Spanisch), umschaltbar oben im Einrichtungsbildschirm und in der Configuración; die Wahl bleibt pro Gerät gespeichert. Die Daten selbst sind sprachunabhängig.
