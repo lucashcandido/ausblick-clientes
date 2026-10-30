@@ -179,7 +179,7 @@ es: { locale:'es-AR', title:'Clientes', setup_sub:'Configuración del dispositiv
   dl_access:'Descargar access.json', done:'Listo', no_match:'Nada coincide con la búsqueda.', empty:'Todavía no hay clientes. Tocá <b>+</b> para cargar el primero.',
   no_tel:'sin teléfono', no_place:'sin lugar', no_web:'sin web', last:'Último contacto {0}', call:'Llamar', open_web:'Abrir web',
   f_name:'Nombre de la empresa', f_rubro:'Rubro', ph_rubro:'Ferretería, estacionamiento…', f_tel:'Teléfono', f_place:'Lugar', ph_place:'Ciudad, barrio o dirección',
-  nb:'al lado', nb_long:'Número de un negocio al lado (no es de la cochera)', cat_parking:'Cocheras', f_cats:'Categorías', cat_all:'Todas las categorías', cat_none:'Sin categoría', ph_cat:'Nueva categoría', cat_add:'Agregar', f_web:'Página web', f_state:'Estado', f_notes:'Notas', ph_notes:'Con quién hablar, qué necesitan, horarios…', contacts:'Contactos',
+  nb:'al lado', nb_long:'Número de un negocio al lado (no es de la cochera)', cat_parking:'Cocheras', cat_hair:'Peluquerías', f_cats:'Categorías', cat_all:'Todas las categorías', cat_none:'Sin categoría', ph_cat:'Nueva categoría', cat_add:'Agregar', f_web:'Página web', f_state:'Estado', f_notes:'Notas', ph_notes:'Con quién hablar, qué necesitan, horarios…', contacts:'Contactos',
   ph_log:'Qué pasó (ej. llamé, hablé con Juan, mandé presupuesto)', date:'Fecha', log_btn:'Registrar contacto', delete:'Eliminar', cancel:'Cancelar', save:'Guardar',
   log_contacted:'contactado', log_none:'Todavía sin contactar.', log_added:'Contacto agregado. Tocá <b>Guardar</b> para guardarlo.',
   err_cname:'Escribí el nombre de la empresa.', err_web:'La página web no parece una dirección válida.',
@@ -207,7 +207,7 @@ en: { locale:'en-US', title:'Customers', setup_sub:'Device setup', tab_code:'I h
   dl_access:'Download access.json', done:'Done', no_match:'Nothing matches the search.', empty:'No customers yet. Tap <b>+</b> to add the first one.',
   no_tel:'no phone', no_place:'no place', no_web:'no website', last:'Last contact {0}', call:'Call', open_web:'Open website',
   f_name:'Company name', f_rubro:'Industry', ph_rubro:'Hardware store, parking lot…', f_tel:'Phone', f_place:'Place', ph_place:'City, neighborhood or address',
-  nb:'next to it', nb_long:'Number of a business next to it (not the garage’s own)', cat_parking:'Parking lot', f_cats:'Categories', cat_all:'All categories', cat_none:'No category', ph_cat:'New category', cat_add:'Add', f_web:'Website', f_state:'Status', f_notes:'Notes', ph_notes:'Who to talk to, what they need, opening hours…', contacts:'Contacts',
+  nb:'next to it', nb_long:'Number of a business next to it (not the garage’s own)', cat_parking:'Parking lot', cat_hair:'Hairdressers', f_cats:'Categories', cat_all:'All categories', cat_none:'No category', ph_cat:'New category', cat_add:'Add', f_web:'Website', f_state:'Status', f_notes:'Notes', ph_notes:'Who to talk to, what they need, opening hours…', contacts:'Contacts',
   ph_log:'What happened (e.g. called, spoke with Juan, sent a quote)', date:'Date', log_btn:'Log contact', delete:'Delete', cancel:'Cancel', save:'Save',
   log_contacted:'contacted', log_none:'Not contacted yet.', log_added:'Contact added. Tap <b>Save</b> to keep it.',
   err_cname:'Enter the company name.', err_web:'The website does not look like a valid address.',
@@ -235,7 +235,7 @@ de: { locale:'de-DE', title:'Kunden', setup_sub:'Geräte-Einrichtung', tab_code:
   dl_access:'access.json herunterladen', done:'Fertig', no_match:'Nichts passt zur Suche.', empty:'Noch keine Kunden. Tippe auf <b>+</b>, um den ersten anzulegen.',
   no_tel:'kein Telefon', no_place:'kein Ort', no_web:'keine Website', last:'Letzter Kontakt {0}', call:'Anrufen', open_web:'Website öffnen',
   f_name:'Firmenname', f_rubro:'Branche', ph_rubro:'Eisenwarenladen, Parkplatz…', f_tel:'Telefon', f_place:'Ort', ph_place:'Stadt, Viertel oder Adresse',
-  nb:'nebenan', nb_long:'Nummer eines Geschäfts nebenan (nicht von der Garage)', cat_parking:'Parkplatz', f_cats:'Kategorien', cat_all:'Alle Kategorien', cat_none:'Ohne Kategorie', ph_cat:'Neue Kategorie', cat_add:'Hinzufügen', f_web:'Website', f_state:'Status', f_notes:'Notizen', ph_notes:'Ansprechpartner, was sie brauchen, Öffnungszeiten…', contacts:'Kontakte',
+  nb:'nebenan', nb_long:'Nummer eines Geschäfts nebenan (nicht von der Garage)', cat_parking:'Parkplatz', cat_hair:'Friseur', f_cats:'Kategorien', cat_all:'Alle Kategorien', cat_none:'Ohne Kategorie', ph_cat:'Neue Kategorie', cat_add:'Hinzufügen', f_web:'Website', f_state:'Status', f_notes:'Notizen', ph_notes:'Ansprechpartner, was sie brauchen, Öffnungszeiten…', contacts:'Kontakte',
   ph_log:'Was war (z. B. angerufen, mit Juan gesprochen, Angebot geschickt)', date:'Datum', log_btn:'Kontakt eintragen', delete:'Löschen', cancel:'Abbrechen', save:'Speichern',
   log_contacted:'kontaktiert', log_none:'Noch nicht kontaktiert.', log_added:'Kontakt hinzugefügt. Tippe auf <b>Speichern</b>, um ihn zu sichern.',
   err_cname:'Gib den Firmennamen ein.', err_web:'Die Website sieht nicht nach einer gültigen Adresse aus.',
@@ -302,7 +302,7 @@ var cfg = store.get(KEY.cfg, null);              /* {repo, token, code, name} */
 var data = store.get(KEY.data, {});              /* id -> {id, n, r, tel, lugar, web, est, notas, cat:[…], log:[{d, n, by, t}], c, t, del} */
 /* categories: built-in keys are shown translated (parking → Cocheras / Parking lot / Parkplatz), anything else as typed.
    Everyone created before categories existed is a parking lot; done the same way on every device, without touching t. */
-var BUILTIN_CATS = ['parking'], CAT_START = Date.UTC(2026, 9, 29, 13, 0);
+var BUILTIN_CATS = ['parking', 'hair'], CAT_START = Date.UTC(2026, 9, 29, 13, 0);
 var NB_RE = /\s*\(\s*(?:store\s+)?next to it\s*[)9]?\s*$/i;
 var withCat = function(x){
   if(x && !Array.isArray(x.cat) && (x.c || 0) < CAT_START) x.cat = ['parking'];
