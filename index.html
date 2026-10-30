@@ -91,6 +91,8 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#171a21;color:#fff;border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:center;z-index:60;width:max-content;max-width:calc(100% - 32px);font-size:16px}
 .toast button{background:none;border:0;color:#9db8ff;font-weight:700;cursor:pointer;font-size:16px}
 .req{color:var(--out)}
+.chk{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:15px;font-weight:600;cursor:pointer} .chk input{width:20px;height:20px;margin:0;accent-color:var(--warn)}
+.nb{font-size:12px;font-weight:700;color:var(--warn);background:var(--warn-soft);border-radius:6px;padding:1px 7px;margin-left:2px}
 .bar select{flex:0 0 auto;max-width:45%;padding:12px 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);font-size:15px}
 @media (max-width:520px){.bar{flex-wrap:wrap} .bar select{max-width:none;flex:1 1 100%}}
 .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px} .tag{font-size:12px;font-weight:700;color:var(--vio);background:var(--vio-soft);border-radius:6px;padding:1px 7px}
@@ -177,7 +179,7 @@ es: { locale:'es-AR', title:'Clientes', setup_sub:'Configuración del dispositiv
   dl_access:'Descargar access.json', done:'Listo', no_match:'Nada coincide con la búsqueda.', empty:'Todavía no hay clientes. Tocá <b>+</b> para cargar el primero.',
   no_tel:'sin teléfono', no_place:'sin lugar', no_web:'sin web', last:'Último contacto {0}', call:'Llamar', open_web:'Abrir web',
   f_name:'Nombre de la empresa', f_rubro:'Rubro', ph_rubro:'Ferretería, estacionamiento…', f_tel:'Teléfono', f_place:'Lugar', ph_place:'Ciudad, barrio o dirección',
-  cat_parking:'Cocheras', f_cats:'Categorías', cat_all:'Todas las categorías', cat_none:'Sin categoría', ph_cat:'Nueva categoría', cat_add:'Agregar', f_web:'Página web', f_state:'Estado', f_notes:'Notas', ph_notes:'Con quién hablar, qué necesitan, horarios…', contacts:'Contactos',
+  nb:'al lado', nb_long:'Número de un negocio al lado (no es de la cochera)', cat_parking:'Cocheras', f_cats:'Categorías', cat_all:'Todas las categorías', cat_none:'Sin categoría', ph_cat:'Nueva categoría', cat_add:'Agregar', f_web:'Página web', f_state:'Estado', f_notes:'Notas', ph_notes:'Con quién hablar, qué necesitan, horarios…', contacts:'Contactos',
   ph_log:'Qué pasó (ej. llamé, hablé con Juan, mandé presupuesto)', date:'Fecha', log_btn:'Registrar contacto', delete:'Eliminar', cancel:'Cancelar', save:'Guardar',
   log_contacted:'contactado', log_none:'Todavía sin contactar.', log_added:'Contacto agregado. Tocá <b>Guardar</b> para guardarlo.',
   err_cname:'Escribí el nombre de la empresa.', err_web:'La página web no parece una dirección válida.',
@@ -205,7 +207,7 @@ en: { locale:'en-US', title:'Customers', setup_sub:'Device setup', tab_code:'I h
   dl_access:'Download access.json', done:'Done', no_match:'Nothing matches the search.', empty:'No customers yet. Tap <b>+</b> to add the first one.',
   no_tel:'no phone', no_place:'no place', no_web:'no website', last:'Last contact {0}', call:'Call', open_web:'Open website',
   f_name:'Company name', f_rubro:'Industry', ph_rubro:'Hardware store, parking lot…', f_tel:'Phone', f_place:'Place', ph_place:'City, neighborhood or address',
-  cat_parking:'Parking lot', f_cats:'Categories', cat_all:'All categories', cat_none:'No category', ph_cat:'New category', cat_add:'Add', f_web:'Website', f_state:'Status', f_notes:'Notes', ph_notes:'Who to talk to, what they need, opening hours…', contacts:'Contacts',
+  nb:'next to it', nb_long:'Number of a business next to it (not the garage’s own)', cat_parking:'Parking lot', f_cats:'Categories', cat_all:'All categories', cat_none:'No category', ph_cat:'New category', cat_add:'Add', f_web:'Website', f_state:'Status', f_notes:'Notes', ph_notes:'Who to talk to, what they need, opening hours…', contacts:'Contacts',
   ph_log:'What happened (e.g. called, spoke with Juan, sent a quote)', date:'Date', log_btn:'Log contact', delete:'Delete', cancel:'Cancel', save:'Save',
   log_contacted:'contacted', log_none:'Not contacted yet.', log_added:'Contact added. Tap <b>Save</b> to keep it.',
   err_cname:'Enter the company name.', err_web:'The website does not look like a valid address.',
@@ -233,7 +235,7 @@ de: { locale:'de-DE', title:'Kunden', setup_sub:'Geräte-Einrichtung', tab_code:
   dl_access:'access.json herunterladen', done:'Fertig', no_match:'Nichts passt zur Suche.', empty:'Noch keine Kunden. Tippe auf <b>+</b>, um den ersten anzulegen.',
   no_tel:'kein Telefon', no_place:'kein Ort', no_web:'keine Website', last:'Letzter Kontakt {0}', call:'Anrufen', open_web:'Website öffnen',
   f_name:'Firmenname', f_rubro:'Branche', ph_rubro:'Eisenwarenladen, Parkplatz…', f_tel:'Telefon', f_place:'Ort', ph_place:'Stadt, Viertel oder Adresse',
-  cat_parking:'Parkplatz', f_cats:'Kategorien', cat_all:'Alle Kategorien', cat_none:'Ohne Kategorie', ph_cat:'Neue Kategorie', cat_add:'Hinzufügen', f_web:'Website', f_state:'Status', f_notes:'Notizen', ph_notes:'Ansprechpartner, was sie brauchen, Öffnungszeiten…', contacts:'Kontakte',
+  nb:'nebenan', nb_long:'Nummer eines Geschäfts nebenan (nicht von der Garage)', cat_parking:'Parkplatz', f_cats:'Kategorien', cat_all:'Alle Kategorien', cat_none:'Ohne Kategorie', ph_cat:'Neue Kategorie', cat_add:'Hinzufügen', f_web:'Website', f_state:'Status', f_notes:'Notizen', ph_notes:'Ansprechpartner, was sie brauchen, Öffnungszeiten…', contacts:'Kontakte',
   ph_log:'Was war (z. B. angerufen, mit Juan gesprochen, Angebot geschickt)', date:'Datum', log_btn:'Kontakt eintragen', delete:'Löschen', cancel:'Abbrechen', save:'Speichern',
   log_contacted:'kontaktiert', log_none:'Noch nicht kontaktiert.', log_added:'Kontakt hinzugefügt. Tippe auf <b>Speichern</b>, um ihn zu sichern.',
   err_cname:'Gib den Firmennamen ein.', err_web:'Die Website sieht nicht nach einer gültigen Adresse aus.',
@@ -301,7 +303,12 @@ var data = store.get(KEY.data, {});              /* id -> {id, n, r, tel, lugar,
 /* categories: built-in keys are shown translated (parking → Cocheras / Parking lot / Parkplatz), anything else as typed.
    Everyone created before categories existed is a parking lot; done the same way on every device, without touching t. */
 var BUILTIN_CATS = ['parking'], CAT_START = Date.UTC(2026, 9, 29, 13, 0);
-var withCat = function(x){ if(x && !Array.isArray(x.cat) && (x.c || 0) < CAT_START) x.cat = ['parking']; return x; };
+var NB_RE = /\s*\(\s*(?:store\s+)?next to it\s*[)9]?\s*$/i;
+var withCat = function(x){
+  if(x && !Array.isArray(x.cat) && (x.c || 0) < CAT_START) x.cat = ['parking'];
+  if(x && x.n && NB_RE.test(x.n)){ x.n = x.n.replace(NB_RE, '').trim() || x.n; x.nb = true; }
+  return x;
+};
 Object.keys(data).forEach(function(k){ withCat(data[k]); });
 var catName = function(c){ return BUILTIN_CATS.indexOf(c) >= 0 ? t('cat_' + c) : c; };
 var catKey = function(label){ var l = String(label || '').trim().replace(/\s+/g, ' '); if(!l) return ''; var ln = norm(l);
@@ -478,7 +485,7 @@ function render(){
     var l = lastLog(x), w = webHref(x.web);
     return '<li class="item" data-id="' + esc(x.id) + '"><div class="ih"><div class="iname">' + esc(x.n) + (x.r ? '<small>' + esc(x.r) + '</small>' : '') + ((x.cat || []).length ? '<div class="tags">' + x.cat.map(function(c){ return '<span class="tag">' + esc(catName(c)) + '</span>'; }).join('') + '</div>' : '') + '</div><span class="badge b-' + esc(x.est || 'nuevo') + '">' + esc(estName(x.est)) + '</span></div>' +
       '<div class="info">' +
-        (x.tel ? '<a href="' + esc(telHref(x.tel)) + '" data-stop>' + ICON.tel + esc(x.tel) + '</a>' : '<span class="none">' + ICON.tel + esc(t('no_tel')) + '</span>') +
+        (x.tel ? '<a href="' + esc(telHref(x.tel)) + '" data-stop' + (x.nb ? ' title="' + esc(t('nb_long')) + '"' : '') + '>' + ICON.tel + esc(x.tel) + (x.nb ? ' <span class="nb">' + esc(t('nb')) + '</span>' : '') + '</a>' : '<span class="none">' + ICON.tel + esc(t('no_tel')) + '</span>') +
         (x.lugar ? (mapHref(x) ? '<a href="' + esc(mapHref(x)) + '" target="_blank" rel="noopener noreferrer" data-stop>' + ICON.pin + esc(x.lugar) + '</a>' : '<span>' + ICON.pin + esc(x.lugar) + '</span>') : '<span class="none">' + ICON.pin + esc(t('no_place')) + '</span>') +
         (x.web ? (w ? '<a href="' + esc(w) + '" target="_blank" rel="noopener noreferrer" data-stop>' + ICON.web + esc(webHost(x.web)) + '</a>' : '<span>' + ICON.web + esc(x.web) + '</span>') : '<span class="none">' + ICON.web + esc(t('no_web')) + '</span>') +
       '</div>' +
@@ -521,7 +528,7 @@ function edit(orig){
   var html = '<h3>' + esc(orig ? orig.n : t('add')) + '</h3>' +
     (orig && (x.tel || webHref(x.web) || mapUrl) ? '<div class="quick">' + (x.tel ? '<a href="' + esc(telHref(x.tel)) + '">' + esc(t('call')) + '</a>' : '') + (waHref(x.tel) ? '<a href="' + esc(waHref(x.tel)) + '" target="_blank" rel="noopener noreferrer">WhatsApp</a>' : '') + (webHref(x.web) ? '<a href="' + esc(webHref(x.web)) + '" target="_blank" rel="noopener noreferrer">' + esc(t('open_web')) + '</a>' : '') + (mapUrl ? '<a href="' + esc(mapUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(t('map')) + '</a>' : '') + '</div>' : '') +
     f('eN', esc(t('f_name')) + ' <span class="req">*</span>', x.n, 'autocapitalize="words"') +
-    '<div class="grid2">' + f('eR', esc(t('f_rubro')), x.r, ph('ph_rubro') + ' autocapitalize="sentences"') + f('eTel', esc(t('f_tel')), x.tel, 'type="tel" inputmode="tel" placeholder="+54 9 11 2345-6789"') + '</div>' +
+    '<div class="grid2">' + f('eR', esc(t('f_rubro')), x.r, ph('ph_rubro') + ' autocapitalize="sentences"') + f('eTel', esc(t('f_tel')), x.tel, 'type="tel" inputmode="tel" placeholder="+54 9 11 2345-6789"').replace(/<\/div>$/, '<label class="chk"><input type="checkbox" id="eNb"' + (x.nb ? ' checked' : '') + '>' + esc(t('nb_long')) + '</label></div>') + '</div>' +
     '<div class="grid2">' + f('eL', esc(t('f_place')), x.lugar, ph('ph_place') + ' autocapitalize="words"') + f('eW', esc(t('f_web')), x.web, 'type="url" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="www.ejemplo.com.ar"') + '</div>' +
     '<div class="field"><span class="lbl">' + esc(t('f_cats')) + '</span><div class="cats" id="eCats"></div><div class="addlog"><input id="eCatN" ' + ph('ph_cat') + ' autocomplete="off" list="eCatL"><datalist id="eCatL"></datalist><button class="btn" id="eCatA" type="button" style="min-height:46px">' + esc(t('cat_add')) + '</button></div></div>' +
     '<div class="field"><span class="lbl">' + esc(t('f_state')) + '</span><div class="est" id="eEst">' + EST.map(function(s){ return '<button type="button" data-e="' + s + '"' + (x.est === s ? ' class="on"' : '') + '>' + esc(estName(s)) + '</button>'; }).join('') + '</div></div>' +
@@ -532,7 +539,7 @@ function edit(orig){
     '<div id="eMsg"></div><hr>' +
     '<div class="row2">' + (orig ? '<button class="btn danger" id="eDel" type="button">' + esc(t('delete')) + '</button>' : '') + '<button class="btn" data-close type="button">' + esc(t('cancel')) + '</button><button class="btn primary" id="eOk" type="button">' + esc(t('save')) + '</button></div>';
   modal(html, function(el){
-    var read = function(){ x.n = $('#eN', el).value.trim(); x.r = $('#eR', el).value.trim(); x.tel = $('#eTel', el).value.trim(); x.lugar = $('#eL', el).value.trim(); x.web = $('#eW', el).value.trim(); x.notas = $('#eNo', el).value.trim(); };
+    var read = function(){ x.n = $('#eN', el).value.trim(); x.r = $('#eR', el).value.trim(); x.tel = $('#eTel', el).value.trim(); x.nb = $('#eNb', el).checked; if(!x.nb) delete x.nb; x.lugar = $('#eL', el).value.trim(); x.web = $('#eW', el).value.trim(); x.notas = $('#eNo', el).value.trim(); };
     var msg = function(h, c){ $('#eMsg', el).innerHTML = h ? '<div class="msg ' + (c || 'err') + '">' + h + '</div>' : ''; };
     var drawLog = function(){
       var l = (x.log || []).slice().sort(byDate);
@@ -587,7 +594,7 @@ function edit(orig){
 function csv(){
   var q = function(v){ v = String(v == null ? '' : v); return /[",;\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
   var rows = [TX[lang].csv];
-  live().sort(function(a, b){ return norm(a.n).localeCompare(norm(b.n)); }).forEach(function(x){ var l = lastLog(x); rows.push([x.n, (x.cat || []).map(catName).join(', '), x.r, x.tel, x.lugar, x.web, estName(x.est), l ? l.d : '', l ? l.by : '', (x.log || []).length, x.notas]); });
+  live().sort(function(a, b){ return norm(a.n).localeCompare(norm(b.n)); }).forEach(function(x){ var l = lastLog(x); rows.push([x.n, (x.cat || []).map(catName).join(', '), x.r, x.tel + (x.tel && x.nb ? ' (' + t('nb') + ')' : ''), x.lugar, x.web, estName(x.est), l ? l.d : '', l ? l.by : '', (x.log || []).length, x.notas]); });
   return '﻿' + rows.map(function(r){ return r.map(q).join(';'); }).join('\r\n') + '\r\n';
 }
 $('#gear').onclick = function(){
