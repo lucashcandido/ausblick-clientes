@@ -289,8 +289,9 @@ var waHref = function(v){ var d = digits(v); if(d.length < 8) return ''; if(Stri
 var webHref = function(v){ var s = String(v || '').trim(); if(!s) return ''; if(!/^[a-z][a-z0-9+.-]*:/i.test(s)) s = 'https://' + s; return /^https?:\/\//i.test(s) ? s : ''; };
 /* Google Maps for a customer: the typed address; without one, the coordinates from a map link in the notes */
 var mapHref = function(x){
-  var m = String(x.notas || '').match(/[?&]q=(-?\d+\.\d+),(-?\d+\.\d+)|mlat=(-?\d+\.\d+)&mlon=(-?\d+\.\d+)/), coords = m ? (m[1] || m[3]) + ',' + (m[2] || m[4]) : '';
-  var l = String(x.lugar || '').trim(), usable = l && !/ver mapa/i.test(l) && /\d/.test(l);
+  var m = String(x.notas || '').match(/[?&]q=(-?\d+\.\d+),(-?\d+\.\d+)|mlat=(-?\d+\.\d+)&mlon=(-?\d+\.\d+)/);
+  var coords = x.lat != null && x.lon != null ? x.lat + ',' + x.lon : m ? (m[1] || m[3]) + ',' + (m[2] || m[4]) : '';   /* only for an address without house number */
+  var l = String(x.lugar || '').trim(), usable = l && !/ver mapa|s\/n/i.test(l) && /\d/.test(l.split(',')[0]);   /* without a house number the stored point is more precise */
   if(usable) return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(l.replace(/\bCABA\b/, 'Ciudad Autónoma de Buenos Aires') + (/,/.test(l) ? '' : ', Buenos Aires') + ', Argentina');
   if(coords) return 'https://www.google.com/maps/search/?api=1&query=' + coords;
   return l ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(l + ', Argentina') : '';
