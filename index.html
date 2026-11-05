@@ -94,7 +94,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#111;color:#fff;border:1px solid #333;border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:center;z-index:60;width:max-content;max-width:calc(100% - 32px);font-size:16px}
 .toast button{background:none;border:0;color:#fff;text-decoration:underline;font-weight:700;cursor:pointer;font-size:16px}
 .req{color:var(--out)}
-.hub{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
+.hub{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
 .hub button{border:0;border-radius:10px;background:none;font-weight:750;font-size:16px;padding:10px;cursor:pointer;color:var(--muted)}
 .hub button.on{background:var(--accent);color:var(--on-accent)}
 .hub .n{font-weight:600;margin-left:6px;opacity:.8}
@@ -187,6 +187,70 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
   .dback{display:inline-flex;align-items:center} .dpage{padding:16px}
   .sheet.big{height:calc(100vh - 16px);padding:14px} .ov{padding:8px}
 }
+@media (max-width:480px){ .hub button{font-size:14px;padding:8px 2px;line-height:1.2} .hub .n{display:block;margin:0;font-size:12px} }
+.cauldron{max-width:1200px;margin:0 auto;display:grid;gap:16px}
+.cwrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start} .cwrap>*,.cwrap>*>*{min-width:0} .cside .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px} .cside .row2 .field{min-width:0} #cauldron select{width:100%;max-width:100%}
+@media (max-width:900px){ .cwrap{grid-template-columns:minmax(0,1fr)} }
+.stage{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 16px 14px;text-align:center;position:relative;overflow:hidden}
+.stage .hint{margin:0 0 6px}
+.pot{position:relative;width:min(100%,380px);margin:0 auto;aspect-ratio:1/0.86;border-radius:24px;transition:transform .2s}
+.pot svg{width:100%;height:100%;display:block}
+.pot .liq{fill:var(--accent);opacity:.92;transition:fill .4s}
+.pot .body{fill:#111} .pot .rim{fill:#1d1d1d;stroke:#3a3a3a;stroke-width:3} .pot .leg{fill:#111}
+@media (prefers-color-scheme: dark){ .pot .body,.pot .leg{fill:#262626} .pot .rim{fill:#303030;stroke:#4a4a4a} }
+.pot.over{transform:scale(1.04)} .pot.over .rim{stroke:var(--in);stroke-width:6}
+.pot .bub{fill:var(--card);opacity:0;animation:bub 2.6s infinite ease-in}
+.pot.full .bub{opacity:.9}
+@keyframes bub{0%{transform:translateY(0) scale(.4);opacity:0}20%{opacity:.85}100%{transform:translateY(-70px) scale(1.1);opacity:0}}
+.pot.brew{animation:brew .9s ease-in-out}
+@keyframes brew{0%,100%{transform:rotate(0)}20%{transform:rotate(-4deg)}40%{transform:rotate(4deg)}60%{transform:rotate(-3deg)}80%{transform:rotate(2deg)}}
+.pot .inside{position:absolute;left:12%;right:12%;top:20%;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;pointer-events:none}
+.ing{pointer-events:auto;display:inline-flex;align-items:center;gap:6px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:4px 6px 4px 10px;font-size:13px;font-weight:700;animation:drop .35s ease-out}
+.ing button{border:0;background:var(--bg);color:var(--muted);border-radius:999px;width:20px;height:20px;cursor:pointer;line-height:1;font-size:13px;padding:0}
+@keyframes drop{0%{transform:translateY(-30px) scale(.6);opacity:0}100%{transform:none;opacity:1}}
+.ppl{color:var(--muted);font-size:14px;margin-top:4px}
+.tray{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+@media (max-width:620px){ .tray{display:flex;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:6px} .tray .mod{flex:0 0 150px;scroll-snap-align:start} }
+.mod{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 14px 12px;text-align:left;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation;position:relative;transition:border-color .15s,transform .15s}
+.mod:hover{border-color:var(--accent);transform:translateY(-2px)}
+.mod .mi{width:38px;height:38px;border-radius:12px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;margin-bottom:8px}
+.mod b{display:block;font-size:16px}
+.mod small{display:block;color:var(--muted);font-size:13px;line-height:1.35;margin-top:2px}
+.mod .st{position:absolute;top:10px;right:10px;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px;background:var(--in-soft);color:var(--in)}
+.mod .st.ext{background:var(--warn-soft);color:var(--warn)}
+.mod.in{opacity:.45}
+.mod.in::after{content:'✓';position:absolute;bottom:10px;right:12px;font-weight:800;color:var(--in)}
+.mghost{position:fixed;z-index:80;pointer-events:none;transform:rotate(3deg) scale(1.03);box-shadow:0 14px 30px rgba(0,0,0,.25);opacity:.96}
+.cside{display:grid;gap:12px}
+.card h3{margin:0 0 10px;font-size:17px}
+.recipes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.recipes li{border:1px solid var(--line);border-radius:12px;padding:9px 11px;cursor:pointer}
+.recipes li:hover{border-color:var(--accent)} .recipes li.on{border-color:var(--accent);background:var(--accent-soft)}
+.recipes li small{display:block;color:var(--muted);font-size:13px}
+.bp table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 12px} .bp td,.bp th{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top} .bp th{color:var(--muted);font-weight:600}
+.bp code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;overflow-wrap:anywhere}
+.bp .steps{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.bp .steps label{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer;font-size:15px}
+.bp .steps input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--in)}
+.bp .steps label.done span{text-decoration:line-through;color:var(--muted)}
+.bp .steps small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.bp pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px;max-height:320px;overflow:auto}
+.pv{--p:#111;--a:#eee;--r:12px;--pad:12px;border:1px solid #ddd;border-radius:calc(var(--r) + 4px);overflow:hidden;background:#fafafa;color:#1a1a1a;font-family:var(--fb),system-ui,sans-serif;text-align:left}
+.pv .pvh{display:flex;align-items:center;gap:10px;padding:var(--pad);background:var(--p);color:#fff}
+.pv .pvl{width:30px;height:30px;border-radius:calc(var(--r) * .6);background:#fff;color:var(--p);display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.pv .pvh b{font-family:var(--fh),var(--fb),system-ui,sans-serif;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pv .pvt{display:flex;gap:6px;padding:8px var(--pad);overflow-x:auto;background:#fff;border-bottom:1px solid #eee}
+.pv .pvt span{flex:none;padding:5px 10px;border-radius:var(--r);font-size:13px;font-weight:700;color:#555;background:#f1f1f1}
+.pv .pvt span.on{background:var(--a);color:var(--p)}
+.pv .pvb{padding:var(--pad);display:grid;gap:calc(var(--pad) * .6)}
+.pv .pvr{background:#fff;border:1px solid #eee;border-radius:var(--r);padding:calc(var(--pad) * .8);font-size:14px}
+.pv .pvr small{display:block;color:#777;font-size:12px}
+.pv .pvbtn{justify-self:start;background:var(--p);color:#fff;border-radius:var(--r);padding:8px 14px;font-weight:700;font-size:14px}
+.pv .pvok{background:var(--a);color:#1a1a1a;border-radius:var(--r);padding:8px 10px;font-size:13px}
+.opts{display:flex;gap:6px;flex-wrap:wrap} .opts button{border:1.5px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:7px 11px;font-weight:600;cursor:pointer;font-size:14px} .opts button.on{border-color:var(--accent);background:var(--accent-soft)}
+.safe{font-size:13px;color:var(--muted);border-left:3px solid var(--in);padding:4px 0 4px 10px;margin:0 0 12px}
+.cside select{width:100%;padding:11px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font-size:15px}
+.swatch{display:flex;gap:6px;flex-wrap:wrap} .swatch button{width:34px;height:34px;border-radius:10px;border:2px solid var(--line);cursor:pointer} .swatch button.on{border-color:var(--text);box-shadow:0 0 0 2px var(--card) inset} .swatch input[type=color]{width:34px;height:34px;border:2px solid var(--line);border-radius:10px;padding:0;background:none;cursor:pointer}
 body.dragging-now{cursor:grabbing} body.dragging-now .board{scroll-snap-type:none}
 body.dragging-now *{cursor:grabbing!important}
 .chk{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:15px;font-weight:600;cursor:pointer} .chk input{width:20px;height:20px;margin:0;accent-color:var(--warn)}
@@ -247,6 +311,7 @@ li.hint{list-style:none;color:var(--muted);font-size:14px;padding:0 4px 4px}
         <article class="dpage" id="dpage"></article>
       </div>
     </div>
+    <div id="potView" hidden><div class="cauldron" id="cauldron"></div></div>
     <div id="taskView" hidden>
       <div class="bar"><input class="search" id="tq" type="search" data-tp="t_search" autocomplete="off"><select id="twho" data-ta="t_who"></select></div>
       <div class="board" id="board"></div>
@@ -261,7 +326,7 @@ var $ = function(s, el){ return (el || document).querySelector(s); };
 var APP_REPO = 'lucashcandido/ausblick-clientes';
 var DATA_REPO = 'lucashcandido/ausblick-clientes-data';
 var ACCESS_URL = 'https://api.github.com/repos/' + APP_REPO + '/contents/access.json';
-var FILE = 'clientes.json', TFILE = 'tareas.json', DFILE = 'docs.json';
+var FILE = 'clientes.json', TFILE = 'tareas.json', DFILE = 'docs.json', PFILE = 'cauldron.json';
 var KEY = { cfg:'ac.cfg.v1', data:'ac.data.v1', dirty:'ac.dirty.v1', lang:'ac.lang' };
 var store = {
   get: function(k, d){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
@@ -272,7 +337,9 @@ var store = {
    Every text on screen comes from here. {0}, {1} are filled in; texts used as HTML are escaped where they are filled. */
 var LANGS = [['es', 'Español'], ['en', 'English'], ['de', 'Deutsch']];
 var TX = {
-es: { locale:'es-AR', title:'Clientes', h_cust:'Clientes', h_tasks:'Tareas', h_docs:'Docs',
+es: { locale:'es-AR', h_pot:'Cauldron', p_vibe:'Estilo de la empresa', p_web:'Web del cliente', ph_web:'https://cliente.com.ar', p_fh:'Fuente de títulos', p_fb:'Fuente de texto', p_rad:'Esquinas', r_sq:'rectas', r_md:'suaves', r_rd:'redondas', p_den:'Densidad', d_c:'compacta', d_a:'aireada', p_tone:'Tono de los textos', tn_f:'formal', tn_c:'cercano', p_logo:'Logo (archivo o URL)', p_preview:'Vista previa (así la ve el cliente)', p_tenant:'Tenant en la plataforma', p_mods:'Módulos', p_theme:'Theme (tenant_settings)', p_safe:'El cliente solo recibe un acceso. El código queda en nuestros repos privados y la lógica corre en el servidor.', p_sug:'sugerencia', p_copyjson:'Copiar JSON', p_own:'dominio propio', p_hint:'Arrastrá aplicaciones al caldero (o tocalas) y fusionalas en la app del cliente, con su estilo.', p_empty:'El caldero está vacío.', p_n:'{0} aplicaciones en el caldero', p_apps:'Aplicaciones', p_ready:'base lista', p_ext:'de un proyecto', p_recipe:'Fusión', p_name:'Nombre del proyecto', ph_pname:'Ej. Cochera Palermo', p_slug:'Nombre corto (tenant)', p_cust:'Cliente', p_rubro:'Rubro', p_color:'Color de la marca', p_domain:'Dominio propio (opcional)', ph_domain:'app.cliente.com.ar', p_fuse:'Fusionar', p_need:'Poné al menos una aplicación en el caldero.', p_need_name:'Poné un nombre al proyecto.', p_saved:'Fusiones guardadas', p_none:'Todavía no hay fusiones.', p_new:'+ Nueva fusión', p_open:'Abrir', p_result:'Resultado de la fusión', p_url:'Dirección de la app', p_steps:'Puesta en marcha', p_build:'Encargo de construcción (para Claude)', p_copy:'Copiar encargo', p_copied:'Copiado.', p_totasks:'Pasos pendientes → Tareas', p_tasks_done:'{0} tareas creadas.', p_edit:'Cambiar ingredientes', p_del:'Eliminar fusión', p_progress:'{0} de {1} pasos', p_of:'de {0}', rb_parking:'Cochera', rb_hair:'Peluquería', rb_food:'Gastronomía', rb_retail:'Comercio', rb_general:'General', p_tabs:'Pestañas', p_nocust:'(sin cliente)',
+  m_turnos:'Turnos', md_turnos:'Turnos del personal, horarios, faltas, WhatsApp.', m_salon:'Salón', md_salon:'Mesas, reservas, pedidos y estadísticas.', m_cobros:'Cobros', md_cobros:'Pagos mensuales, parciales y recordatorios por WhatsApp.', m_registro:'Registro QR', md_registro:'Formulario público por QR que llega por WhatsApp.', m_finanzas:'Finanzas', md_finanzas:'Ingresos, gastos, costos fijos y resumen.', m_clientes:'Clientes', md_clientes:'Lista de clientes, contactos, estados, categorías.', m_tareas:'Tareas', md_tareas:'Tablero kanban con columnas.', m_docs:'Docs', md_docs:'Documentación interna tipo wiki.',
+  title:'Clientes', h_cust:'Clientes', h_tasks:'Tareas', h_docs:'Docs',
   d_search:'Buscar en la documentación…', d_new:'+ Nueva página', d_sub:'+ Subpágina', d_edit:'Editar', d_more:'Más', d_untitled:'Sin título', d_empty:'Todavía no hay documentación. Creá la primera página: procesos, contactos, accesos, cómo se hace cada cosa.', d_pick:'Elegí una página a la izquierda.', d_by:'Última edición: {0}, {1}', d_ph:'Escribí acá. **negrita**, *cursiva*, # Título, - lista, - [ ] tarea, [texto](https://link), [[Otra página]]',
   d_title:'Título de la página', d_write:'Escribir', d_preview:'Vista previa', d_help:'Formato', d_back:'← Páginas', d_move:'Mover', d_parent:'Página superior', d_top:'(Nivel principal)', d_hist:'Historial', d_hist_none:'Todavía no hay versiones anteriores.', d_restore:'Restaurar', d_restored:'Versión restaurada.', d_del:'Eliminar página', d_del_kids:'Sus subpáginas pasan a la página superior.', d_conflict:'<b>{0}</b> guardó esta página mientras la editabas. Si guardás, tu versión reemplaza la suya (la suya queda en el historial).', d_save_mine:'Guardar mi versión', d_draft:'Hay un borrador sin guardar de {0}. ¿Seguir con el borrador?', d_draft_yes:'Usar borrador', d_draft_no:'Descartar', d_hits:'{0} resultados', d_nohits:'Nada encontrado.', d_missing:'La página «{0}» no existe. ¿Crearla?', d_link:'Copiar link', d_copied:'Link copiado.', d_chars:'{0} caracteres', t_add:'Nueva tarea', t_search:'Buscar tarea…', t_who:'Responsable', t_all:'Todas', t_mine:'Mis tareas', t_nobody:'Sin responsable',
   ln_todo:'Por hacer', ln_doing:'En curso', ln_review:'En revisión', ln_done:'Hecho', l_new:'+ Nueva columna', l_name:'Nombre de la columna', l_rename:'Renombrar', l_left:'← Mover a la izquierda', l_right:'Mover a la derecha →', l_del:'Eliminar columna', l_del_full:'Primero mové o eliminá las tareas de esta columna.', l_done:'Las tareas acá cuentan como terminadas', l_menu:'Columna',
@@ -304,7 +371,9 @@ es: { locale:'es-AR', title:'Clientes', h_cust:'Clientes', h_tasks:'Tareas', h_d
   dev_of:'Dispositivo de <b>{0}</b>', data_in:'Datos en {0}', language:'Idioma', g_share:'Compartir acceso (código)', g_csv:'Exportar lista (CSV para Excel)',
   g_sync:'Sincronizar ahora', g_setup:'Cambiar nombre o acceso', close:'Cerrar',
   s_saving:'Guardando…', s_saved:'Guardado {0}', s_expired:'Token vencido: hay que renovarlo', s_later:'Sin conexión – se guarda después', s_offline:'Sin conexión', s_error:'Error {0} – tocá para ver', s_later_err:'Error {0} – no se guardó', err_title:'Problema de sincronización', err_retry:'Reintentar', err_write:'El token puede leer pero no guardar. En GitHub → Settings → Developer settings → Fine-grained tokens → Edit, poné «Contents» en «Read and write» para ausblick-clientes-data. El token sigue igual; después tocá Reintentar.' },
-en: { locale:'en-US', title:'Customers', h_cust:'Customers', h_tasks:'Tasks', h_docs:'Docs',
+en: { locale:'en-US', h_pot:'Cauldron', p_vibe:'Company style', p_web:'Customer website', ph_web:'https://customer.com.ar', p_fh:'Heading font', p_fb:'Body font', p_rad:'Corners', r_sq:'square', r_md:'soft', r_rd:'round', p_den:'Density', d_c:'compact', d_a:'airy', p_tone:'Tone of voice', tn_f:'formal', tn_c:'casual', p_logo:'Logo (file or URL)', p_preview:'Preview (what the customer sees)', p_tenant:'Tenant on the platform', p_mods:'Modules', p_theme:'Theme (tenant_settings)', p_safe:'The customer only gets a login. The code stays in our private repos and the logic runs on the server.', p_sug:'suggestion', p_copyjson:'Copy JSON', p_own:'own domain', p_hint:'Drag applications into the cauldron (or tap them) and fuse them into the customer’s app, in their style.', p_empty:'The cauldron is empty.', p_n:'{0} applications in the cauldron', p_apps:'Applications', p_ready:'base ready', p_ext:'from a project', p_recipe:'Fusion', p_name:'Project name', ph_pname:'E.g. Palermo parking', p_slug:'Short name (tenant)', p_cust:'Customer', p_rubro:'Industry', p_color:'Brand colour', p_domain:'Own domain (optional)', ph_domain:'app.customer.com.ar', p_fuse:'Fuse', p_need:'Put at least one application into the cauldron.', p_need_name:'Give the project a name.', p_saved:'Saved fusions', p_none:'No fusions yet.', p_new:'+ New fusion', p_open:'Open', p_result:'Fusion result', p_url:'App address', p_steps:'Setup', p_build:'Build brief (for Claude)', p_copy:'Copy brief', p_copied:'Copied.', p_totasks:'Open steps → Tasks', p_tasks_done:'{0} tasks created.', p_edit:'Change ingredients', p_del:'Delete fusion', p_progress:'{0} of {1} steps', p_of:'of {0}', rb_parking:'Parking', rb_hair:'Hairdresser', rb_food:'Food & drink', rb_retail:'Retail', rb_general:'General', p_tabs:'Tabs', p_nocust:'(no customer)',
+  m_turnos:'Shifts', md_turnos:'Staff shifts, hours, absences, WhatsApp.', m_salon:'Floor', md_salon:'Tables, reservations, orders and stats.', m_cobros:'Payments', md_cobros:'Monthly payments, partials and WhatsApp reminders.', m_registro:'QR sign-up', md_registro:'Public QR form that arrives via WhatsApp.', m_finanzas:'Finances', md_finanzas:'Income, expenses, fixed costs and overview.', m_clientes:'Customers', md_clientes:'Customer list, contacts, status, categories.', m_tareas:'Tasks', md_tareas:'Kanban board with lanes.', m_docs:'Docs', md_docs:'Internal wiki-style documentation.',
+  title:'Customers', h_cust:'Customers', h_tasks:'Tasks', h_docs:'Docs',
   d_search:'Search the docs…', d_new:'+ New page', d_sub:'+ Subpage', d_edit:'Edit', d_more:'More', d_untitled:'Untitled', d_empty:'No documentation yet. Create the first page: processes, contacts, logins, how things are done.', d_pick:'Pick a page on the left.', d_by:'Last edited by {0}, {1}', d_ph:'Write here. **bold**, *italic*, # Heading, - list, - [ ] task, [text](https://link), [[Other page]]',
   d_title:'Page title', d_write:'Write', d_preview:'Preview', d_help:'Formatting', d_back:'← Pages', d_move:'Move', d_parent:'Parent page', d_top:'(Top level)', d_hist:'History', d_hist_none:'No earlier versions yet.', d_restore:'Restore', d_restored:'Version restored.', d_del:'Delete page', d_del_kids:'Its subpages move up to the parent page.', d_conflict:'<b>{0}</b> saved this page while you were editing. If you save, your version replaces theirs (theirs stays in the history).', d_save_mine:'Save my version', d_draft:'There is an unsaved draft from {0}. Continue with the draft?', d_draft_yes:'Use draft', d_draft_no:'Discard', d_hits:'{0} results', d_nohits:'Nothing found.', d_missing:'The page “{0}” doesn’t exist. Create it?', d_link:'Copy link', d_copied:'Link copied.', d_chars:'{0} characters', t_add:'New task', t_search:'Search tasks…', t_who:'Assignee', t_all:'All', t_mine:'My tasks', t_nobody:'Unassigned',
   ln_todo:'To do', ln_doing:'In progress', ln_review:'In review', ln_done:'Done', l_new:'+ New lane', l_name:'Lane name', l_rename:'Rename', l_left:'← Move left', l_right:'Move right →', l_del:'Delete lane', l_del_full:'Move or delete the tasks in this lane first.', l_done:'Tasks here count as finished', l_menu:'Lane',
@@ -336,7 +405,9 @@ en: { locale:'en-US', title:'Customers', h_cust:'Customers', h_tasks:'Tasks', h_
   dev_of:'Device of <b>{0}</b>', data_in:'Data in {0}', language:'Language', g_share:'Share access (code)', g_csv:'Export list (CSV for Excel)',
   g_sync:'Sync now', g_setup:'Change name or access', close:'Close',
   s_saving:'Saving…', s_saved:'Saved {0}', s_expired:'Token expired: it needs renewing', s_later:'Offline – will save later', s_offline:'Offline', s_error:'Error {0} – tap for details', s_later_err:'Error {0} – not saved', err_title:'Sync problem', err_retry:'Try again', err_write:'The token can read but not save. On GitHub → Settings → Developer settings → Fine-grained tokens → Edit, set “Contents” to “Read and write” for ausblick-clientes-data. The token stays the same; then tap Try again.' },
-de: { locale:'de-DE', title:'Kunden', h_cust:'Kunden', h_tasks:'Aufgaben', h_docs:'Doku',
+de: { locale:'de-DE', h_pot:'Cauldron', p_vibe:'Stil der Firma', p_web:'Website des Kunden', ph_web:'https://kunde.com.ar', p_fh:'Schrift Überschriften', p_fb:'Schrift Text', p_rad:'Ecken', r_sq:'eckig', r_md:'weich', r_rd:'rund', p_den:'Dichte', d_c:'kompakt', d_a:'luftig', p_tone:'Tonfall der Texte', tn_f:'sachlich', tn_c:'locker', p_logo:'Logo (Datei oder URL)', p_preview:'Vorschau (so sieht es der Kunde)', p_tenant:'Tenant auf der Plattform', p_mods:'Module', p_theme:'Theme (tenant_settings)', p_safe:'Der Kunde bekommt nur einen Login. Der Code bleibt in unseren privaten Repos, die Logik läuft auf dem Server.', p_sug:'Vorschlag', p_copyjson:'JSON kopieren', p_own:'eigene Domain', p_hint:'Zieh Anwendungen in den Kessel (oder tippe sie an) und fusioniere sie zur App des Kunden, in seinem Stil.', p_empty:'Der Kessel ist leer.', p_n:'{0} Anwendungen im Kessel', p_apps:'Anwendungen', p_ready:'Basis fertig', p_ext:'aus Projekt', p_recipe:'Fusion', p_name:'Projektname', ph_pname:'z. B. Garage Palermo', p_slug:'Kurzname (Tenant)', p_cust:'Kunde', p_rubro:'Branche', p_color:'Markenfarbe', p_domain:'Eigene Domain (optional)', ph_domain:'app.kunde.com.ar', p_fuse:'Fusionieren', p_need:'Leg mindestens eine Anwendung in den Kessel.', p_need_name:'Gib dem Projekt einen Namen.', p_saved:'Gespeicherte Fusionen', p_none:'Noch keine Fusionen.', p_new:'+ Neue Fusion', p_open:'Öffnen', p_result:'Ergebnis der Fusion', p_url:'Adresse der App', p_steps:'Inbetriebnahme', p_build:'Bauauftrag (für Claude)', p_copy:'Bauauftrag kopieren', p_copied:'Kopiert.', p_totasks:'Offene Schritte → Aufgaben', p_tasks_done:'{0} Aufgaben angelegt.', p_edit:'Zutaten ändern', p_del:'Fusion löschen', p_progress:'{0} von {1} Schritten', p_of:'von {0}', rb_parking:'Parkplatz', rb_hair:'Friseur', rb_food:'Gastronomie', rb_retail:'Handel', rb_general:'Allgemein', p_tabs:'Reiter', p_nocust:'(kein Kunde)',
+  m_turnos:'Schichtplan', md_turnos:'Schichten, Stunden, Abwesenheiten, WhatsApp.', m_salon:'Salón', md_salon:'Tische, Reservierungen, Bestellungen, Statistik.', m_cobros:'Zahlungen', md_cobros:'Monatszahlungen, Teilzahlungen, WhatsApp-Erinnerungen.', m_registro:'QR-Anmeldung', md_registro:'Öffentliches QR-Formular, kommt per WhatsApp an.', m_finanzas:'Finanzen', md_finanzas:'Einnahmen, Ausgaben, Fixkosten, Überblick.', m_clientes:'Kunden', md_clientes:'Kundenliste, Kontakte, Status, Kategorien.', m_tareas:'Aufgaben', md_tareas:'Kanban-Board mit Spalten.', m_docs:'Doku', md_docs:'Interne Dokumentation als Wiki.',
+  title:'Kunden', h_cust:'Kunden', h_tasks:'Aufgaben', h_docs:'Doku',
   d_search:'Doku durchsuchen…', d_new:'+ Neue Seite', d_sub:'+ Unterseite', d_edit:'Bearbeiten', d_more:'Mehr', d_untitled:'Ohne Titel', d_empty:'Noch keine Dokumentation. Leg die erste Seite an: Abläufe, Kontakte, Zugänge, wie was gemacht wird.', d_pick:'Wähle links eine Seite.', d_by:'Zuletzt bearbeitet von {0}, {1}', d_ph:'Hier schreiben. **fett**, *kursiv*, # Überschrift, - Liste, - [ ] Aufgabe, [Text](https://link), [[Andere Seite]]',
   d_title:'Titel der Seite', d_write:'Schreiben', d_preview:'Vorschau', d_help:'Formatierung', d_back:'← Seiten', d_move:'Verschieben', d_parent:'Übergeordnete Seite', d_top:'(Oberste Ebene)', d_hist:'Verlauf', d_hist_none:'Noch keine früheren Versionen.', d_restore:'Wiederherstellen', d_restored:'Version wiederhergestellt.', d_del:'Seite löschen', d_del_kids:'Ihre Unterseiten rutschen eine Ebene nach oben.', d_conflict:'<b>{0}</b> hat diese Seite gespeichert, während du sie bearbeitet hast. Wenn du speicherst, ersetzt deine Version die andere (die bleibt im Verlauf).', d_save_mine:'Meine Version speichern', d_draft:'Es gibt einen ungespeicherten Entwurf von {0}. Mit dem Entwurf weitermachen?', d_draft_yes:'Entwurf nehmen', d_draft_no:'Verwerfen', d_hits:'{0} Treffer', d_nohits:'Nichts gefunden.', d_missing:'Die Seite „{0}“ gibt es nicht. Anlegen?', d_link:'Link kopieren', d_copied:'Link kopiert.', d_chars:'{0} Zeichen', t_add:'Neue Aufgabe', t_search:'Aufgabe suchen…', t_who:'Zuständig', t_all:'Alle', t_mine:'Meine Aufgaben', t_nobody:'Niemand zuständig',
   ln_todo:'Zu erledigen', ln_doing:'In Arbeit', ln_review:'In Prüfung', ln_done:'Erledigt', l_new:'+ Neue Spalte', l_name:'Name der Spalte', l_rename:'Umbenennen', l_left:'← Nach links', l_right:'Nach rechts →', l_del:'Spalte löschen', l_del_full:'Verschiebe oder lösche zuerst die Aufgaben in dieser Spalte.', l_done:'Aufgaben hier gelten als erledigt', l_menu:'Spalte',
@@ -379,7 +450,7 @@ var estName = function(k){ return t('est_' + (EST.indexOf(k) >= 0 ? k : 'nuevo')
 function langButtons(cur){ return LANGS.map(function(l){ return '<button type="button" data-lang="' + l[0] + '"' + (l[0] === cur ? ' class="on"' : '') + ' title="' + l[1] + '">' + (this.big ? l[1] : l[0].toUpperCase()) + '</button>'; }, this || {}).join(''); }
 function applyLang(){
   document.documentElement.lang = lang;
-  document.title = 'Ausblick – ' + t({ cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs' }[hub]);
+  document.title = 'Ausblick – ' + t({ cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs', pot: 'h_pot' }[hub]);
   [].forEach.call(document.querySelectorAll('[data-t]'), function(el){ el.textContent = t(el.dataset.t); });
   [].forEach.call(document.querySelectorAll('[data-th]'), function(el){ el.innerHTML = t(el.dataset.th); });
   [].forEach.call(document.querySelectorAll('[data-tp]'), function(el){ el.placeholder = t(el.dataset.tp); });
@@ -446,9 +517,11 @@ var sync = { busy: false, timer: 0, again: false, label: null };
 var TKEY = { data: 'ac.tdata.v1', dirty: 'ac.tdirty.v1' };
 var tasks = store.get(TKEY.data, {}), tdirty = store.get(TKEY.dirty, false);
 var DKEY = { data: 'ac.ddata.v1', dirty: 'ac.ddirty.v1' };
+var PKEY = { data: 'ac.pdata.v1', dirty: 'ac.pdirty.v1' };
+var fusions = store.get(PKEY.data, {}), pdirty = store.get(PKEY.dirty, false);
 var docs = store.get(DKEY.data, {}), ddirty = store.get(DKEY.dirty, false);
 var hashDoc = (location.hash.match(/^#docs\/([\w-]+)/) || [])[1] || '';
-var hub = /^#docs/i.test(location.hash) ? 'docs' : /tareas|tasks|aufgaben/i.test(location.hash) ? 'tasks' : store.get('ac.hub', 'cust');
+var hub = /^#cauldron/i.test(location.hash) ? 'pot' : /^#docs/i.test(location.hash) ? 'docs' : /tareas|tasks|aufgaben/i.test(location.hash) ? 'tasks' : store.get('ac.hub', 'cust');
 var tquery = '', twho = '';
 
 /* ---------- screens ---------- */
@@ -555,7 +628,7 @@ $('#sGo').onclick = async function(){
   var changedRepo = cfg && cfg.repo !== conf.repo;
   cfg = { repo: conf.repo, token: conf.token, code: code, name: name };
   store.set(KEY.cfg, cfg);
-  if(changedRepo){ data = {}; dirty = false; store.set(KEY.data, data); store.set(KEY.dirty, dirty); tasks = {}; tdirty = false; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); docs = {}; ddirty = false; store.set(DKEY.data, docs); store.set(DKEY.dirty, ddirty); }
+  if(changedRepo){ data = {}; dirty = false; store.set(KEY.data, data); store.set(KEY.dirty, dirty); tasks = {}; tdirty = false; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); docs = {}; ddirty = false; store.set(DKEY.data, docs); store.set(DKEY.dirty, ddirty); fusions = {}; pdirty = false; store.set(PKEY.data, fusions); store.set(PKEY.dirty, pdirty); }
   $('#sCode').value = ''; $('#sToken').value = ''; $('#sMsg').innerHTML = '';
   show(); syncNow();
   if(mode === 'token') shareAccess(true);
@@ -588,14 +661,14 @@ var ICON = {
 };
 function render(){
   if(!cfg) return;
-  if(drag.active || drag.el){ drag.renderLater = true; return; }   /* rebuilding the board under a finger would drop the card */
-  $('#hub').innerHTML = [['cust', 'h_cust', live().filter(function(x){ return !pending(x); }).length], ['tasks', 'h_tasks', liveTasks().filter(function(k){ return !laneDone(k.lane); }).length], ['docs', 'h_docs', liveDocs().length]].map(function(h){ return '<button type="button" data-hub="' + h[0] + '"' + (hub === h[0] ? ' class="on"' : '') + '>' + esc(t(h[1])) + '<span class="n">' + h[2] + '</span></button>'; }).join('');
-  $('#custView').hidden = hub !== 'cust'; $('#taskView').hidden = hub !== 'tasks'; $('#docView').hidden = hub !== 'docs';
-  $('#add').setAttribute('aria-label', t(hub === 'tasks' ? 't_add' : hub === 'docs' ? 'd_new' : 'add')); $('#add').title = $('#add').getAttribute('aria-label');
-  var h1 = document.querySelector('#app h1 > span[data-t]'); var HT = { cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs' };
+  if(drag.active || drag.el || pdrag.active || pdrag.el){ drag.renderLater = true; return; }   /* rebuilding the board under a finger would drop the card */
+  $('#hub').innerHTML = [['cust', 'h_cust', live().filter(function(x){ return !pending(x); }).length], ['tasks', 'h_tasks', liveTasks().filter(function(k){ return !laneDone(k.lane); }).length], ['docs', 'h_docs', liveDocs().length], ['pot', 'h_pot', liveFusions().length]].map(function(h){ return '<button type="button" data-hub="' + h[0] + '"' + (hub === h[0] ? ' class="on"' : '') + '>' + esc(t(h[1])) + '<span class="n">' + h[2] + '</span></button>'; }).join('');
+  $('#custView').hidden = hub !== 'cust'; $('#taskView').hidden = hub !== 'tasks'; $('#docView').hidden = hub !== 'docs'; $('#potView').hidden = hub !== 'pot';
+  $('#add').setAttribute('aria-label', t(hub === 'tasks' ? 't_add' : hub === 'docs' ? 'd_new' : hub === 'pot' ? 'p_new' : 'add')); $('#add').title = $('#add').getAttribute('aria-label');
+  var h1 = document.querySelector('#app h1 > span[data-t]'); var HT = { cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs', pot: 'h_pot' };
   if(h1) h1.textContent = t(HT[hub]);
   document.title = 'Ausblick – ' + t(HT[hub]);
-  if(hub === 'tasks') renderBoard(); else if(hub === 'docs') renderDocs(); else renderList();
+  if(hub === 'tasks') renderBoard(); else if(hub === 'docs') renderDocs(); else if(hub === 'pot') renderPot(); else renderList();
 }
 function renderList(){
   var everything = live(), sorting = everything.filter(pending), all = everything.filter(function(x){ return !pending(x); });
@@ -651,7 +724,7 @@ $('#list').addEventListener('click', function(e){
     return;
   }
   if(e.target.closest('#more')){ shown += PAGE * 2; render(); return; } if(e.target.closest('[data-stop]')) return; var li = e.target.closest('[data-id]'); if(li) edit(data[li.dataset.id]); });
-$('#add').onclick = function(){ if(hub === 'tasks') editTask(null, { lane: lanes()[0].id }); else if(hub === 'docs') newDoc(''); else edit(null); };
+$('#add').onclick = function(){ if(hub === 'tasks') editTask(null, { lane: lanes()[0].id }); else if(hub === 'docs') newDoc(''); else if(hub === 'pot') newFusion(); else edit(null); };
 
 function touch(x){ x.t = Date.now(); data[x.id] = x; dirty = true; store.set(KEY.data, data); store.set(KEY.dirty, dirty); render(); syncSoon(); }
 var copy = function(x){ return JSON.parse(JSON.stringify(x)); };
@@ -792,7 +865,7 @@ function renderBoard(){
   }).join('') + '<button class="newlane" type="button" id="newLane">' + esc(t('l_new')) + '</button>';
   $('#board').scrollLeft = sc;
 }
-$('#hub').addEventListener('click', function(e){ var b = e.target.closest('[data-hub]'); if(!b || b.dataset.hub === hub) return; hub = b.dataset.hub; store.set('ac.hub', hub); history.replaceState(null, '', location.pathname + location.search + (hub === 'tasks' ? '#tareas' : hub === 'docs' ? '#docs' + (curDoc ? '/' + curDoc : '') : '')); render(); window.scrollTo(0, 0); });
+$('#hub').addEventListener('click', function(e){ var b = e.target.closest('[data-hub]'); if(!b || b.dataset.hub === hub) return; hub = b.dataset.hub; store.set('ac.hub', hub); history.replaceState(null, '', location.pathname + location.search + (hub === 'tasks' ? '#tareas' : hub === 'docs' ? '#docs' + (curDoc ? '/' + curDoc : '') : hub === 'pot' ? '#cauldron' : '')); render(); window.scrollTo(0, 0); });
 $('#tq').addEventListener('input', function(){ tquery = this.value; render(); });
 $('#twho').addEventListener('change', function(){ twho = this.value; render(); });
 $('#board').addEventListener('click', function(e){
@@ -882,6 +955,216 @@ function editTask(orig, preset){
     if(!orig) setTimeout(function(){ $('#kT', el).focus(); }, 50);
   });
 }
+
+/* ---------- cauldron: fuse our applications into one customer web app ---------- */
+/* catalogue of what Ausblick has built; base = repository the module comes from, ready = has the APP block for customer copies */
+var MODS = [
+  { id: 'turnos', base: 'ausblick-shiftmanager', ready: true, file: 'turnos.json', team: true, icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h3M8 18h6"/></svg>' },
+  { id: 'salon', base: 'ausblick-restaurant-floor-manager', ready: true, file: 'salon.json', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><rect x="4" y="15" width="16" height="5" rx="1.5"/></svg>' },
+  { id: 'cobros', base: 'Angel-parkinglot', ready: false, file: 'cobros.json', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>' },
+  { id: 'registro', base: 'castcomercial-reg', ready: false, file: '', pub: true, icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>' },
+  { id: 'finanzas', base: '1percent', ready: false, file: 'finanzas.json', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>' },
+  { id: 'clientes', base: 'ausblick-clientes', ready: true, file: 'clientes.json', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>' },
+  { id: 'tareas', base: 'ausblick-clientes', ready: true, file: 'tareas.json', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="10" rx="1"/><rect x="17" y="4" width="4" height="13" rx="1"/></svg>' },
+  { id: 'docs', base: 'ausblick-clientes', ready: true, file: 'docs.json', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h10a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4z"/><path d="M8 8h6M8 12h6"/></svg>' }
+];
+var modById = function(id){ for(var i = 0; i < MODS.length; i++) if(MODS[i].id === id) return MODS[i]; return null; };
+var COLORS = ['#111111', '#1d4ed8', '#0f766e', '#15803d', '#b45309', '#c2410c', '#be123c', '#7c3aed'];
+var RUBROS = ['parking', 'hair', 'food', 'retail', 'general'];
+var liveFusions = function(){ return Object.keys(fusions).map(function(k){ return fusions[k]; }).filter(function(f){ return f && f.k === 'fusion' && !f.del; }); };
+var pot = store.get('ac.pot', { mods: [] }), curFusion = '';
+function savePot(){ store.set('ac.pot', pot); }
+function ptouch(x){ x.t = Date.now(); fusions[x.id] = x; pdirty = true; store.set(PKEY.data, fusions); store.set(PKEY.dirty, pdirty); render(); syncSoon(); }
+var slugify = function(s){ return norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 30); };
+var owner = function(){ return cfg && cfg.repo ? cfg.repo.split('/')[0] : 'lucashcandido'; };
+
+/* what a fusion becomes: a tenant on our platform (login only, code stays private), with modules switched on and the customer's look in tenant_settings */
+var FONTS = ['Inter', 'Roboto', 'Poppins', 'Montserrat', 'Nunito', 'Lora', 'Merriweather', 'Playfair Display'];
+var RADII = { sq: 4, md: 10, rd: 16 };
+var PLATFORM = 'ausblicksistemas.com';
+function tint(hex, f){ var m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if(!m) return '#eeeeee'; var n = parseInt(m[1], 16), c = [n >> 16, (n >> 8) & 255, n & 255].map(function(v){ return Math.round(v + (255 - v) * f); }); return '#' + c.map(function(v){ return ('0' + v.toString(16)).slice(-2); }).join(''); }
+function themeOf(f){ return { primary: f.color || '#111111', accent: tint(f.color || '#111111', .85), font_heading: f.fh || 'Inter', font_body: f.fb || 'Inter', radius: (RADII[f.rad || 'md'] || 10) + 'px', density: f.den === 'c' ? 'compact' : 'comfortable', tone: f.tone === 'c' ? 'casual' : 'formal', logo: f.logo || '' }; }
+function hostOf(f){ return f.domain ? f.domain.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : (f.slug || slugify(f.n) || 'cliente') + '.' + PLATFORM; }
+function tenantSettings(f){ return { tenant: f.slug || slugify(f.n) || 'cliente', name: f.n, domain: hostOf(f), industry: f.rubro || 'general', modules: f.mods.slice(), theme: themeOf(f), website: f.web || '' }; }
+function blueprint(f){
+  var slug = f.slug || slugify(f.n) || 'cliente', mods = f.mods.map(modById).filter(Boolean);
+  var host = f.domain ? f.domain.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : slug + '.' + PLATFORM, url = 'https://' + host + '/';
+  var staff = mods.some(function(m){ return m.team; }), qr = mods.some(function(m){ return m.pub; }), todo = mods.filter(function(m){ return !m.ready; });
+  var L = function(es, en, de){ return { es: es, en: en, de: de }; };
+  var steps = [
+    { id: 'tenant', t: L('Crear el tenant en la plataforma', 'Create the tenant on the platform', 'Tenant auf der Plattform anlegen'), d: slug + ' · ' + mods.map(function(m){ return t('m_' + m.id); }).join(' + ') },
+    { id: 'theme', t: L('Sacar el estilo de su web', 'Take the style from their website', 'Stil von der Website ableiten'), d: (f.web || '—') + ' → ' + t('p_theme') },
+    { id: 'logo', t: L('Logo y favicon', 'Logo and favicon', 'Logo und Favicon hinterlegen'), d: f.logo || '—' }
+  ];
+  if(f.domain) steps.push({ id: 'dns', t: L('Dominio propio: CNAME a la plataforma', 'Own domain: CNAME to the platform', 'Eigene Domain: CNAME auf die Plattform'), d: host + ' → CNAME · HTTPS' });
+  else steps.push({ id: 'dns', t: L('Subdominio', 'Subdomain', 'Subdomain einrichten'), d: host });
+  if(todo.length) steps.push({ id: 'port', t: L('Pasar módulos a la plataforma', 'Bring modules onto the platform', 'Module auf die Plattform bringen'), d: todo.map(function(m){ return t('m_' + m.id) + ' ← ' + m.base; }).join(' · ') });
+  steps.push({ id: 'admin', t: L('Acceso de administrador para el cliente', 'Admin login for the customer', 'Admin-Login für den Kunden'), d: t('p_safe') });
+  if(staff) steps.push({ id: 'staff', t: L('Invitar al personal', 'Invite the staff', 'Personal einladen'), d: t('m_turnos') });
+  if(qr) steps.push({ id: 'qr', t: L('Imprimir el QR de registro', 'Print the sign-up QR', 'QR-Code für die Anmeldung drucken'), d: url + 'registro' });
+  steps.push({ id: 'data', t: L('Cargar datos y modelo del rubro', 'Load data and industry preset', 'Daten und Branchenvorlage eintragen'), d: t('rb_' + (f.rubro || 'general')) });
+  steps.push({ id: 'legal', t: L('Firmar Términos y Condiciones', 'Sign terms and conditions', 'Términos y Condiciones unterschreiben'), d: L('Derecho de uso, no propiedad · desarrollos a medida siguen siendo de Ausblick', 'Right of use, not ownership · custom work stays with Ausblick', 'Nutzungsrecht, kein Eigentum · Sonderentwicklungen bleiben bei Ausblick')[lang] });
+  steps.push({ id: 'hand', t: L('Entregar, capacitar y mostrar la exportación de datos', 'Hand over, train and show the data export', 'Übergeben, einweisen, Datenexport zeigen'), d: url });
+  var cu = f.cust && data[f.cust] ? data[f.cust] : null, th = themeOf(f);
+  var brief = [
+    'Richte auf unserer Ausblick-Plattform den Tenant „' + slug + '“ für ' + (cu ? cu.n + (cu.lugar ? ' (' + cu.lugar + ')' : '') : 'unseren Kunden') + ' ein. Projektname in der App: „' + f.n + '“.',
+    '',
+    'Grundsätze: Der Kunde bekommt nur einen Login, nie Quellcode. Code bleibt in den privaten Repos unserer Organisation, Geschäftsregeln laufen auf dem Server. Der Kunde kann seine eigenen Daten jederzeit exportieren.',
+    '',
+    'Module (Reihenfolge = Reiter in der App):',
+    mods.map(function(m, n){ return (n + 1) + '. ' + t('m_' + m.id) + ' – Basis: ' + m.base + (m.ready ? '' : ' (noch auf die Plattform übernehmen, ohne kundenspezifische Namen und Nummern)') + (m.team ? ', mit Zugang für das Personal' : '') + (m.pub ? ', öffentliches Formular per QR' : ''); }).join('\n'),
+    '',
+    'Branche: ' + t('rb_' + (f.rubro || 'general')) + ' (Vorlage „' + (f.rubro || 'general') + '“).',
+    'Adresse: ' + url + (f.domain ? ' (eigene Domain des Kunden per CNAME, HTTPS)' : ''),
+    f.web ? 'Website des Kunden: ' + f.web + ' – Logo, Favicon, Farben und Schriften dort prüfen und das Theme bei Bedarf verfeinern.' : 'Keine Website angegeben – Theme so übernehmen.',
+    'Tonfall der Texte: ' + (th.tone === 'casual' ? 'locker und nahbar („¡Listo! Tu turno está agendado 🎉“)' : 'sachlich („Turno asignado.“)') + '.',
+    '',
+    'tenant_settings:',
+    JSON.stringify(tenantSettings(f), null, 2)
+  ].join('\n');
+  return { slug: slug, host: host, url: url, steps: steps, brief: brief, mods: mods };
+}
+var stepText = function(st){ return st.t[lang] || st.t.es; };
+function initials(n){ return (n || 'A').split(/\s+/).filter(Boolean).slice(0, 2).map(function(w){ return w[0]; }).join('').toUpperCase(); }
+/* a small mock of the customer's app in their look, to show in the first meeting */
+function pvHtml(f){
+  var th = themeOf(f), mods = (f.mods || []).map(modById).filter(Boolean), pad = th.density === 'compact' ? 9 : 15, first = mods[0] ? mods[0].id : '';
+  var rows = { turnos: ['Mañana · 08–14', 'Ana, Diego, Lu'], salon: ['Mesa 4 · 21:00', 'Reserva para 6'], cobros: ['Abono mensual', 'Vence el 10'], registro: ['Nuevo registro', 'Recibido por WhatsApp'], finanzas: ['Ingresos del mes', 'vs. mes anterior'], clientes: ['Cliente nuevo', 'Llamar el martes'], tareas: ['En curso', '3 tareas'], docs: ['Manual interno', 'Actualizado hoy'] };
+  var r = rows[first] || ['Hoy', 'Todo en orden'];
+  var ok = th.tone === 'casual' ? '¡Listo! Quedó guardado 🎉' : 'Cambios guardados.';
+  return '<div class="pv" style="--p:' + esc(th.primary) + ';--a:' + esc(th.accent) + ';--r:' + esc(th.radius) + ';--pad:' + pad + 'px;--fh:\'' + esc(th.font_heading) + '\';--fb:\'' + esc(th.font_body) + '\'">' +
+    '<div class="pvh"><span class="pvl">' + esc(initials(f.n || (f.cust && data[f.cust] ? data[f.cust].n : ''))) + '</span><b>' + esc(f.n || t('ph_pname')) + '</b></div>' +
+    '<div class="pvt">' + (mods.length ? mods.map(function(m, i){ return '<span' + (i ? '' : ' class="on"') + '>' + esc(TX.es['m_' + m.id]) + '</span>'; }).join('') : '<span>…</span>') + '</div>' +
+    '<div class="pvb"><div class="pvr"><b>' + esc(r[0]) + '</b><small>' + esc(r[1]) + '</small></div><div class="pvr"><b>' + esc(r[0].split(' · ')[0]) + '</b><small>' + esc(r[1]) + '</small></div><span class="pvbtn">' + (th.tone === 'casual' ? '+ Agregar' : 'Nuevo') + '</span><div class="pvok">' + esc(ok) + '</div></div></div>';
+}
+function modBox(m){
+  var inPot = pot.mods.indexOf(m.id) >= 0;
+  return '<div class="mod' + (inPot ? ' in' : '') + '" data-mod="' + m.id + '"><span class="st' + (m.ready ? '' : ' ext') + '">' + esc(t(m.ready ? 'p_ready' : 'p_ext')) + '</span><div class="mi">' + m.icon + '</div><b>' + esc(t('m_' + m.id)) + '</b><small>' + esc(t('md_' + m.id)) + '</small></div>';
+}
+function potSvg(){
+  var bubbles = [[150, 120, 0], [205, 128, .7], [250, 116, 1.4], [178, 124, 2.0], [228, 122, .35]].map(function(b){ return '<circle class="bub" cx="' + b[0] + '" cy="' + b[1] + '" r="9" style="animation-delay:' + b[2] + 's;transform-origin:' + b[0] + 'px ' + b[1] + 'px"/>'; }).join('');
+  return '<svg viewBox="0 0 400 344" aria-hidden="true"><path class="leg" d="M95 300 l-18 40 h26 l14-34z M305 300 l18 40 h-26 l-14-34z"/>' +
+    '<path class="body" d="M48 118 C40 250 120 318 200 318 C280 318 360 250 352 118 Z"/>' +
+    '<ellipse class="rim" cx="200" cy="118" rx="168" ry="38"/><ellipse class="liq" cx="200" cy="120" rx="146" ry="27"/>' + bubbles + '</svg>';
+}
+function renderPot(){
+  var cur = curFusion && fusions[curFusion] && !fusions[curFusion].del ? fusions[curFusion] : null;
+  if(!cur) curFusion = '';
+  var list = liveFusions().sort(function(a, b){ return b.t - a.t; });
+  var form = cur ? '' : (
+    '<div class="card"><h3>' + esc(t('p_recipe')) + '</h3>' +
+      '<div class="field"><label for="pN">' + esc(t('p_name')) + ' <span class="req">*</span></label><input id="pN" value="' + esc(pot.n || '') + '" placeholder="' + esc(t('ph_pname')) + '" autocomplete="off"></div>' +
+      '<div class="field"><label for="pS">' + esc(t('p_slug')) + '</label><input id="pS" value="' + esc(pot.slug || '') + '" placeholder="' + esc(slugify(pot.n || '') || 'cochera-palermo') + '" autocomplete="off" autocapitalize="off" spellcheck="false"></div>' +
+      '<div class="field"><label for="pC">' + esc(t('p_cust')) + '</label><input id="pC" value="' + esc(pot.cust && data[pot.cust] ? custLabel(data[pot.cust]) : '') + '" placeholder="' + esc(t('ph_cust')) + '" autocomplete="off" list="pCL"><datalist id="pCL"></datalist></div>' +
+      '<div class="field"><label for="pR">' + esc(t('p_rubro')) + '</label><select id="pR" style="width:100%;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--card)">' + RUBROS.map(function(r){ return '<option value="' + r + '"' + ((pot.rubro || 'general') === r ? ' selected' : '') + '>' + esc(t('rb_' + r)) + '</option>'; }).join('') + '</select></div>' +
+      '<div class="field"><label for="pD">' + esc(t('p_domain')) + '</label><input id="pD" value="' + esc(pot.domain || '') + '" placeholder="' + esc(t('ph_domain')) + '" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url"><small class="hint" id="pHost" style="display:block;margin-top:4px"></small></div>' +
+      '</div><div class="card"><h3>' + esc(t('p_vibe')) + '</h3>' +
+      '<div class="field"><label for="pW">' + esc(t('p_web')) + '</label><input id="pW" value="' + esc(pot.web || '') + '" placeholder="' + esc(t('ph_web')) + '" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url"></div>' +
+      '<div class="field"><span class="lbl">' + esc(t('p_color')) + '</span><div class="swatch" id="pK">' + COLORS.map(function(c){ return '<button type="button" data-col="' + c + '" style="background:' + c + '"' + ((pot.color || COLORS[0]) === c ? ' class="on"' : '') + ' aria-label="' + c + '"></button>'; }).join('') + '<input type="color" id="pCol" value="' + esc(pot.color || COLORS[0]) + '" aria-label="' + esc(t('p_color')) + '"></div></div>' +
+      '<div class="row2"><div class="field"><label for="pFh">' + esc(t('p_fh')) + '</label><select id="pFh">' + FONTS.map(function(x){ return '<option' + ((pot.fh || 'Inter') === x ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></div><div class="field"><label for="pFb">' + esc(t('p_fb')) + '</label><select id="pFb">' + FONTS.map(function(x){ return '<option' + ((pot.fb || 'Inter') === x ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></div></div>' +
+      [['rad', 'p_rad', [['sq', 'r_sq'], ['md', 'r_md'], ['rd', 'r_rd']], 'md'], ['den', 'p_den', [['c', 'd_c'], ['a', 'd_a']], 'a'], ['tone', 'p_tone', [['f', 'tn_f'], ['c', 'tn_c']], 'f']].map(function(g){ return '<div class="field"><span class="lbl">' + esc(t(g[1])) + '</span><div class="opts">' + g[2].map(function(o){ return '<button type="button" data-opt="' + g[0] + '" data-v="' + o[0] + '"' + ((pot[g[0]] || g[3]) === o[0] ? ' class="on"' : '') + '>' + esc(t(o[1])) + '</button>'; }).join('') + '</div></div>'; }).join('') +
+      '<div class="field"><label for="pL">' + esc(t('p_logo')) + '</label><input id="pL" value="' + esc(pot.logo || '') + '" placeholder="logo.svg" autocomplete="off" autocapitalize="off" spellcheck="false"></div>' +
+      '<span class="lbl">' + esc(t('p_preview')) + '</span><div id="pPv">' + pvHtml(pot) + '</div><div style="height:12px"></div>' +
+      '<div id="pMsg"></div><button class="btn primary wide" id="pFuse" type="button">' + esc(t('p_fuse')) + '</button></div>');
+  var saved = '<div class="card"><h3>' + esc(t('p_saved')) + '</h3>' + (list.length ? '<ul class="recipes">' + list.map(function(f){ var bp = blueprint(f), done = bp.steps.filter(function(st){ return f.done && f.done[st.id]; }).length; return '<li data-fu="' + esc(f.id) + '"' + (f.id === curFusion ? ' class="on"' : '') + '><b>' + esc(f.n) + '</b><small>' + esc(f.mods.map(function(m){ return t('m_' + m); }).join(' + ')) + ' · ' + esc(t('p_progress', done, bp.steps.length)) + '</small></li>'; }).join('') + '</ul>' : '<p class="hint" style="margin:0">' + esc(t('p_none')) + '</p>') + (cur ? '<button class="btn wide" id="pNew" type="button" style="margin-top:10px">' + esc(t('p_new')) + '</button>' : '') + '</div>';
+  var stage = '<div class="stage"><p class="hint">' + esc(t('p_hint')) + '</p><div class="pot' + (pot.mods.length ? ' full' : '') + '" id="pot">' + potSvg() + '<div class="inside">' + pot.mods.map(function(id){ return '<span class="ing">' + esc(t('m_' + id)) + '<button type="button" data-out="' + id + '" aria-label="×">×</button></span>'; }).join('') + '</div></div>' +
+    '<div class="ppl">' + esc(pot.mods.length ? t('p_n', pot.mods.length) : t('p_empty')) + '</div></div>';
+  var html;
+  if(cur){
+    var bp = blueprint(cur), cu = cur.cust && data[cur.cust] ? data[cur.cust] : null, dn = cur.done || {};
+    html = '<div class="cwrap"><div class="card bp"><div class="crumbs">' + esc(t('p_result')) + '</div><h2 class="dt" style="margin:0 0 4px;font-size:26px">' + esc(cur.n) + '</h2>' +
+      '<div class="dmeta">' + esc((cu ? cu.n : t('p_nocust')) + ' · ' + t('rb_' + (cur.rubro || 'general'))) + ' · <span style="display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;background:' + esc(cur.color || '#111') + '"></span> ' + esc(cur.color || '#111111') + '</div>' +
+      '<p class="safe">' + esc(t('p_safe')) + '</p>' +
+      '<span class="lbl">' + esc(t('p_tenant')) + '</span><table><tr><th>Tenant</th><td><code>' + esc(bp.slug) + '</code></td></tr><tr><th>' + esc(t('p_url')) + '</th><td><code>' + esc(bp.url) + '</code>' + (cur.domain ? ' · ' + esc(t('p_own')) : '') + '</td></tr><tr><th>' + esc(t('p_mods')) + '</th><td>' + bp.mods.map(function(m){ return esc(t('m_' + m.id)); }).join(' · ') + '</td></tr></table>' +
+      '<span class="lbl">' + esc(t('p_theme')) + '</span><pre id="pJson">' + esc(JSON.stringify(tenantSettings(cur), null, 2)) + '</pre><button class="btn" id="pCopyJ" type="button" style="margin:-4px 0 14px">' + esc(t('p_copyjson')) + '</button>' +
+      '<span class="lbl">' + esc(t('p_steps')) + ' · ' + esc(t('p_progress', bp.steps.filter(function(st){ return dn[st.id]; }).length, bp.steps.length)) + '</span><ul class="steps">' + bp.steps.map(function(st){ return '<li><label class="' + (dn[st.id] ? 'done' : '') + '"><input type="checkbox" data-step="' + st.id + '"' + (dn[st.id] ? ' checked' : '') + '><span>' + esc(stepText(st)) + '<small>' + esc(st.d) + '</small></span></label></li>'; }).join('') + '</ul>' +
+      '<span class="lbl">' + esc(t('p_build')) + '</span><pre id="pBrief">' + esc(bp.brief) + '</pre>' +
+      '<div class="row2"><button class="btn primary" id="pCopy" type="button">' + esc(t('p_copy')) + '</button><button class="btn" id="pTasks" type="button">' + esc(t('p_totasks')) + '</button></div>' +
+      '<div class="row2" style="margin-top:8px"><button class="btn" id="pEdit" type="button">' + esc(t('p_edit')) + '</button><button class="btn danger" id="pDel" type="button">' + esc(t('p_del')) + '</button></div></div>' +
+      '<div class="cside"><div class="card"><h3>' + esc(t('p_preview')) + '</h3>' + pvHtml(cur) + '</div>' + saved + '</div></div>';
+  } else {
+    html = '<div class="cwrap"><div style="display:grid;gap:16px">' + stage + '<div><span class="lbl">' + esc(t('p_apps')) + '</span><div class="tray" id="tray">' + MODS.map(modBox).join('') + '</div></div></div><div class="cside">' + form + saved + '</div></div>';
+  }
+  $('#cauldron').innerHTML = html;
+  if(!cur){
+    var keep = function(){ pot.n = $('#pN').value; pot.slug = $('#pS').value; pot.domain = $('#pD').value; pot.rubro = $('#pR').value; pot.web = $('#pW').value.trim(); pot.logo = $('#pL').value.trim(); pot.fh = $('#pFh').value; pot.fb = $('#pFb').value; savePot(); $('#pS').placeholder = slugify(pot.n) || 'cochera-palermo'; potLive(); };
+    ['pN', 'pS', 'pD', 'pW', 'pL'].forEach(function(id){ $('#' + id).addEventListener('input', keep); }); ['pR', 'pFh', 'pFb'].forEach(function(id){ $('#' + id).addEventListener('change', keep); });
+    $('#pCol').addEventListener('input', function(){ pot.color = this.value; savePot(); [].forEach.call(document.querySelectorAll('#pK button'), function(b){ b.classList.toggle('on', b.dataset.col === pot.color); }); potLive(); });
+    potLive();
+    var byLabel = {};
+    $('#pC').addEventListener('input', function(){ var q = norm(this.value).trim(), out = []; if(q.length >= 2){ var all = live(); for(var i = 0; i < all.length && out.length < 30; i++){ var c = all[i]; if(norm(c.n).indexOf(q) >= 0){ var lb = custLabel(c); byLabel[lb] = c.id; out.push(lb); } } } $('#pCL').innerHTML = out.map(function(lb){ return '<option value="' + esc(lb) + '">'; }).join(''); var id = byLabel[this.value.trim()]; pot.cust = id || (this.value.trim() ? pot.cust : ''); if(id && !$('#pN').value.trim()){ $('#pN').value = data[id].n; keep(); } savePot(); });
+  }
+}
+function potLive(){ var pv = $('#pPv'); if(pv) pv.innerHTML = pvHtml(pot); var h = $('#pHost'); if(h){ var s = slugify(pot.slug || pot.n || ''); h.textContent = pot.domain ? '' : t('p_sug') + ': ' + (s || 'cliente') + '.' + PLATFORM; } }
+function addToPot(id){ if(pot.mods.indexOf(id) >= 0) return; pot.mods.push(id); savePot(); render(); }
+function removeFromPot(id){ pot.mods = pot.mods.filter(function(m){ return m !== id; }); savePot(); render(); }
+function newFusion(){ curFusion = ''; render(); }
+$('#cauldron').addEventListener('click', function(e){
+  if(pdrag.justDropped) return;
+  var out = e.target.closest('[data-out]'); if(out){ removeFromPot(out.dataset.out); return; }
+  var m = e.target.closest('[data-mod]'); if(m){ if(pot.mods.indexOf(m.dataset.mod) >= 0) removeFromPot(m.dataset.mod); else { addToPot(m.dataset.mod); splash(); } return; }
+  var col = e.target.closest('[data-col]'); if(col){ pot.color = col.dataset.col; savePot(); [].forEach.call(document.querySelectorAll('#pK button'), function(b){ b.classList.toggle('on', b === col); }); if($('#pCol')) $('#pCol').value = pot.color; potLive(); return; }
+  var op = e.target.closest('[data-opt]'); if(op){ pot[op.dataset.opt] = op.dataset.v; savePot(); [].forEach.call(op.parentNode.children, function(b){ b.classList.toggle('on', b === op); }); potLive(); return; }
+  if(e.target.closest('#pCopyJ')){ var js = JSON.stringify(tenantSettings(fusions[curFusion]), null, 2); try{ navigator.clipboard.writeText(js).then(function(){ toast(t('p_copied')); }, function(){}); }catch(x){} return; }
+  var fu = e.target.closest('[data-fu]'); if(fu){ curFusion = fu.dataset.fu; render(); window.scrollTo(0, 0); return; }
+  var st = e.target.closest('input[data-step]'); if(st && curFusion){ var x = copy(fusions[curFusion]); x.done = x.done || {}; if(st.checked) x.done[st.dataset.step] = Date.now(); else delete x.done[st.dataset.step]; ptouch(x); return; }
+  if(e.target.closest('#pNew')){ newFusion(); return; }
+  if(e.target.closest('#pFuse')){ fuse(); return; }
+  if(e.target.closest('#pCopy')){ var txt = blueprint(fusions[curFusion]).brief; try{ navigator.clipboard.writeText(txt).then(function(){ toast(t('p_copied')); }, function(){ selectBrief(); }); }catch(x){ selectBrief(); } return; }
+  if(e.target.closest('#pTasks')){ fusionTasks(fusions[curFusion]); return; }
+  if(e.target.closest('#pEdit')){ var f = fusions[curFusion]; pot = { mods: f.mods.slice(), n: f.n, slug: f.slug, cust: f.cust, rubro: f.rubro, color: f.color, domain: f.domain, web: f.web, logo: f.logo, fh: f.fh, fb: f.fb, rad: f.rad, den: f.den, tone: f.tone, edit: f.id }; savePot(); curFusion = ''; render(); return; }
+  if(e.target.closest('#pDel')){ var d = fusions[curFusion], g = copy(d); g.del = true; curFusion = ''; ptouch(g); toast(t('deleted', d.n), t('undo'), function(){ var b = copy(d); delete b.del; ptouch(b); curFusion = d.id; render(); }); return; }
+});
+function selectBrief(){ var r = document.createRange(); r.selectNodeContents($('#pBrief')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+function splash(){ var p = $('#pot'); if(!p) return; p.classList.remove('brew'); void p.offsetWidth; p.classList.add('brew'); }
+function fuse(){
+  var msg = function(h){ $('#pMsg').innerHTML = h ? '<div class="msg err">' + h + '</div>' : ''; };
+  var n = $('#pN').value.trim(); if(!pot.mods.length){ msg(esc(t('p_need'))); return; } if(!n){ msg(esc(t('p_need_name'))); $('#pN').focus(); return; }
+  var prev = pot.edit && fusions[pot.edit] ? fusions[pot.edit] : null;
+  var x = prev ? copy(prev) : { id: 'f' + uid(), k: 'fusion', c: Date.now(), done: {} };
+  x.n = n; x.slug = slugify($('#pS').value || n); x.cust = pot.cust || ''; x.rubro = $('#pR').value; x.color = pot.color || COLORS[0]; x.domain = $('#pD').value.trim().replace(/^https?:\/\//, '').replace(/\/.*$/, ''); x.mods = pot.mods.slice(); x.web = $('#pW').value.trim(); x.logo = $('#pL').value.trim(); x.fh = $('#pFh').value; x.fb = $('#pFb').value; x.rad = pot.rad || 'md'; x.den = pot.den || 'a'; x.tone = pot.tone || 'f'; x.by = cfg.name;
+  $('#pFuse').disabled = true; splash(); var liq = document.querySelector('#pot .liq'); if(liq) liq.style.fill = x.color;
+  setTimeout(function(){ pot = { mods: [] }; savePot(); curFusion = x.id; ptouch(x); window.scrollTo(0, 0); }, 900);
+}
+function fusionTasks(f){
+  var bp = blueprint(f), dn = f.done || {}, made = 0, l0 = lanes()[0].id, inLane = sortedIn(l0, liveTasks()), o = inLane.length ? (inLane[inLane.length - 1].o || 0) + 1 : 1;
+  bp.steps.forEach(function(st){
+    if(dn[st.id]) return;
+    var title = f.n + ': ' + stepText(st);
+    if(liveTasks().some(function(k){ return k.title === title; })) return;
+    var x = { id: 't' + uid(), k: 'task', title: title, d: st.d, lane: l0, o: o++, who: '', due: '', prio: false, cust: f.cust || '', log: [], c: Date.now() };
+    x.t = Date.now(); tasks[x.id] = x; made++;
+  });
+  tdirty = true; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); render(); syncSoon();
+  toast(t('p_tasks_done', made));
+}
+/* drag an application box into the cauldron: mouse after a few pixels, finger after a short press */
+var pdrag = { el: null, id: '', ghost: null, active: false, sx: 0, sy: 0, ox: 0, oy: 0, timer: 0, touch: false, justDropped: false };
+function pStart(){
+  var r = pdrag.el.getBoundingClientRect(); pdrag.active = true; pdrag.ox = pdrag.sx - r.left; pdrag.oy = pdrag.sy - r.top;
+  pdrag.ghost = pdrag.el.cloneNode(true); pdrag.ghost.classList.add('mghost'); pdrag.ghost.style.width = r.width + 'px'; document.body.appendChild(pdrag.ghost);
+  document.body.classList.add('dragging-now'); if(navigator.vibrate && pdrag.touch) try{ navigator.vibrate(15); }catch(e){}
+  pMove(pdrag.sx, pdrag.sy);
+}
+function overPot(x, y){ var p = $('#pot'); if(!p) return false; var r = p.getBoundingClientRect(); return x > r.left && x < r.right && y > r.top && y < r.bottom; }
+function pMove(x, y){ pdrag.ghost.style.left = (x - pdrag.ox) + 'px'; pdrag.ghost.style.top = (y - pdrag.oy) + 'px'; var p = $('#pot'); if(p) p.classList.toggle('over', overPot(x, y)); pdrag.lx = x; pdrag.ly = y; }
+function pEnd(cancel){
+  clearTimeout(pdrag.timer);
+  if(!pdrag.active){ pdrag.el = null; if(drag.renderLater){ drag.renderLater = false; setTimeout(render); } return; }
+  var hit = !cancel && overPot(pdrag.lx, pdrag.ly), id = pdrag.id;
+  close(pdrag.ghost); document.body.classList.remove('dragging-now'); var p = $('#pot'); if(p) p.classList.remove('over');
+  pdrag.active = false; pdrag.el = null; pdrag.justDropped = true; setTimeout(function(){ pdrag.justDropped = false; }, 50);
+  if(drag.renderLater) drag.renderLater = false;
+  if(hit){ addToPot(id); splash(); } else render();
+}
+$('#cauldron').addEventListener('pointerdown', function(e){ if(e.pointerType === 'touch' || e.button !== 0) return; var m = e.target.closest('.mod'); if(!m) return; pdrag.el = m; pdrag.id = m.dataset.mod; pdrag.sx = e.clientX; pdrag.sy = e.clientY; pdrag.touch = false; });
+addEventListener('pointermove', function(e){ if(!pdrag.el || pdrag.touch) return; if(!pdrag.active){ if(Math.abs(e.clientX - pdrag.sx) + Math.abs(e.clientY - pdrag.sy) > 6) pStart(); else return; } e.preventDefault(); pMove(e.clientX, e.clientY); });
+addEventListener('pointerup', function(){ if(pdrag.el && !pdrag.touch) pEnd(false); });
+$('#cauldron').addEventListener('touchstart', function(e){ var m = e.target.closest('.mod'); if(!m || e.touches.length > 1) return; var q = e.touches[0]; pdrag.el = m; pdrag.id = m.dataset.mod; pdrag.sx = q.clientX; pdrag.sy = q.clientY; pdrag.touch = true; pdrag.timer = setTimeout(function(){ if(pdrag.el) pStart(); }, 250); }, { passive: true });
+addEventListener('touchmove', function(e){ if(!pdrag.el || !pdrag.touch) return; var q = e.touches[0]; if(!pdrag.active){ if(Math.abs(q.clientX - pdrag.sx) + Math.abs(q.clientY - pdrag.sy) > 10){ clearTimeout(pdrag.timer); pdrag.el = null; } return; } e.preventDefault(); pMove(q.clientX, q.clientY); }, { passive: false });
+addEventListener('touchend', function(){ if(pdrag.el && pdrag.touch) pEnd(false); });
+addEventListener('touchcancel', function(){ if(pdrag.el && pdrag.touch) pEnd(true); });
+$('#cauldron').addEventListener('contextmenu', function(e){ if(e.target.closest('.mod')) e.preventDefault(); });
 
 /* ---------- docs: a small wiki for everyone ---------- */
 var liveDocs = function(){ return Object.keys(docs).map(function(k){ return docs[k]; }).filter(function(d){ return d && d.k === 'doc' && !d.del; }); };
@@ -1259,6 +1542,9 @@ async function syncNow(){
     if(ddirty){ ddirty = false; store.set(DKEY.dirty, ddirty); try{ await save(DFILE, docs, true); }catch(e){ ddirty = true; store.set(DKEY.dirty, ddirty); throw e; } }
     else { var dc = await load(DFILE); merge(dc.c, docs, true); }
     store.set(DKEY.data, docs);
+    if(pdirty){ pdirty = false; store.set(PKEY.dirty, pdirty); try{ await save(PFILE, fusions, true); }catch(e){ pdirty = true; store.set(PKEY.dirty, pdirty); throw e; } }
+    else { var pc = await load(PFILE); merge(pc.c, fusions, true); }
+    store.set(PKEY.data, fusions);
     sync.err = null; setSync('ok', 's_saved', hm(Date.now()));
   }catch(e){
     if(/http 401/.test(e.message)){
@@ -1269,7 +1555,7 @@ async function syncNow(){
     else {
       sync.err = { at: Date.now(), detail: e.detail || (e.name + ': ' + e.message), online: navigator.onLine };
       try{ console.error('[ausblick sync]', sync.err.detail, e); }catch(x){}
-      var anyDirty = dirty || tdirty || ddirty;
+      var anyDirty = dirty || tdirty || ddirty || pdirty;
       if(e.status) setSync(anyDirty ? 'wait' : 'err', anyDirty ? 's_later_err' : 's_error', e.status);
       else setSync(anyDirty ? 'wait' : 'err', anyDirty ? 's_later' : 's_offline');
     }
@@ -1283,8 +1569,8 @@ document.addEventListener('visibilitychange', function(){ if(document.visibility
 
 applyLang();
 show();
-if(cfg){ setSync(dirty || tdirty || ddirty ? 'wait' : 'ok', '…'); syncNow(); }
-window.__ac = { get docs(){ return docs; }, md: function(s){ return md(s); }, get tasks(){ return tasks; }, get data(){ return data; }, get cfg(){ return cfg; }, syncNow: syncNow, sealAccess: sealAccess, setLang: setLang };
+if(cfg){ setSync(dirty || tdirty || ddirty || pdirty ? 'wait' : 'ok', '…'); syncNow(); }
+window.__ac = { get fusions(){ return fusions; }, blueprint: function(f){ return blueprint(f); }, tenantSettings: function(f){ return tenantSettings(f); }, get docs(){ return docs; }, md: function(s){ return md(s); }, get tasks(){ return tasks; }, get data(){ return data; }, get cfg(){ return cfg; }, syncNow: syncNow, sealAccess: sealAccess, setLang: setLang };
 })();
 </script>
 </body>
