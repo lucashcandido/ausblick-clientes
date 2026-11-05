@@ -91,6 +91,46 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#171a21;color:#fff;border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:center;z-index:60;width:max-content;max-width:calc(100% - 32px);font-size:16px}
 .toast button{background:none;border:0;color:#9db8ff;font-weight:700;cursor:pointer;font-size:16px}
 .req{color:var(--out)}
+.hub{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
+.hub button{border:0;border-radius:10px;background:none;font-weight:750;font-size:16px;padding:10px;cursor:pointer;color:var(--muted)}
+.hub button.on{background:var(--accent);color:#fff}
+.hub .n{font-weight:600;margin-left:6px;opacity:.8}
+main.wide{max-width:none}
+main.wide .top,main.wide .hub,main.wide .bar,main.wide .board{max-width:1200px;margin-left:auto;margin-right:auto}
+.board{display:flex;gap:12px;align-items:flex-start;overflow-x:auto;padding:2px 2px 16px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.lane{flex:0 0 min(86vw,300px);scroll-snap-align:start;background:var(--bg);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;max-width:300px}
+@media (prefers-color-scheme: dark){.lane{background:#141821}}
+.lh{display:flex;align-items:center;gap:6px;padding:10px 10px 6px 14px}
+.lh b{flex:1;min-width:0;font-size:16px;overflow-wrap:anywhere}
+.lh .n{color:var(--muted);font-weight:700;font-size:14px}
+.lh button{border:0;background:none;cursor:pointer;color:var(--muted);font-size:20px;line-height:1;padding:4px 6px;border-radius:8px}
+.lh button:hover{background:var(--card)}
+.cards{list-style:none;margin:0;padding:4px 8px;display:grid;gap:8px;min-height:44px}
+.kc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
+.kc:hover{border-color:var(--accent)}
+.kc.prio{border-left:4px solid var(--out)}
+.kc .kt{font-weight:650;font-size:16px;line-height:1.3;overflow-wrap:anywhere}
+.kc .km{display:flex;flex-wrap:wrap;gap:4px 8px;margin-top:6px;font-size:13px;color:var(--muted)}
+.kc .km span{display:inline-flex;align-items:center;gap:4px}
+.kc .due.late{color:var(--out);font-weight:700} .kc .due.soon{color:var(--warn);font-weight:700}
+.kc .who{background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:0 8px;font-weight:700}
+.kc .cu{color:var(--vio);font-weight:600}
+.kc.dragging{opacity:.35}
+.ghost{position:fixed;z-index:80;pointer-events:none;transform:rotate(2deg);box-shadow:0 12px 30px rgba(0,0,0,.25);opacity:.95}
+.ph{border:2px dashed var(--accent);border-radius:12px;background:var(--accent-soft);list-style:none}
+.ladd{margin:6px 8px 10px;border:1px dashed var(--line);background:none;border-radius:12px;padding:10px;font-weight:700;color:var(--muted);cursor:pointer;font-size:15px}
+.ladd:hover{color:var(--accent);border-color:var(--accent)}
+.newlane{flex:0 0 220px;border:2px dashed var(--line);border-radius:16px;background:none;padding:18px;font-weight:700;color:var(--muted);cursor:pointer;font-size:15px}
+.lanesel{display:flex;flex-wrap:wrap;gap:6px}
+.lanesel button{border:2px solid var(--line);border-radius:999px;background:var(--card);font-weight:700;cursor:pointer;padding:6px 12px;font-size:14px}
+.lanesel button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.prio-t{display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer}
+.prio-t input{width:20px;height:20px;accent-color:var(--out)}
+.tlist{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:6px}
+.tlist li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;font-size:15px;display:flex;gap:8px;align-items:center}
+.tlist li small{margin-left:auto;color:var(--muted);white-space:nowrap}
+body.dragging-now{cursor:grabbing} body.dragging-now .board{scroll-snap-type:none}
+body.dragging-now *{cursor:grabbing!important}
 .chk{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:15px;font-weight:600;cursor:pointer} .chk input{width:20px;height:20px;margin:0;accent-color:var(--warn)}
 .nb{font-size:12px;font-weight:700;color:var(--warn);background:var(--warn-soft);border-radius:6px;padding:1px 7px;margin-left:2px}
 .bar select{flex:0 0 auto;max-width:45%;padding:12px 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);font-size:15px}
@@ -136,10 +176,17 @@ li.hint{list-style:none;color:var(--muted);font-size:14px;padding:0 4px 4px}
       <button class="icon add" id="add" type="button" data-ta="add"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
       <button class="icon" id="gear" type="button" data-ta="settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     </div>
-    <div class="bar"><input class="search" id="q" type="search" data-tp="search" autocomplete="off"><select id="cat" data-ta="f_cats"></select></div>
-    <div class="views" id="views"></div>
-    <div class="chips" id="chips"></div>
-    <ul class="list" id="list"></ul>
+    <div class="hub" id="hub"></div>
+    <div id="custView">
+      <div class="bar"><input class="search" id="q" type="search" data-tp="search" autocomplete="off"><select id="cat" data-ta="f_cats"></select></div>
+      <div class="views" id="views"></div>
+      <div class="chips" id="chips"></div>
+      <ul class="list" id="list"></ul>
+    </div>
+    <div id="taskView" hidden>
+      <div class="bar"><input class="search" id="tq" type="search" data-tp="t_search" autocomplete="off"><select id="twho" data-ta="t_who"></select></div>
+      <div class="board" id="board"></div>
+    </div>
   </section>
 </main>
 <div id="layer"></div>
@@ -150,7 +197,7 @@ var $ = function(s, el){ return (el || document).querySelector(s); };
 var APP_REPO = 'lucashcandido/ausblick-clientes';
 var DATA_REPO = 'lucashcandido/ausblick-clientes-data';
 var ACCESS_URL = 'https://api.github.com/repos/' + APP_REPO + '/contents/access.json';
-var FILE = 'clientes.json';
+var FILE = 'clientes.json', TFILE = 'tareas.json';
 var KEY = { cfg:'ac.cfg.v1', data:'ac.data.v1', dirty:'ac.dirty.v1', lang:'ac.lang' };
 var store = {
   get: function(k, d){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
@@ -161,7 +208,9 @@ var store = {
    Every text on screen comes from here. {0}, {1} are filled in; texts used as HTML are escaped where they are filled. */
 var LANGS = [['es', 'Español'], ['en', 'English'], ['de', 'Deutsch']];
 var TX = {
-es: { locale:'es-AR', title:'Clientes', setup_sub:'Configuración del dispositivo', tab_code:'Tengo el código', tab_token:'Primera vez (token)',
+es: { locale:'es-AR', title:'Clientes', h_cust:'Clientes', h_tasks:'Tareas', t_add:'Nueva tarea', t_search:'Buscar tarea…', t_who:'Responsable', t_all:'Todas', t_mine:'Mis tareas', t_nobody:'Sin responsable',
+  ln_todo:'Por hacer', ln_doing:'En curso', ln_review:'En revisión', ln_done:'Hecho', l_new:'+ Nueva columna', l_name:'Nombre de la columna', l_rename:'Renombrar', l_left:'← Mover a la izquierda', l_right:'Mover a la derecha →', l_del:'Eliminar columna', l_del_full:'Primero mové o eliminá las tareas de esta columna.', l_done:'Las tareas acá cuentan como terminadas', l_menu:'Columna',
+  k_title:'Título', k_desc:'Descripción', ph_desc:'Qué hay que hacer, detalles, links…', k_lane:'Columna', k_who:'Responsable', ph_who:'Nombre', k_me:'Yo', k_due:'Fecha límite', k_prio:'Importante', k_cust:'Cliente', ph_cust:'Buscar cliente por nombre…', k_cust_open:'Abrir cliente', k_cust_unknown:'Ese cliente no existe. Elegí uno de la lista o dejá el campo vacío.', k_comments:'Comentarios', ph_comment:'Escribí un comentario', k_comment_add:'Comentar', k_none:'Sin comentarios.', err_title_t:'Escribí un título.', k_added:'Tarea agregada.', k_moved:'{0} → {1}', k_tasks_of:'Tareas', k_new_for:'+ Tarea para este cliente', k_no_tasks:'Todavía sin tareas.', k_today:'hoy', k_overdue:'vencida', k_add_here:'+ Tarea', setup_sub:'Configuración del dispositivo', tab_code:'Tengo el código', tab_token:'Primera vez (token)',
   name:'Tu nombre', name_hint:'Se guarda en cada contacto, así sabemos quién llamó a quién.', code:'Código de acceso',
   code_hint:'Lo tiene quien configuró la app por primera vez (Configuración → Compartir acceso).', token:'Token de GitHub',
   token_hint:'Fine-grained token con acceso <b>solo</b> al repositorio de datos, permiso «Contents: Read and write».', repo:'Repositorio de datos',
@@ -189,7 +238,9 @@ es: { locale:'es-AR', title:'Clientes', setup_sub:'Configuración del dispositiv
   dev_of:'Dispositivo de <b>{0}</b>', data_in:'Datos en {0}', language:'Idioma', g_share:'Compartir acceso (código)', g_csv:'Exportar lista (CSV para Excel)',
   g_sync:'Sincronizar ahora', g_setup:'Cambiar nombre o acceso', close:'Cerrar',
   s_saving:'Guardando…', s_saved:'Guardado {0}', s_expired:'Token vencido: hay que renovarlo', s_later:'Sin conexión – se guarda después', s_offline:'Sin conexión', s_error:'Error {0} – tocá para ver', s_later_err:'Error {0} – no se guardó', err_title:'Problema de sincronización', err_retry:'Reintentar', err_write:'El token puede leer pero no guardar. En GitHub → Settings → Developer settings → Fine-grained tokens → Edit, poné «Contents» en «Read and write» para ausblick-clientes-data. El token sigue igual; después tocá Reintentar.' },
-en: { locale:'en-US', title:'Customers', setup_sub:'Device setup', tab_code:'I have the code', tab_token:'First time (token)',
+en: { locale:'en-US', title:'Customers', h_cust:'Customers', h_tasks:'Tasks', t_add:'New task', t_search:'Search tasks…', t_who:'Assignee', t_all:'All', t_mine:'My tasks', t_nobody:'Unassigned',
+  ln_todo:'To do', ln_doing:'In progress', ln_review:'In review', ln_done:'Done', l_new:'+ New lane', l_name:'Lane name', l_rename:'Rename', l_left:'← Move left', l_right:'Move right →', l_del:'Delete lane', l_del_full:'Move or delete the tasks in this lane first.', l_done:'Tasks here count as finished', l_menu:'Lane',
+  k_title:'Title', k_desc:'Description', ph_desc:'What needs doing, details, links…', k_lane:'Lane', k_who:'Assignee', ph_who:'Name', k_me:'Me', k_due:'Due date', k_prio:'Important', k_cust:'Customer', ph_cust:'Search customer by name…', k_cust_open:'Open customer', k_cust_unknown:'That customer doesn’t exist. Pick one from the list or leave it empty.', k_comments:'Comments', ph_comment:'Write a comment', k_comment_add:'Comment', k_none:'No comments.', err_title_t:'Enter a title.', k_added:'Task added.', k_moved:'{0} → {1}', k_tasks_of:'Tasks', k_new_for:'+ Task for this customer', k_no_tasks:'No tasks yet.', k_today:'today', k_overdue:'overdue', k_add_here:'+ Task', setup_sub:'Device setup', tab_code:'I have the code', tab_token:'First time (token)',
   name:'Your name', name_hint:'Saved with every contact, so we know who called whom.', code:'Access code',
   code_hint:'Whoever set up the app first has it (Settings → Share access).', token:'GitHub token',
   token_hint:'Fine-grained token with access <b>only</b> to the data repository, permission “Contents: Read and write”.', repo:'Data repository',
@@ -217,7 +268,9 @@ en: { locale:'en-US', title:'Customers', setup_sub:'Device setup', tab_code:'I h
   dev_of:'Device of <b>{0}</b>', data_in:'Data in {0}', language:'Language', g_share:'Share access (code)', g_csv:'Export list (CSV for Excel)',
   g_sync:'Sync now', g_setup:'Change name or access', close:'Close',
   s_saving:'Saving…', s_saved:'Saved {0}', s_expired:'Token expired: it needs renewing', s_later:'Offline – will save later', s_offline:'Offline', s_error:'Error {0} – tap for details', s_later_err:'Error {0} – not saved', err_title:'Sync problem', err_retry:'Try again', err_write:'The token can read but not save. On GitHub → Settings → Developer settings → Fine-grained tokens → Edit, set “Contents” to “Read and write” for ausblick-clientes-data. The token stays the same; then tap Try again.' },
-de: { locale:'de-DE', title:'Kunden', setup_sub:'Geräte-Einrichtung', tab_code:'Ich habe den Code', tab_token:'Erstes Mal (Token)',
+de: { locale:'de-DE', title:'Kunden', h_cust:'Kunden', h_tasks:'Aufgaben', t_add:'Neue Aufgabe', t_search:'Aufgabe suchen…', t_who:'Zuständig', t_all:'Alle', t_mine:'Meine Aufgaben', t_nobody:'Niemand zuständig',
+  ln_todo:'Zu erledigen', ln_doing:'In Arbeit', ln_review:'In Prüfung', ln_done:'Erledigt', l_new:'+ Neue Spalte', l_name:'Name der Spalte', l_rename:'Umbenennen', l_left:'← Nach links', l_right:'Nach rechts →', l_del:'Spalte löschen', l_del_full:'Verschiebe oder lösche zuerst die Aufgaben in dieser Spalte.', l_done:'Aufgaben hier gelten als erledigt', l_menu:'Spalte',
+  k_title:'Titel', k_desc:'Beschreibung', ph_desc:'Was zu tun ist, Details, Links…', k_lane:'Spalte', k_who:'Zuständig', ph_who:'Name', k_me:'Ich', k_due:'Fällig am', k_prio:'Wichtig', k_cust:'Kunde', ph_cust:'Kunde nach Namen suchen…', k_cust_open:'Kunde öffnen', k_cust_unknown:'Diesen Kunden gibt es nicht. Wähle einen aus der Liste oder lass das Feld leer.', k_comments:'Kommentare', ph_comment:'Kommentar schreiben', k_comment_add:'Kommentieren', k_none:'Noch keine Kommentare.', err_title_t:'Gib einen Titel ein.', k_added:'Aufgabe hinzugefügt.', k_moved:'{0} → {1}', k_tasks_of:'Aufgaben', k_new_for:'+ Aufgabe für diesen Kunden', k_no_tasks:'Noch keine Aufgaben.', k_today:'heute', k_overdue:'überfällig', k_add_here:'+ Aufgabe', setup_sub:'Geräte-Einrichtung', tab_code:'Ich habe den Code', tab_token:'Erstes Mal (Token)',
   name:'Dein Name', name_hint:'Wird bei jedem Kontakt gespeichert, damit wir wissen, wer wen angerufen hat.', code:'Zugangscode',
   code_hint:'Hat, wer die App zuerst eingerichtet hat (Einstellungen → Zugang teilen).', token:'GitHub-Token',
   token_hint:'Fine-grained Token mit Zugriff <b>nur</b> auf das Daten-Repository, Berechtigung „Contents: Read and write“.', repo:'Daten-Repository',
@@ -256,7 +309,7 @@ var estName = function(k){ return t('est_' + (EST.indexOf(k) >= 0 ? k : 'nuevo')
 function langButtons(cur){ return LANGS.map(function(l){ return '<button type="button" data-lang="' + l[0] + '"' + (l[0] === cur ? ' class="on"' : '') + ' title="' + l[1] + '">' + (this.big ? l[1] : l[0].toUpperCase()) + '</button>'; }, this || {}).join(''); }
 function applyLang(){
   document.documentElement.lang = lang;
-  document.title = 'Ausblick – ' + t('title');
+  document.title = 'Ausblick – ' + t(hub === 'tasks' ? 'h_tasks' : 'h_cust');
   [].forEach.call(document.querySelectorAll('[data-t]'), function(el){ el.textContent = t(el.dataset.t); });
   [].forEach.call(document.querySelectorAll('[data-th]'), function(el){ el.innerHTML = t(el.dataset.th); });
   [].forEach.call(document.querySelectorAll('[data-tp]'), function(el){ el.placeholder = t(el.dataset.tp); });
@@ -319,6 +372,11 @@ var catFilter = '';
 var dirty = store.get(KEY.dirty, false);         /* local changes not yet saved */
 var filter = 'todos', query = '', PAGE = 100, shown = PAGE, view = store.get('ac.view', 'all');
 var sync = { busy: false, timer: 0, again: false, label: null };
+/* tasks live in their own file (tareas.json), synced the same way as the customers */
+var TKEY = { data: 'ac.tdata.v1', dirty: 'ac.tdirty.v1' };
+var tasks = store.get(TKEY.data, {}), tdirty = store.get(TKEY.dirty, false);
+var hub = /tareas|tasks|aufgaben/i.test(location.hash) ? 'tasks' : store.get('ac.hub', 'cust');
+var tquery = '', twho = '';
 
 /* ---------- screens ---------- */
 function show(){
@@ -424,7 +482,7 @@ $('#sGo').onclick = async function(){
   var changedRepo = cfg && cfg.repo !== conf.repo;
   cfg = { repo: conf.repo, token: conf.token, code: code, name: name };
   store.set(KEY.cfg, cfg);
-  if(changedRepo){ data = {}; dirty = false; store.set(KEY.data, data); store.set(KEY.dirty, dirty); }
+  if(changedRepo){ data = {}; dirty = false; store.set(KEY.data, data); store.set(KEY.dirty, dirty); tasks = {}; tdirty = false; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); }
   $('#sCode').value = ''; $('#sToken').value = ''; $('#sMsg').innerHTML = '';
   show(); syncNow();
   if(mode === 'token') shareAccess(true);
@@ -457,6 +515,16 @@ var ICON = {
 };
 function render(){
   if(!cfg) return;
+  if(drag.active || drag.el){ drag.renderLater = true; return; }   /* rebuilding the board under a finger would drop the card */
+  $('#hub').innerHTML = [['cust', 'h_cust', live().filter(function(x){ return !pending(x); }).length], ['tasks', 'h_tasks', liveTasks().filter(function(k){ return !laneDone(k.lane); }).length]].map(function(h){ return '<button type="button" data-hub="' + h[0] + '"' + (hub === h[0] ? ' class="on"' : '') + '>' + esc(t(h[1])) + '<span class="n">' + h[2] + '</span></button>'; }).join('');
+  $('#custView').hidden = hub !== 'cust'; $('#taskView').hidden = hub !== 'tasks';
+  document.querySelector('main').classList.toggle('wide', hub === 'tasks');
+  $('#add').setAttribute('aria-label', t(hub === 'tasks' ? 't_add' : 'add')); $('#add').title = $('#add').getAttribute('aria-label');
+  var h1 = document.querySelector('#app h1 > span[data-t]'); if(h1) h1.textContent = t(hub === 'tasks' ? 'h_tasks' : 'h_cust');
+  document.title = 'Ausblick – ' + t(hub === 'tasks' ? 'h_tasks' : 'h_cust');
+  if(hub === 'tasks') renderBoard(); else renderList();
+}
+function renderList(){
   var everything = live(), sorting = everything.filter(pending), all = everything.filter(function(x){ return !pending(x); });
   if(view === 'sort' && !sorting.length && !everything.length) view = 'all';
   $('#views').innerHTML = [['sort', sorting.length], ['all', all.length]].map(function(v){ return '<button type="button" data-v="' + v[0] + '"' + (view === v[0] ? ' class="on"' : '') + '>' + esc(t('v_' + v[0])) + '<span class="n">' + v[1] + '</span></button>'; }).join('');
@@ -510,7 +578,7 @@ $('#list').addEventListener('click', function(e){
     return;
   }
   if(e.target.closest('#more')){ shown += PAGE * 2; render(); return; } if(e.target.closest('[data-stop]')) return; var li = e.target.closest('[data-id]'); if(li) edit(data[li.dataset.id]); });
-$('#add').onclick = function(){ edit(null); };
+$('#add').onclick = function(){ if(hub === 'tasks') editTask(null, { lane: lanes()[0].id }); else edit(null); };
 
 function touch(x){ x.t = Date.now(); data[x.id] = x; dirty = true; store.set(KEY.data, data); store.set(KEY.dirty, dirty); render(); syncSoon(); }
 var copy = function(x){ return JSON.parse(JSON.stringify(x)); };
@@ -534,6 +602,7 @@ function edit(orig){
     '<div class="field"><span class="lbl">' + esc(t('f_cats')) + '</span><div class="cats" id="eCats"></div><div class="addlog"><input id="eCatN" ' + ph('ph_cat') + ' autocomplete="off" list="eCatL"><datalist id="eCatL"></datalist><button class="btn" id="eCatA" type="button" style="min-height:46px">' + esc(t('cat_add')) + '</button></div></div>' +
     '<div class="field"><span class="lbl">' + esc(t('f_state')) + '</span><div class="est" id="eEst">' + EST.map(function(s){ return '<button type="button" data-e="' + s + '"' + (x.est === s ? ' class="on"' : '') + '>' + esc(estName(s)) + '</button>'; }).join('') + '</div></div>' +
     '<div class="field"><label for="eNo">' + esc(t('f_notes')) + '</label><textarea id="eNo" ' + ph('ph_notes') + '>' + esc(x.notas) + '</textarea></div>' +
+    (orig ? '<hr><span class="lbl">' + esc(t('k_tasks_of')) + '</span><ul class="tlist" id="eTasks"></ul><button class="btn wide" id="eTaskNew" type="button">' + esc(t('k_new_for')) + '</button>' : '') +
     '<hr><span class="lbl">' + esc(t('contacts')) + '</span><ul class="log" id="eLog"></ul>' +
     '<div class="addlog"><input id="eLn" ' + ph('ph_log') + ' autocomplete="off"><input id="eLd" type="date" style="flex:0 0 150px" aria-label="' + esc(t('date')) + '"></div>' +
     '<button class="btn go wide" id="eLg" type="button" style="margin-top:8px">' + esc(t('log_btn')) + '</button>' +
@@ -547,6 +616,12 @@ function edit(orig){
       $('#eLog', el).innerHTML = l.length ? l.map(function(e){ return '<li>' + (e.n ? esc(e.n) : '<i>' + esc(t('log_contacted')) + '</i>') + '<small>' + esc(dayText(e.d)) + (e.by ? ' · ' + esc(e.by) : '') + '</small></li>'; }).join('') : '<li style="border-color:var(--line)"><small>' + esc(t('log_none')) + '</small></li>';
     };
     drawLog();
+    if(orig){
+      var mine = liveTasks().filter(function(k){ return k.cust === orig.id; }).sort(function(a, b){ return (laneDone(a.lane) - laneDone(b.lane)) || (b.t - a.t); });
+      $('#eTasks', el).innerHTML = mine.length ? mine.map(function(k){ return '<li data-tid="' + esc(k.id) + '"' + (laneDone(k.lane) ? ' style="opacity:.6"' : '') + '>' + esc(k.title) + '<small>' + esc(laneName(laneById(k.lane))) + '</small></li>'; }).join('') : '<li style="cursor:default;border-style:dashed"><small style="margin:0">' + esc(t('k_no_tasks')) + '</small></li>';
+      $('#eTasks', el).onclick = function(e){ var li = e.target.closest('[data-tid]'); if(li){ close(el); editTask(tasks[li.dataset.tid]); } };
+      $('#eTaskNew', el).onclick = function(){ close(el); editTask(null, { cust: orig.id, lane: lanes()[0].id }); };
+    }
     var drawCats = function(){
       var cs = allCats(); x.cat.forEach(function(c){ if(cs.indexOf(c) < 0) cs.push(c); });
       cs.sort(function(a, b){ return norm(catName(a)).localeCompare(norm(catName(b))); });
@@ -591,6 +666,223 @@ function edit(orig){
   });
 }
 
+/* ---------- tasks: kanban board ---------- */
+var DEFAULT_LANES = [{ id: 'todo' }, { id: 'doing' }, { id: 'review' }, { id: 'done', done: true }];
+var liveTasks = function(){ return Object.keys(tasks).map(function(k){ return tasks[k]; }).filter(function(k){ return k && k.k === 'task' && !k.del; }); };
+function lanes(){ var b = tasks._board; return b && b.lanes && b.lanes.length ? b.lanes : DEFAULT_LANES; }
+var laneById = function(id){ var l = lanes(); for(var i = 0; i < l.length; i++) if(l[i].id === id) return l[i]; return l[0]; };
+var laneName = function(l){ return l.n || (/^(todo|doing|review|done)$/.test(l.id) ? t('ln_' + l.id) : l.id); };
+var laneDone = function(id){ var l = laneById(id); return l && l.done ? 1 : 0; };
+function saveLanes(ls){ ttouch({ id: '_board', lanes: ls }); }
+function ttouch(x){ x.t = Date.now(); tasks[x.id] = x; tdirty = true; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); render(); syncSoon(); }
+function knownNames(){
+  var seen = {}; if(cfg && cfg.name) seen[cfg.name] = 1;
+  liveTasks().forEach(function(k){ if(k.who) seen[k.who] = 1; (k.log || []).forEach(function(e){ if(e.by) seen[e.by] = 1; }); });
+  live().forEach(function(x){ (x.log || []).forEach(function(e){ if(e.by) seen[e.by] = 1; }); });
+  return Object.keys(seen).sort(function(a, b){ return norm(a).localeCompare(norm(b)); });
+}
+var initials = function(n){ return String(n || '').trim().split(/\s+/).slice(0, 2).map(function(w){ return w[0]; }).join('').toUpperCase(); };
+var dueClass = function(k){ if(!k.due || laneDone(k.lane)) return ''; var td = todayIso(); return k.due < td ? 'late' : k.due === td ? 'soon' : ''; };
+var dueText = function(k){ var c = dueClass(k); return c === 'late' ? t('k_overdue') + ' · ' + dayText(k.due) : dayText(k.due); };
+function sortedIn(laneId, list){ return list.filter(function(k){ return (lanes().some(function(l){ return l.id === k.lane; }) ? k.lane : lanes()[0].id) === laneId; }).sort(function(a, b){ return (a.o || 0) - (b.o || 0) || (a.c || 0) - (b.c || 0); }); }
+var ICON_CAL = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+var ICON_MSG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+function cardHtml(k){
+  var cu = k.cust && data[k.cust] && !data[k.cust].del ? data[k.cust].n : '';
+  return '<li class="kc' + (k.prio ? ' prio' : '') + '" data-tid="' + esc(k.id) + '"><div class="kt">' + esc(k.title) + '</div>' +
+    ((k.due || k.who || cu || (k.log || []).length) ? '<div class="km">' +
+      (k.who ? '<span class="who" title="' + esc(k.who) + '">' + esc(initials(k.who)) + '</span>' : '') +
+      (k.due ? '<span class="due ' + dueClass(k) + '">' + ICON_CAL + esc(dueText(k)) + '</span>' : '') +
+      (cu ? '<span class="cu">' + esc(cu) + '</span>' : '') +
+      ((k.log || []).length ? '<span>' + ICON_MSG + (k.log || []).length + '</span>' : '') +
+    '</div>' : '') + '</li>';
+}
+function renderBoard(){
+  var names = knownNames();
+  if(twho && twho !== '-' && twho !== '@me' && names.indexOf(twho) < 0) twho = '';
+  $('#twho').innerHTML = '<option value="">' + esc(t('t_all')) + '</option><option value="@me"' + (twho === '@me' ? ' selected' : '') + '>' + esc(t('t_mine')) + '</option><option value="-"' + (twho === '-' ? ' selected' : '') + '>' + esc(t('t_nobody')) + '</option>' + names.map(function(n){ return '<option value="' + esc(n) + '"' + (twho === n ? ' selected' : '') + '>' + esc(n) + '</option>'; }).join('');
+  var q = norm(tquery).trim(), all = liveTasks().filter(function(k){
+    if(twho === '@me' && k.who !== cfg.name) return false;
+    if(twho === '-' && k.who) return false;
+    if(twho && twho !== '@me' && twho !== '-' && k.who !== twho) return false;
+    if(!q) return true;
+    var cu = k.cust && data[k.cust] ? data[k.cust].n : '';
+    var hay = norm([k.title, k.d, k.who, cu].concat((k.log || []).map(function(e){ return e.n; })).join(' '));
+    return q.split(/\s+/).every(function(w){ return hay.indexOf(w) >= 0; });
+  });
+  var ls = lanes(), sc = $('#board').scrollLeft;
+  $('#board').innerHTML = ls.map(function(l, i){
+    var cs = sortedIn(l.id, all);
+    return '<section class="lane" data-lane="' + esc(l.id) + '"><div class="lh"><b>' + esc(laneName(l)) + (l.done ? ' ✓' : '') + '</b><span class="n">' + cs.length + '</span><button type="button" data-lmenu="' + esc(l.id) + '" aria-label="' + esc(t('l_menu')) + '">⋯</button></div>' +
+      '<ul class="cards" data-lane="' + esc(l.id) + '">' + cs.map(cardHtml).join('') + '</ul>' +
+      '<button class="ladd" type="button" data-ladd="' + esc(l.id) + '">' + esc(t('k_add_here')) + '</button></section>';
+  }).join('') + '<button class="newlane" type="button" id="newLane">' + esc(t('l_new')) + '</button>';
+  $('#board').scrollLeft = sc;
+}
+$('#hub').addEventListener('click', function(e){ var b = e.target.closest('[data-hub]'); if(!b || b.dataset.hub === hub) return; hub = b.dataset.hub; store.set('ac.hub', hub); history.replaceState(null, '', location.pathname + location.search + (hub === 'tasks' ? '#tareas' : '')); render(); window.scrollTo(0, 0); });
+$('#tq').addEventListener('input', function(){ tquery = this.value; render(); });
+$('#twho').addEventListener('change', function(){ twho = this.value; render(); });
+$('#board').addEventListener('click', function(e){
+  if(drag.justDropped) return;
+  var a = e.target.closest('[data-ladd]'); if(a){ editTask(null, { lane: a.dataset.ladd }); return; }
+  var m = e.target.closest('[data-lmenu]'); if(m){ laneMenu(m.dataset.lmenu); return; }
+  if(e.target.closest('#newLane')){ laneName_prompt(null); return; }
+  var c = e.target.closest('[data-tid]'); if(c) editTask(tasks[c.dataset.tid]);
+});
+function laneName_prompt(lane){
+  modal('<h3>' + esc(lane ? t('l_rename') : t('l_new').replace(/^\+\s*/, '')) + '</h3><div class="field"><label for="lN">' + esc(t('l_name')) + '</label><input id="lN" value="' + esc(lane ? laneName(lane) : '') + '" autocomplete="off"></div>' +
+    '<label class="prio-t" style="margin-bottom:14px"><input type="checkbox" id="lD"' + (lane && lane.done ? ' checked' : '') + '>' + esc(t('l_done')) + '</label>' +
+    '<div class="row2"><button class="btn" data-close type="button">' + esc(t('cancel')) + '</button><button class="btn primary" id="lOk" type="button">' + esc(t('save')) + '</button></div>', function(el){
+    var go = function(){
+      var n = $('#lN', el).value.trim(); if(!n) { $('#lN', el).focus(); return; }
+      var ls = copy(lanes());
+      if(lane){ ls.forEach(function(l){ if(l.id === lane.id){ if(l.n || n !== laneName(l)) l.n = n;   /* an unchanged built-in name stays translated */ l.done = $('#lD', el).checked; if(!l.done) delete l.done; } }); }
+      else { var l = { id: 'l' + uid(), n: n }; if($('#lD', el).checked) l.done = true; ls.push(l); }
+      close(el); saveLanes(ls);
+    };
+    $('#lOk', el).onclick = go; $('#lN', el).onkeydown = function(e){ if(e.key === 'Enter') go(); };
+    setTimeout(function(){ $('#lN', el).focus(); $('#lN', el).select(); }, 50);
+  });
+}
+function laneMenu(id){
+  var ls = lanes(), i = ls.findIndex(function(l){ return l.id === id; }), l = ls[i];
+  var n = liveTasks().filter(function(k){ return k.lane === id; }).length;
+  modal('<h3>' + esc(laneName(l)) + '</h3><div style="display:grid;gap:8px">' +
+    '<button class="btn" id="mR" type="button">' + esc(t('l_rename')) + '</button>' +
+    (i > 0 ? '<button class="btn" id="mL" type="button">' + esc(t('l_left')) + '</button>' : '') +
+    (i < ls.length - 1 ? '<button class="btn" id="mG" type="button">' + esc(t('l_right')) + '</button>' : '') +
+    (ls.length > 1 ? '<button class="btn danger" id="mD" type="button"' + (n ? ' disabled title="' + esc(t('l_del_full')) + '"' : '') + '>' + esc(t('l_del')) + '</button>' + (n ? '<p class="hint" style="margin:0">' + esc(t('l_del_full')) + '</p>' : '') : '') +
+    '<button class="btn primary" data-close type="button">' + esc(t('close')) + '</button></div>', function(el){
+    var mv = function(d){ var c = copy(ls), x = c.splice(i, 1)[0]; c.splice(i + d, 0, x); close(el); saveLanes(c); };
+    $('#mR', el).onclick = function(){ close(el); laneName_prompt(l); };
+    if($('#mL', el)) $('#mL', el).onclick = function(){ mv(-1); };
+    if($('#mG', el)) $('#mG', el).onclick = function(){ mv(1); };
+    if($('#mD', el)) $('#mD', el).onclick = function(){ if(n) return; var c = copy(ls); c.splice(i, 1); close(el); saveLanes(c); toast(t('deleted', laneName(l)), t('undo'), function(){ saveLanes(ls); }); };
+  });
+}
+function custLabel(x){ return x.n + (x.lugar ? ' — ' + x.lugar.split(',').slice(0, 2).join(',') : ''); }
+function editTask(orig, preset){
+  var x = orig ? copy(orig) : Object.assign({ id: 't' + uid(), k: 'task', title: '', d: '', lane: lanes()[0].id, who: '', due: '', prio: false, cust: '', log: [], c: Date.now() }, preset || {});
+  if(!lanes().some(function(l){ return l.id === x.lane; })) x.lane = lanes()[0].id;
+  var cu = x.cust && data[x.cust] ? data[x.cust] : null;
+  var ph = function(k){ return 'placeholder="' + esc(t(k)) + '"'; };
+  var html = '<h3>' + esc(orig ? orig.title : t('t_add')) + '</h3>' +
+    '<div class="field"><label for="kT">' + esc(t('k_title')) + ' <span class="req">*</span></label><input id="kT" value="' + esc(x.title) + '" autocomplete="off" autocapitalize="sentences"></div>' +
+    '<div class="field"><span class="lbl">' + esc(t('k_lane')) + '</span><div class="lanesel" id="kL">' + lanes().map(function(l){ return '<button type="button" data-l="' + esc(l.id) + '"' + (x.lane === l.id ? ' class="on"' : '') + '>' + esc(laneName(l)) + '</button>'; }).join('') + '</div></div>' +
+    '<div class="field"><label for="kD">' + esc(t('k_desc')) + '</label><textarea id="kD" ' + ph('ph_desc') + '>' + esc(x.d) + '</textarea></div>' +
+    '<div class="grid2"><div class="field"><label for="kW">' + esc(t('k_who')) + '</label><div class="addlog"><input id="kW" value="' + esc(x.who) + '" ' + ph('ph_who') + ' autocomplete="off" list="kWL"><button class="btn" id="kMe" type="button" style="min-height:46px">' + esc(t('k_me')) + '</button></div><datalist id="kWL">' + knownNames().map(function(n){ return '<option value="' + esc(n) + '">'; }).join('') + '</datalist></div>' +
+    '<div class="field"><label for="kDue">' + esc(t('k_due')) + '</label><input id="kDue" type="date" value="' + esc(x.due) + '"></div></div>' +
+    '<label class="prio-t" style="margin-bottom:14px"><input type="checkbox" id="kP"' + (x.prio ? ' checked' : '') + '>' + esc(t('k_prio')) + '</label>' +
+    '<div class="field"><label for="kC">' + esc(t('k_cust')) + '</label><div class="addlog"><input id="kC" value="' + esc(cu ? custLabel(cu) : '') + '" ' + ph('ph_cust') + ' autocomplete="off" list="kCL"><button class="btn" id="kCo" type="button" style="min-height:46px"' + (cu ? '' : ' hidden') + '>' + esc(t('k_cust_open')) + '</button></div><datalist id="kCL"></datalist></div>' +
+    '<hr><span class="lbl">' + esc(t('k_comments')) + '</span><ul class="log" id="kLog"></ul>' +
+    '<div class="addlog"><input id="kLn" ' + ph('ph_comment') + ' autocomplete="off"><button class="btn" id="kLg" type="button" style="min-height:46px">' + esc(t('k_comment_add')) + '</button></div>' +
+    '<div id="kMsg"></div><hr>' +
+    '<div class="row2">' + (orig ? '<button class="btn danger" id="kDel" type="button">' + esc(t('delete')) + '</button>' : '') + '<button class="btn" data-close type="button">' + esc(t('cancel')) + '</button><button class="btn primary" id="kOk" type="button">' + esc(t('save')) + '</button></div>';
+  modal(html, function(el){
+    var msg = function(h, c){ $('#kMsg', el).innerHTML = h ? '<div class="msg ' + (c || 'err') + '">' + h + '</div>' : ''; };
+    var drawLog = function(){ var l = (x.log || []).slice().sort(function(a, b){ return a.t - b.t; }); $('#kLog', el).innerHTML = l.length ? l.map(function(e){ return '<li>' + esc(e.n) + '<small>' + esc(dayText(iso(new Date(e.t)))) + ' ' + esc(hm(e.t)) + (e.by ? ' · ' + esc(e.by) : '') + '</small></li>'; }).join('') : '<li style="border-color:var(--line)"><small>' + esc(t('k_none')) + '</small></li>'; };
+    drawLog();
+    $('#kL', el).onclick = function(e){ var b = e.target.closest('[data-l]'); if(!b) return; x.lane = b.dataset.l; [].forEach.call(el.querySelectorAll('#kL button'), function(o){ o.classList.toggle('on', o === b); }); };
+    $('#kMe', el).onclick = function(){ $('#kW', el).value = cfg.name; };
+    /* customer search: only matching names go into the list, the full list would be thousands */
+    var byLabel = {};
+    var fillCust = function(){ var q = norm($('#kC', el).value).trim(), out = [];
+      if(q.length >= 2){ var all = live(); for(var i = 0; i < all.length && out.length < 30; i++){ var c = all[i]; if(norm(c.n).indexOf(q) >= 0 || norm(c.lugar).indexOf(q) >= 0){ var lb = custLabel(c); byLabel[lb] = c.id; out.push(lb); } } }
+      $('#kCL', el).innerHTML = out.map(function(lb){ return '<option value="' + esc(lb) + '">'; }).join('');
+      $('#kCo', el).hidden = !custId(); };
+    var custId = function(){ var v = $('#kC', el).value.trim(); if(!v) return ''; if(byLabel[v]) return byLabel[v]; if(cu && v === custLabel(cu)) return cu.id; var m = live().filter(function(c){ return custLabel(c) === v || c.n === v; }); return m.length === 1 ? m[0].id : null; };
+    $('#kC', el).addEventListener('input', fillCust);
+    $('#kCo', el).onclick = function(){ var id = custId(); if(id && data[id]){ close(el); edit(data[id]); } };
+    var addComment = function(){ var n = $('#kLn', el).value.trim(); if(!n) return; x.log = (x.log || []).concat([{ n: n, by: cfg.name, t: Date.now(), d: todayIso() }]); $('#kLn', el).value = ''; drawLog(); };
+    $('#kLg', el).onclick = addComment; $('#kLn', el).onkeydown = function(e){ if(e.key === 'Enter') addComment(); };
+    $('#kOk', el).onclick = function(){
+      addComment();
+      x.title = $('#kT', el).value.trim(); x.d = $('#kD', el).value.trim(); x.who = $('#kW', el).value.trim(); x.due = $('#kDue', el).value; x.prio = $('#kP', el).checked;
+      var cid = custId(); if(cid === null){ msg(esc(t('k_cust_unknown'))); return; } x.cust = cid;
+      if(!x.title){ msg(esc(t('err_title_t'))); $('#kT', el).focus(); return; }
+      var moved = !orig || orig.lane !== x.lane;
+      if(moved){ var inLane = sortedIn(x.lane, liveTasks().filter(function(k){ return k.id !== x.id; })); x.o = inLane.length ? (inLane[inLane.length - 1].o || 0) + 1 : 1; }
+      close(el); var prev = orig ? copy(orig) : null; ttouch(x);
+      toast(orig ? t('saved') : t('k_added'), t('undo'), function(){ if(prev) ttouch(prev); else { var g = copy(x); g.del = true; ttouch(g); } });
+    };
+    if(orig) $('#kDel', el).onclick = function(){ var g = copy(orig); g.del = true; close(el); ttouch(g); toast(t('deleted', orig.title), t('undo'), function(){ var b = copy(orig); delete b.del; ttouch(b); }); };
+    if(!orig) setTimeout(function(){ $('#kT', el).focus(); }, 50);
+  });
+}
+
+/* drag & drop: mouse drags after a few pixels, a finger after a short press (so the board can still be scrolled) */
+var drag = { id: null, el: null, ghost: null, ph: null, sx: 0, sy: 0, ox: 0, oy: 0, active: false, timer: 0, touch: false, justDropped: false, scrollT: 0, lx: 0, ly: 0 };
+function dragStart(){
+  var r = drag.el.getBoundingClientRect();
+  drag.active = true; drag.ox = drag.sx - r.left; drag.oy = drag.sy - r.top;
+  drag.ghost = drag.el.cloneNode(true); drag.ghost.classList.add('ghost'); drag.ghost.style.width = r.width + 'px'; document.body.appendChild(drag.ghost);
+  drag.ph = document.createElement('li'); drag.ph.className = 'ph'; drag.ph.style.height = r.height + 'px';
+  drag.el.parentNode.insertBefore(drag.ph, drag.el.nextSibling); drag.el.classList.add('dragging');
+  document.body.classList.add('dragging-now');
+  if(navigator.vibrate && drag.touch) try{ navigator.vibrate(15); }catch(e){}
+  dragMove(drag.sx, drag.sy);
+  drag.scrollT = setInterval(autoScroll, 30);
+}
+function dragMove(x, y){
+  drag.lx = x; drag.ly = y;
+  drag.ghost.style.left = (x - drag.ox) + 'px'; drag.ghost.style.top = (y - drag.oy) + 'px';
+  var under = document.elementFromPoint(x, y), lane = under && under.closest('.lane');
+  if(!lane) return;
+  var list = $('.cards', lane), items = [].filter.call(list.children, function(c){ return c.classList.contains('kc') && c !== drag.el; }), before = null;
+  for(var i = 0; i < items.length; i++){ var r = items[i].getBoundingClientRect(); if(y < r.top + r.height / 2){ before = items[i]; break; } }
+  if(before) list.insertBefore(drag.ph, before); else list.appendChild(drag.ph);
+}
+function autoScroll(){
+  var b = $('#board'), br = b.getBoundingClientRect(), x = drag.lx, y = drag.ly, edge = 44;
+  if(Math.abs(x - drag.sx) + Math.abs(y - drag.sy) < 40) return;   /* not while the card is still where it was picked up */
+  if(x < br.left + edge) b.scrollLeft -= 9; else if(x > br.right - edge) b.scrollLeft += 9;
+  if(y < edge) window.scrollBy(0, -9); else if(y > innerHeight - edge) window.scrollBy(0, 9);
+  if(x < br.left + edge || x > br.right - edge || y < edge || y > innerHeight - edge) dragMove(x, y);
+}
+function dragEnd(cancel){
+  clearTimeout(drag.timer); clearInterval(drag.scrollT);
+  if(!drag.active){ drag.el = null; if(drag.renderLater){ drag.renderLater = false; setTimeout(render); } return; }
+  var list = drag.ph.parentNode, laneId = list && list.dataset.lane, k = tasks[drag.id];
+  var prevEl = drag.ph.previousElementSibling, nextEl = drag.ph.nextElementSibling;
+  while(prevEl && (!prevEl.classList.contains('kc') || prevEl === drag.el)) prevEl = prevEl.previousElementSibling;
+  while(nextEl && (!nextEl.classList.contains('kc') || nextEl === drag.el)) nextEl = nextEl.nextElementSibling;
+  close(drag.ghost); close(drag.ph); drag.el.classList.remove('dragging'); document.body.classList.remove('dragging-now');
+  drag.active = false; drag.el = null; drag.justDropped = true; setTimeout(function(){ drag.justDropped = false; }, 50);
+  if(drag.renderLater){ drag.renderLater = false; render(); }
+  if(cancel || !k || !laneId) { render(); return; }
+  var po = prevEl ? (tasks[prevEl.dataset.tid].o || 0) : null, no = nextEl ? (tasks[nextEl.dataset.tid].o || 0) : null;
+  var o = po === null && no === null ? 1 : po === null ? no - 1 : no === null ? po + 1 : (po + no) / 2;
+  if(k.lane === laneId && k.o === o) { render(); return; }
+  var prev = copy(k), g = copy(k), fromLane = k.lane; g.lane = laneId; g.o = o; ttouch(g);
+  if(fromLane !== laneId) toast(t('k_moved', k.title, laneName(laneById(laneId))), t('undo'), function(){ ttouch(prev); });
+}
+$('#board').addEventListener('pointerdown', function(e){
+  if(e.pointerType === 'touch' || e.button !== 0) return;
+  var c = e.target.closest('.kc'); if(!c) return;
+  drag.el = c; drag.id = c.dataset.tid; drag.sx = e.clientX; drag.sy = e.clientY; drag.touch = false;
+});
+addEventListener('pointermove', function(e){
+  if(!drag.el || drag.touch) return;
+  if(!drag.active){ if(Math.abs(e.clientX - drag.sx) + Math.abs(e.clientY - drag.sy) > 6) dragStart(); else return; }
+  e.preventDefault(); dragMove(e.clientX, e.clientY);
+});
+addEventListener('pointerup', function(e){ if(drag.el && !drag.touch) dragEnd(false); });
+$('#board').addEventListener('touchstart', function(e){
+  var c = e.target.closest('.kc'); if(!c || e.touches.length > 1) return;
+  var p = e.touches[0]; drag.el = c; drag.id = c.dataset.tid; drag.sx = p.clientX; drag.sy = p.clientY; drag.touch = true;
+  drag.timer = setTimeout(function(){ if(drag.el) dragStart(); }, 280);
+}, { passive: true });
+addEventListener('touchmove', function(e){
+  if(!drag.el || !drag.touch) return;
+  var p = e.touches[0];
+  if(!drag.active){ if(Math.abs(p.clientX - drag.sx) + Math.abs(p.clientY - drag.sy) > 10){ clearTimeout(drag.timer); drag.el = null; } return; }
+  e.preventDefault(); dragMove(p.clientX, p.clientY);
+}, { passive: false });
+addEventListener('touchend', function(){ if(drag.el && drag.touch) dragEnd(false); });
+addEventListener('touchcancel', function(){ if(drag.el && drag.touch) dragEnd(true); });
+$('#board').addEventListener('contextmenu', function(e){ if(e.target.closest('.kc')) e.preventDefault(); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && drag.active) dragEnd(true); });
+
 /* ---------- settings ---------- */
 function csv(){
   var q = function(v){ v = String(v == null ? '' : v); return /[",;\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
@@ -633,20 +925,20 @@ $('#sync').addEventListener('click', function(){
   modal('<h3>' + esc(t('err_title')) + '</h3><p style="overflow-wrap:anywhere;font-family:ui-monospace,Menlo,monospace;font-size:14px">' + esc(sync.err.detail) + '</p>' + (/^PUT 403/.test(sync.err.detail) ? '<div class="msg warn">' + esc(t('err_write')) + '</div>' : '') + '<p class="hint">' + esc(new Date(sync.err.at).toLocaleString(t('locale'))) + ' · navigator.onLine=' + sync.err.online + ' · ' + esc(cfg.repo) + '</p><div class="row2"><button class="btn" data-close type="button">' + esc(t('close')) + '</button><button class="btn primary" id="errRetry" type="button">' + esc(t('err_retry')) + '</button></div>', function(el){ $('#errRetry', el).onclick = function(){ close(el); syncNow(); }; });
 });
 function syncSoon(){ clearTimeout(sync.timer); setSync('wait', 's_saving'); sync.timer = setTimeout(syncNow, 1200); }
-function api(opt){
+function api(opt, file){
   opt = opt || {}; opt.headers = Object.assign({ Authorization: 'Bearer ' + cfg.token, Accept: 'application/vnd.github+json' }, opt.headers || {}); opt.cache = 'no-store';
-  return fetch('https://api.github.com/repos/' + cfg.repo + '/contents/' + FILE, opt);
+  return fetch('https://api.github.com/repos/' + cfg.repo + '/contents/' + (file || FILE), opt);
 }
-/* newer change wins per customer; contact entries from both sides are kept */
-function merge(remote){
-  var changed = false;
+/* newer change wins per entry; contact entries / comments from both sides are kept */
+function merge(remote, target, isTasks){
+  var changed = false; target = target || data;
   Object.keys(remote || {}).forEach(function(id){
-    var r = withCat(remote[id]), l = data[id];
+    var r = isTasks ? remote[id] : withCat(remote[id]), l = target[id];
     if(!r) return;
-    if(!l){ data[id] = r; changed = true; return; }
+    if(!l){ target[id] = r; changed = true; return; }
     var win = (r.t || 0) > (l.t || 0) ? copy(r) : l, seen = {}, log = [];
     (l.log || []).concat(r.log || []).forEach(function(e){ var k = e.t + '|' + e.by; if(!seen[k]){ seen[k] = 1; log.push(e); } });
-    if(win !== l || log.length !== (l.log || []).length){ win.log = log; data[id] = win; changed = true; }
+    if(win !== l || log.length !== (l.log || []).length){ if(log.length) win.log = log; target[id] = win; changed = true; }
   });
   return changed;
 }
@@ -655,21 +947,22 @@ async function httpErr(r, what){
   var m = ''; try{ var j = await r.clone().json(); m = j.message || ''; if(j.errors) m += ' ' + JSON.stringify(j.errors); }catch(e){ try{ m = (await r.text()).slice(0, 200); }catch(x){} }
   var e = new Error('http ' + r.status); e.status = r.status; e.detail = what + ' ' + r.status + (m ? ': ' + m : ''); return e;
 }
-async function load(){
-  var r = await api();
+async function load(file){
+  var r = await api(null, file);
   if(r.status === 404) return { sha: null, c: {} };
   if(!r.ok) throw await httpErr(r, 'GET');
   var j = await r.json(), txt = j.content ? b64d(j.content) : '';
-  if(!txt && j.size){ var rr = await api({ headers: { Accept: 'application/vnd.github.raw' } }); if(!rr.ok) throw await httpErr(rr, 'GET raw'); txt = await rr.text(); }
+  if(!txt && j.size){ var rr = await api({ headers: { Accept: 'application/vnd.github.raw' } }, file); if(!rr.ok) throw await httpErr(rr, 'GET raw'); txt = await rr.text(); }
   var o = JSON.parse(txt || '{}');
   return { sha: j.sha, c: o.c || {} };
 }
-async function save(){
+async function save(file, target, isTasks){
+  file = file || FILE; target = target || data;
   for(var tries = 0; tries < 3; tries++){
-    var cur = await load(); merge(cur.c);
-    var body = { message: cfg.name + ' ' + new Date().toISOString(), content: b64e(JSON.stringify({ v: 1, c: data }) + '\n') };
+    var cur = await load(file); merge(cur.c, target, isTasks);
+    var body = { message: cfg.name + ' ' + new Date().toISOString(), content: b64e(JSON.stringify({ v: 1, c: target }) + '\n') };
     if(cur.sha) body.sha = cur.sha;
-    var r = await api({ method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    var r = await api({ method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }, file);
     if(r.ok) return;
     if(r.status !== 409 && r.status !== 422) throw await httpErr(r, 'PUT');
     sync.lastConflict = await httpErr(r, 'PUT');
@@ -684,6 +977,9 @@ async function syncNow(){
     if(dirty){ dirty = false; store.set(KEY.dirty, dirty); try{ await save(); }catch(e){ dirty = true; store.set(KEY.dirty, dirty); throw e; } }
     else { var cur = await load(); merge(cur.c); }
     store.set(KEY.data, data);
+    if(tdirty){ tdirty = false; store.set(TKEY.dirty, tdirty); try{ await save(TFILE, tasks, true); }catch(e){ tdirty = true; store.set(TKEY.dirty, tdirty); throw e; } }
+    else { var tc = await load(TFILE); merge(tc.c, tasks, true); }
+    store.set(TKEY.data, tasks);
     sync.err = null; setSync('ok', 's_saved', hm(Date.now()));
   }catch(e){
     if(/http 401/.test(e.message)){
@@ -694,8 +990,9 @@ async function syncNow(){
     else {
       sync.err = { at: Date.now(), detail: e.detail || (e.name + ': ' + e.message), online: navigator.onLine };
       try{ console.error('[ausblick sync]', sync.err.detail, e); }catch(x){}
-      if(e.status) setSync(dirty ? 'wait' : 'err', dirty ? 's_later_err' : 's_error', e.status);
-      else setSync(dirty ? 'wait' : 'err', dirty ? 's_later' : 's_offline');
+      var anyDirty = dirty || tdirty;
+      if(e.status) setSync(anyDirty ? 'wait' : 'err', anyDirty ? 's_later_err' : 's_error', e.status);
+      else setSync(anyDirty ? 'wait' : 'err', anyDirty ? 's_later' : 's_offline');
     }
   }
   sync.busy = false; render();
@@ -707,8 +1004,8 @@ document.addEventListener('visibilitychange', function(){ if(document.visibility
 
 applyLang();
 show();
-if(cfg){ setSync(dirty ? 'wait' : 'ok', '…'); syncNow(); }
-window.__ac = { get data(){ return data; }, get cfg(){ return cfg; }, syncNow: syncNow, sealAccess: sealAccess, setLang: setLang };
+if(cfg){ setSync(dirty || tdirty ? 'wait' : 'ok', '…'); syncNow(); }
+window.__ac = { get tasks(){ return tasks; }, get data(){ return data; }, get cfg(){ return cfg; }, syncNow: syncNow, sealAccess: sealAccess, setLang: setLang };
 })();
 </script>
 </body>
