@@ -96,8 +96,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .hub button.on{background:var(--accent);color:#fff}
 .hub .n{font-weight:600;margin-left:6px;opacity:.8}
 #setup{max-width:728px;margin:0 auto}
-/* customers on a wide screen: cards side by side instead of one stretched column */
-@media (min-width:900px){ .list{grid-template-columns:repeat(auto-fill,minmax(360px,1fr));align-items:start} .list > li.hint,.list > li.empty,.list > li:has(#more){grid-column:1/-1} #more{max-width:420px;margin:0 auto;display:block} }
+
 .board{display:flex;gap:12px;align-items:flex-start;overflow-x:auto;padding:2px 2px 16px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
 .lane{flex:0 0 min(86vw,300px);scroll-snap-align:start;background:var(--bg);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;max-width:300px}
 @media (prefers-color-scheme: dark){.lane{background:#141821}}
