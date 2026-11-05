@@ -91,7 +91,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#171a21;color:#fff;border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:center;z-index:60;width:max-content;max-width:calc(100% - 32px);font-size:16px}
 .toast button{background:none;border:0;color:#9db8ff;font-weight:700;cursor:pointer;font-size:16px}
 .req{color:var(--out)}
-.hub{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
+.hub{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
 .hub button{border:0;border-radius:10px;background:none;font-weight:750;font-size:16px;padding:10px;cursor:pointer;color:var(--muted)}
 .hub button.on{background:var(--accent);color:#fff}
 .hub .n{font-weight:600;margin-left:6px;opacity:.8}
@@ -129,6 +129,61 @@ main.wide .top,main.wide .hub,main.wide .bar,main.wide .board{max-width:1200px;m
 .tlist{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:6px}
 .tlist li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;font-size:15px;display:flex;gap:8px;align-items:center}
 .tlist li small{margin-left:auto;color:var(--muted);white-space:nowrap}
+.docs{display:grid;grid-template-columns:280px 1fr;gap:16px;align-items:start;max-width:1200px;margin:0 auto}
+.dside{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;position:sticky;top:10px;max-height:calc(100vh - 20px);overflow:auto}
+.dside .search{margin-bottom:8px}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding:0 0 0 14px}
+.tree .node{display:flex;align-items:center;gap:2px;border-radius:8px}
+.tree .node a{flex:1;min-width:0;padding:7px 8px;border-radius:8px;color:var(--text);text-decoration:none;font-size:15px;overflow-wrap:anywhere;cursor:pointer}
+.tree .node a:hover{background:var(--bg)}
+.tree .node.on a{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tree .tg{width:24px;height:24px;border:0;background:none;color:var(--muted);cursor:pointer;border-radius:6px;flex:none;font-size:12px}
+.tree .tg.leaf{visibility:hidden}
+.dnew{width:100%;margin-top:8px}
+.dpage{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 24px;min-width:0}
+.crumbs{font-size:14px;color:var(--muted);margin-bottom:6px;overflow-wrap:anywhere}
+.crumbs a{color:var(--muted);cursor:pointer;text-decoration:none} .crumbs a:hover{color:var(--accent)}
+.dpage h2.dt{margin:0 0 4px;font-size:28px;line-height:1.2;overflow-wrap:anywhere}
+.dmeta{color:var(--muted);font-size:14px;margin-bottom:14px}
+.dbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.dbar .btn{min-height:42px;font-size:15px;padding:0 14px}
+.dback{display:none}
+.md{font-size:16px;line-height:1.6;overflow-wrap:anywhere}
+.md h1,.md h2,.md h3,.md h4{line-height:1.25;margin:1.2em 0 .4em} .md h1{font-size:24px} .md h2{font-size:21px} .md h3{font-size:18px} .md h4{font-size:16px}
+.md > :first-child{margin-top:0}
+.md p{margin:.6em 0} .md ul,.md ol{margin:.5em 0;padding-left:1.5em} .md li{margin:.2em 0}
+.md li.task{list-style:none;margin-left:-1.4em} .md li.task input{width:18px;height:18px;vertical-align:-3px;margin-right:6px;accent-color:var(--in);cursor:pointer}
+.md li.task.done > span{text-decoration:line-through;color:var(--muted)}
+.md code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:.05em .35em}
+.md pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;overflow:auto} .md pre code{border:0;padding:0;background:none}
+.md blockquote{margin:.8em 0;padding:.2em 0 .2em 14px;border-left:4px solid var(--accent);color:var(--muted)}
+.md hr{margin:1.2em 0}
+.md table{border-collapse:collapse;margin:.8em 0;display:block;overflow-x:auto;max-width:100%} .md th,.md td{border:1px solid var(--line);padding:6px 10px;text-align:left} .md th{background:var(--bg)}
+.md a.wl{color:var(--vio);font-weight:600;cursor:pointer} .md a.wl.missing{color:var(--out);text-decoration:underline dotted}
+.dempty{color:var(--muted);text-align:center;padding:40px 10px}
+.dhits{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.dhits li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+.dhits li small{display:block;color:var(--muted);font-size:13px}
+.sheet.big{max-width:960px;height:calc(100vh - 32px);display:flex;flex-direction:column}
+.etools{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px}
+.etools button{border:1px solid var(--line);background:var(--card);border-radius:8px;min-width:38px;height:36px;font-weight:700;cursor:pointer;font-size:14px;padding:0 8px}
+.etabs{display:flex;gap:6px;margin-left:auto}
+.etabs button.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.ebody{flex:1;min-height:200px;display:flex}
+.ebody textarea{flex:1;width:100%;resize:none;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);font:15px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.ebody textarea:focus{outline:none;border-color:var(--accent)}
+.ebody .md{flex:1;overflow:auto;border:1.5px dashed var(--line);border-radius:12px;padding:12px 14px}
+.hist{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:6px;max-height:50vh;overflow:auto}
+.hist li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;gap:8px;align-items:center}
+.hist li span{flex:1;min-width:0} .hist li small{display:block;color:var(--muted)}
+.hist li button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:700}
+@media (max-width:760px){
+  .docs{grid-template-columns:1fr} .dside{position:static;max-height:none}
+  .docs.reading .dside{display:none} .docs:not(.reading) .dpage{display:none}
+  .dback{display:inline-flex;align-items:center} .dpage{padding:16px}
+  .sheet.big{height:calc(100vh - 16px);padding:14px} .ov{padding:8px}
+}
 body.dragging-now{cursor:grabbing} body.dragging-now .board{scroll-snap-type:none}
 body.dragging-now *{cursor:grabbing!important}
 .chk{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:15px;font-weight:600;cursor:pointer} .chk input{width:20px;height:20px;margin:0;accent-color:var(--warn)}
@@ -183,6 +238,12 @@ li.hint{list-style:none;color:var(--muted);font-size:14px;padding:0 4px 4px}
       <div class="chips" id="chips"></div>
       <ul class="list" id="list"></ul>
     </div>
+    <div id="docView" hidden>
+      <div class="docs" id="docs">
+        <aside class="dside"><input class="search" id="dq" type="search" data-tp="d_search" autocomplete="off"><div id="dtree"></div><button class="btn primary dnew" id="dNew" type="button" data-t="d_new"></button></aside>
+        <article class="dpage" id="dpage"></article>
+      </div>
+    </div>
     <div id="taskView" hidden>
       <div class="bar"><input class="search" id="tq" type="search" data-tp="t_search" autocomplete="off"><select id="twho" data-ta="t_who"></select></div>
       <div class="board" id="board"></div>
@@ -197,7 +258,7 @@ var $ = function(s, el){ return (el || document).querySelector(s); };
 var APP_REPO = 'lucashcandido/ausblick-clientes';
 var DATA_REPO = 'lucashcandido/ausblick-clientes-data';
 var ACCESS_URL = 'https://api.github.com/repos/' + APP_REPO + '/contents/access.json';
-var FILE = 'clientes.json', TFILE = 'tareas.json';
+var FILE = 'clientes.json', TFILE = 'tareas.json', DFILE = 'docs.json';
 var KEY = { cfg:'ac.cfg.v1', data:'ac.data.v1', dirty:'ac.dirty.v1', lang:'ac.lang' };
 var store = {
   get: function(k, d){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
@@ -208,7 +269,9 @@ var store = {
    Every text on screen comes from here. {0}, {1} are filled in; texts used as HTML are escaped where they are filled. */
 var LANGS = [['es', 'Español'], ['en', 'English'], ['de', 'Deutsch']];
 var TX = {
-es: { locale:'es-AR', title:'Clientes', h_cust:'Clientes', h_tasks:'Tareas', t_add:'Nueva tarea', t_search:'Buscar tarea…', t_who:'Responsable', t_all:'Todas', t_mine:'Mis tareas', t_nobody:'Sin responsable',
+es: { locale:'es-AR', title:'Clientes', h_cust:'Clientes', h_tasks:'Tareas', h_docs:'Docs',
+  d_search:'Buscar en la documentación…', d_new:'+ Nueva página', d_sub:'+ Subpágina', d_edit:'Editar', d_more:'Más', d_untitled:'Sin título', d_empty:'Todavía no hay documentación. Creá la primera página: procesos, contactos, accesos, cómo se hace cada cosa.', d_pick:'Elegí una página a la izquierda.', d_by:'Última edición: {0}, {1}', d_ph:'Escribí acá. **negrita**, *cursiva*, # Título, - lista, - [ ] tarea, [texto](https://link), [[Otra página]]',
+  d_title:'Título de la página', d_write:'Escribir', d_preview:'Vista previa', d_help:'Formato', d_back:'← Páginas', d_move:'Mover', d_parent:'Página superior', d_top:'(Nivel principal)', d_hist:'Historial', d_hist_none:'Todavía no hay versiones anteriores.', d_restore:'Restaurar', d_restored:'Versión restaurada.', d_del:'Eliminar página', d_del_kids:'Sus subpáginas pasan a la página superior.', d_conflict:'<b>{0}</b> guardó esta página mientras la editabas. Si guardás, tu versión reemplaza la suya (la suya queda en el historial).', d_save_mine:'Guardar mi versión', d_draft:'Hay un borrador sin guardar de {0}. ¿Seguir con el borrador?', d_draft_yes:'Usar borrador', d_draft_no:'Descartar', d_hits:'{0} resultados', d_nohits:'Nada encontrado.', d_missing:'La página «{0}» no existe. ¿Crearla?', d_link:'Copiar link', d_copied:'Link copiado.', d_chars:'{0} caracteres', t_add:'Nueva tarea', t_search:'Buscar tarea…', t_who:'Responsable', t_all:'Todas', t_mine:'Mis tareas', t_nobody:'Sin responsable',
   ln_todo:'Por hacer', ln_doing:'En curso', ln_review:'En revisión', ln_done:'Hecho', l_new:'+ Nueva columna', l_name:'Nombre de la columna', l_rename:'Renombrar', l_left:'← Mover a la izquierda', l_right:'Mover a la derecha →', l_del:'Eliminar columna', l_del_full:'Primero mové o eliminá las tareas de esta columna.', l_done:'Las tareas acá cuentan como terminadas', l_menu:'Columna',
   k_title:'Título', k_desc:'Descripción', ph_desc:'Qué hay que hacer, detalles, links…', k_lane:'Columna', k_who:'Responsable', ph_who:'Nombre', k_me:'Yo', k_due:'Fecha límite', k_prio:'Importante', k_cust:'Cliente', ph_cust:'Buscar cliente por nombre…', k_cust_open:'Abrir cliente', k_cust_unknown:'Ese cliente no existe. Elegí uno de la lista o dejá el campo vacío.', k_comments:'Comentarios', ph_comment:'Escribí un comentario', k_comment_add:'Comentar', k_none:'Sin comentarios.', err_title_t:'Escribí un título.', k_added:'Tarea agregada.', k_moved:'{0} → {1}', k_tasks_of:'Tareas', k_new_for:'+ Tarea para este cliente', k_no_tasks:'Todavía sin tareas.', k_today:'hoy', k_overdue:'vencida', k_add_here:'+ Tarea', setup_sub:'Configuración del dispositivo', tab_code:'Tengo el código', tab_token:'Primera vez (token)',
   name:'Tu nombre', name_hint:'Se guarda en cada contacto, así sabemos quién llamó a quién.', code:'Código de acceso',
@@ -238,7 +301,9 @@ es: { locale:'es-AR', title:'Clientes', h_cust:'Clientes', h_tasks:'Tareas', t_a
   dev_of:'Dispositivo de <b>{0}</b>', data_in:'Datos en {0}', language:'Idioma', g_share:'Compartir acceso (código)', g_csv:'Exportar lista (CSV para Excel)',
   g_sync:'Sincronizar ahora', g_setup:'Cambiar nombre o acceso', close:'Cerrar',
   s_saving:'Guardando…', s_saved:'Guardado {0}', s_expired:'Token vencido: hay que renovarlo', s_later:'Sin conexión – se guarda después', s_offline:'Sin conexión', s_error:'Error {0} – tocá para ver', s_later_err:'Error {0} – no se guardó', err_title:'Problema de sincronización', err_retry:'Reintentar', err_write:'El token puede leer pero no guardar. En GitHub → Settings → Developer settings → Fine-grained tokens → Edit, poné «Contents» en «Read and write» para ausblick-clientes-data. El token sigue igual; después tocá Reintentar.' },
-en: { locale:'en-US', title:'Customers', h_cust:'Customers', h_tasks:'Tasks', t_add:'New task', t_search:'Search tasks…', t_who:'Assignee', t_all:'All', t_mine:'My tasks', t_nobody:'Unassigned',
+en: { locale:'en-US', title:'Customers', h_cust:'Customers', h_tasks:'Tasks', h_docs:'Docs',
+  d_search:'Search the docs…', d_new:'+ New page', d_sub:'+ Subpage', d_edit:'Edit', d_more:'More', d_untitled:'Untitled', d_empty:'No documentation yet. Create the first page: processes, contacts, logins, how things are done.', d_pick:'Pick a page on the left.', d_by:'Last edited by {0}, {1}', d_ph:'Write here. **bold**, *italic*, # Heading, - list, - [ ] task, [text](https://link), [[Other page]]',
+  d_title:'Page title', d_write:'Write', d_preview:'Preview', d_help:'Formatting', d_back:'← Pages', d_move:'Move', d_parent:'Parent page', d_top:'(Top level)', d_hist:'History', d_hist_none:'No earlier versions yet.', d_restore:'Restore', d_restored:'Version restored.', d_del:'Delete page', d_del_kids:'Its subpages move up to the parent page.', d_conflict:'<b>{0}</b> saved this page while you were editing. If you save, your version replaces theirs (theirs stays in the history).', d_save_mine:'Save my version', d_draft:'There is an unsaved draft from {0}. Continue with the draft?', d_draft_yes:'Use draft', d_draft_no:'Discard', d_hits:'{0} results', d_nohits:'Nothing found.', d_missing:'The page “{0}” doesn’t exist. Create it?', d_link:'Copy link', d_copied:'Link copied.', d_chars:'{0} characters', t_add:'New task', t_search:'Search tasks…', t_who:'Assignee', t_all:'All', t_mine:'My tasks', t_nobody:'Unassigned',
   ln_todo:'To do', ln_doing:'In progress', ln_review:'In review', ln_done:'Done', l_new:'+ New lane', l_name:'Lane name', l_rename:'Rename', l_left:'← Move left', l_right:'Move right →', l_del:'Delete lane', l_del_full:'Move or delete the tasks in this lane first.', l_done:'Tasks here count as finished', l_menu:'Lane',
   k_title:'Title', k_desc:'Description', ph_desc:'What needs doing, details, links…', k_lane:'Lane', k_who:'Assignee', ph_who:'Name', k_me:'Me', k_due:'Due date', k_prio:'Important', k_cust:'Customer', ph_cust:'Search customer by name…', k_cust_open:'Open customer', k_cust_unknown:'That customer doesn’t exist. Pick one from the list or leave it empty.', k_comments:'Comments', ph_comment:'Write a comment', k_comment_add:'Comment', k_none:'No comments.', err_title_t:'Enter a title.', k_added:'Task added.', k_moved:'{0} → {1}', k_tasks_of:'Tasks', k_new_for:'+ Task for this customer', k_no_tasks:'No tasks yet.', k_today:'today', k_overdue:'overdue', k_add_here:'+ Task', setup_sub:'Device setup', tab_code:'I have the code', tab_token:'First time (token)',
   name:'Your name', name_hint:'Saved with every contact, so we know who called whom.', code:'Access code',
@@ -268,7 +333,9 @@ en: { locale:'en-US', title:'Customers', h_cust:'Customers', h_tasks:'Tasks', t_
   dev_of:'Device of <b>{0}</b>', data_in:'Data in {0}', language:'Language', g_share:'Share access (code)', g_csv:'Export list (CSV for Excel)',
   g_sync:'Sync now', g_setup:'Change name or access', close:'Close',
   s_saving:'Saving…', s_saved:'Saved {0}', s_expired:'Token expired: it needs renewing', s_later:'Offline – will save later', s_offline:'Offline', s_error:'Error {0} – tap for details', s_later_err:'Error {0} – not saved', err_title:'Sync problem', err_retry:'Try again', err_write:'The token can read but not save. On GitHub → Settings → Developer settings → Fine-grained tokens → Edit, set “Contents” to “Read and write” for ausblick-clientes-data. The token stays the same; then tap Try again.' },
-de: { locale:'de-DE', title:'Kunden', h_cust:'Kunden', h_tasks:'Aufgaben', t_add:'Neue Aufgabe', t_search:'Aufgabe suchen…', t_who:'Zuständig', t_all:'Alle', t_mine:'Meine Aufgaben', t_nobody:'Niemand zuständig',
+de: { locale:'de-DE', title:'Kunden', h_cust:'Kunden', h_tasks:'Aufgaben', h_docs:'Doku',
+  d_search:'Doku durchsuchen…', d_new:'+ Neue Seite', d_sub:'+ Unterseite', d_edit:'Bearbeiten', d_more:'Mehr', d_untitled:'Ohne Titel', d_empty:'Noch keine Dokumentation. Leg die erste Seite an: Abläufe, Kontakte, Zugänge, wie was gemacht wird.', d_pick:'Wähle links eine Seite.', d_by:'Zuletzt bearbeitet von {0}, {1}', d_ph:'Hier schreiben. **fett**, *kursiv*, # Überschrift, - Liste, - [ ] Aufgabe, [Text](https://link), [[Andere Seite]]',
+  d_title:'Titel der Seite', d_write:'Schreiben', d_preview:'Vorschau', d_help:'Formatierung', d_back:'← Seiten', d_move:'Verschieben', d_parent:'Übergeordnete Seite', d_top:'(Oberste Ebene)', d_hist:'Verlauf', d_hist_none:'Noch keine früheren Versionen.', d_restore:'Wiederherstellen', d_restored:'Version wiederhergestellt.', d_del:'Seite löschen', d_del_kids:'Ihre Unterseiten rutschen eine Ebene nach oben.', d_conflict:'<b>{0}</b> hat diese Seite gespeichert, während du sie bearbeitet hast. Wenn du speicherst, ersetzt deine Version die andere (die bleibt im Verlauf).', d_save_mine:'Meine Version speichern', d_draft:'Es gibt einen ungespeicherten Entwurf von {0}. Mit dem Entwurf weitermachen?', d_draft_yes:'Entwurf nehmen', d_draft_no:'Verwerfen', d_hits:'{0} Treffer', d_nohits:'Nichts gefunden.', d_missing:'Die Seite „{0}“ gibt es nicht. Anlegen?', d_link:'Link kopieren', d_copied:'Link kopiert.', d_chars:'{0} Zeichen', t_add:'Neue Aufgabe', t_search:'Aufgabe suchen…', t_who:'Zuständig', t_all:'Alle', t_mine:'Meine Aufgaben', t_nobody:'Niemand zuständig',
   ln_todo:'Zu erledigen', ln_doing:'In Arbeit', ln_review:'In Prüfung', ln_done:'Erledigt', l_new:'+ Neue Spalte', l_name:'Name der Spalte', l_rename:'Umbenennen', l_left:'← Nach links', l_right:'Nach rechts →', l_del:'Spalte löschen', l_del_full:'Verschiebe oder lösche zuerst die Aufgaben in dieser Spalte.', l_done:'Aufgaben hier gelten als erledigt', l_menu:'Spalte',
   k_title:'Titel', k_desc:'Beschreibung', ph_desc:'Was zu tun ist, Details, Links…', k_lane:'Spalte', k_who:'Zuständig', ph_who:'Name', k_me:'Ich', k_due:'Fällig am', k_prio:'Wichtig', k_cust:'Kunde', ph_cust:'Kunde nach Namen suchen…', k_cust_open:'Kunde öffnen', k_cust_unknown:'Diesen Kunden gibt es nicht. Wähle einen aus der Liste oder lass das Feld leer.', k_comments:'Kommentare', ph_comment:'Kommentar schreiben', k_comment_add:'Kommentieren', k_none:'Noch keine Kommentare.', err_title_t:'Gib einen Titel ein.', k_added:'Aufgabe hinzugefügt.', k_moved:'{0} → {1}', k_tasks_of:'Aufgaben', k_new_for:'+ Aufgabe für diesen Kunden', k_no_tasks:'Noch keine Aufgaben.', k_today:'heute', k_overdue:'überfällig', k_add_here:'+ Aufgabe', setup_sub:'Geräte-Einrichtung', tab_code:'Ich habe den Code', tab_token:'Erstes Mal (Token)',
   name:'Dein Name', name_hint:'Wird bei jedem Kontakt gespeichert, damit wir wissen, wer wen angerufen hat.', code:'Zugangscode',
@@ -309,7 +376,7 @@ var estName = function(k){ return t('est_' + (EST.indexOf(k) >= 0 ? k : 'nuevo')
 function langButtons(cur){ return LANGS.map(function(l){ return '<button type="button" data-lang="' + l[0] + '"' + (l[0] === cur ? ' class="on"' : '') + ' title="' + l[1] + '">' + (this.big ? l[1] : l[0].toUpperCase()) + '</button>'; }, this || {}).join(''); }
 function applyLang(){
   document.documentElement.lang = lang;
-  document.title = 'Ausblick – ' + t(hub === 'tasks' ? 'h_tasks' : 'h_cust');
+  document.title = 'Ausblick – ' + t({ cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs' }[hub]);
   [].forEach.call(document.querySelectorAll('[data-t]'), function(el){ el.textContent = t(el.dataset.t); });
   [].forEach.call(document.querySelectorAll('[data-th]'), function(el){ el.innerHTML = t(el.dataset.th); });
   [].forEach.call(document.querySelectorAll('[data-tp]'), function(el){ el.placeholder = t(el.dataset.tp); });
@@ -375,7 +442,10 @@ var sync = { busy: false, timer: 0, again: false, label: null };
 /* tasks live in their own file (tareas.json), synced the same way as the customers */
 var TKEY = { data: 'ac.tdata.v1', dirty: 'ac.tdirty.v1' };
 var tasks = store.get(TKEY.data, {}), tdirty = store.get(TKEY.dirty, false);
-var hub = /tareas|tasks|aufgaben/i.test(location.hash) ? 'tasks' : store.get('ac.hub', 'cust');
+var DKEY = { data: 'ac.ddata.v1', dirty: 'ac.ddirty.v1' };
+var docs = store.get(DKEY.data, {}), ddirty = store.get(DKEY.dirty, false);
+var hashDoc = (location.hash.match(/^#docs\/([\w-]+)/) || [])[1] || '';
+var hub = /^#docs/i.test(location.hash) ? 'docs' : /tareas|tasks|aufgaben/i.test(location.hash) ? 'tasks' : store.get('ac.hub', 'cust');
 var tquery = '', twho = '';
 
 /* ---------- screens ---------- */
@@ -482,7 +552,7 @@ $('#sGo').onclick = async function(){
   var changedRepo = cfg && cfg.repo !== conf.repo;
   cfg = { repo: conf.repo, token: conf.token, code: code, name: name };
   store.set(KEY.cfg, cfg);
-  if(changedRepo){ data = {}; dirty = false; store.set(KEY.data, data); store.set(KEY.dirty, dirty); tasks = {}; tdirty = false; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); }
+  if(changedRepo){ data = {}; dirty = false; store.set(KEY.data, data); store.set(KEY.dirty, dirty); tasks = {}; tdirty = false; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); docs = {}; ddirty = false; store.set(DKEY.data, docs); store.set(DKEY.dirty, ddirty); }
   $('#sCode').value = ''; $('#sToken').value = ''; $('#sMsg').innerHTML = '';
   show(); syncNow();
   if(mode === 'token') shareAccess(true);
@@ -516,13 +586,14 @@ var ICON = {
 function render(){
   if(!cfg) return;
   if(drag.active || drag.el){ drag.renderLater = true; return; }   /* rebuilding the board under a finger would drop the card */
-  $('#hub').innerHTML = [['cust', 'h_cust', live().filter(function(x){ return !pending(x); }).length], ['tasks', 'h_tasks', liveTasks().filter(function(k){ return !laneDone(k.lane); }).length]].map(function(h){ return '<button type="button" data-hub="' + h[0] + '"' + (hub === h[0] ? ' class="on"' : '') + '>' + esc(t(h[1])) + '<span class="n">' + h[2] + '</span></button>'; }).join('');
-  $('#custView').hidden = hub !== 'cust'; $('#taskView').hidden = hub !== 'tasks';
-  document.querySelector('main').classList.toggle('wide', hub === 'tasks');
-  $('#add').setAttribute('aria-label', t(hub === 'tasks' ? 't_add' : 'add')); $('#add').title = $('#add').getAttribute('aria-label');
-  var h1 = document.querySelector('#app h1 > span[data-t]'); if(h1) h1.textContent = t(hub === 'tasks' ? 'h_tasks' : 'h_cust');
-  document.title = 'Ausblick – ' + t(hub === 'tasks' ? 'h_tasks' : 'h_cust');
-  if(hub === 'tasks') renderBoard(); else renderList();
+  $('#hub').innerHTML = [['cust', 'h_cust', live().filter(function(x){ return !pending(x); }).length], ['tasks', 'h_tasks', liveTasks().filter(function(k){ return !laneDone(k.lane); }).length], ['docs', 'h_docs', liveDocs().length]].map(function(h){ return '<button type="button" data-hub="' + h[0] + '"' + (hub === h[0] ? ' class="on"' : '') + '>' + esc(t(h[1])) + '<span class="n">' + h[2] + '</span></button>'; }).join('');
+  $('#custView').hidden = hub !== 'cust'; $('#taskView').hidden = hub !== 'tasks'; $('#docView').hidden = hub !== 'docs';
+  document.querySelector('main').classList.toggle('wide', hub !== 'cust');
+  $('#add').setAttribute('aria-label', t(hub === 'tasks' ? 't_add' : hub === 'docs' ? 'd_new' : 'add')); $('#add').title = $('#add').getAttribute('aria-label');
+  var h1 = document.querySelector('#app h1 > span[data-t]'); var HT = { cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs' };
+  if(h1) h1.textContent = t(HT[hub]);
+  document.title = 'Ausblick – ' + t(HT[hub]);
+  if(hub === 'tasks') renderBoard(); else if(hub === 'docs') renderDocs(); else renderList();
 }
 function renderList(){
   var everything = live(), sorting = everything.filter(pending), all = everything.filter(function(x){ return !pending(x); });
@@ -578,7 +649,7 @@ $('#list').addEventListener('click', function(e){
     return;
   }
   if(e.target.closest('#more')){ shown += PAGE * 2; render(); return; } if(e.target.closest('[data-stop]')) return; var li = e.target.closest('[data-id]'); if(li) edit(data[li.dataset.id]); });
-$('#add').onclick = function(){ if(hub === 'tasks') editTask(null, { lane: lanes()[0].id }); else edit(null); };
+$('#add').onclick = function(){ if(hub === 'tasks') editTask(null, { lane: lanes()[0].id }); else if(hub === 'docs') newDoc(''); else edit(null); };
 
 function touch(x){ x.t = Date.now(); data[x.id] = x; dirty = true; store.set(KEY.data, data); store.set(KEY.dirty, dirty); render(); syncSoon(); }
 var copy = function(x){ return JSON.parse(JSON.stringify(x)); };
@@ -719,7 +790,7 @@ function renderBoard(){
   }).join('') + '<button class="newlane" type="button" id="newLane">' + esc(t('l_new')) + '</button>';
   $('#board').scrollLeft = sc;
 }
-$('#hub').addEventListener('click', function(e){ var b = e.target.closest('[data-hub]'); if(!b || b.dataset.hub === hub) return; hub = b.dataset.hub; store.set('ac.hub', hub); history.replaceState(null, '', location.pathname + location.search + (hub === 'tasks' ? '#tareas' : '')); render(); window.scrollTo(0, 0); });
+$('#hub').addEventListener('click', function(e){ var b = e.target.closest('[data-hub]'); if(!b || b.dataset.hub === hub) return; hub = b.dataset.hub; store.set('ac.hub', hub); history.replaceState(null, '', location.pathname + location.search + (hub === 'tasks' ? '#tareas' : hub === 'docs' ? '#docs' + (curDoc ? '/' + curDoc : '') : '')); render(); window.scrollTo(0, 0); });
 $('#tq').addEventListener('input', function(){ tquery = this.value; render(); });
 $('#twho').addEventListener('change', function(){ twho = this.value; render(); });
 $('#board').addEventListener('click', function(e){
@@ -807,6 +878,204 @@ function editTask(orig, preset){
     };
     if(orig) $('#kDel', el).onclick = function(){ var g = copy(orig); g.del = true; close(el); ttouch(g); toast(t('deleted', orig.title), t('undo'), function(){ var b = copy(orig); delete b.del; ttouch(b); }); };
     if(!orig) setTimeout(function(){ $('#kT', el).focus(); }, 50);
+  });
+}
+
+/* ---------- docs: a small wiki for everyone ---------- */
+var liveDocs = function(){ return Object.keys(docs).map(function(k){ return docs[k]; }).filter(function(d){ return d && d.k === 'doc' && !d.del; }); };
+var curDoc = hashDoc, dquery = '', openNodes = store.get('ac.dopen', {});
+function dtouch(x){ x.t = Date.now(); docs[x.id] = x; ddirty = true; store.set(DKEY.data, docs); store.set(DKEY.dirty, ddirty); render(); syncSoon(); }
+var docTitle = function(d){ return d && d.title ? d.title : t('d_untitled'); };
+function kids(pid){ return liveDocs().filter(function(d){ return (d.parent && docs[d.parent] && !docs[d.parent].del ? d.parent : '') === pid; }).sort(function(a, b){ return (a.o || 0) - (b.o || 0) || norm(docTitle(a)).localeCompare(norm(docTitle(b))); }); }
+function pathOf(d){ var out = [], seen = {}; while(d && d.parent && docs[d.parent] && !docs[d.parent].del && !seen[d.parent]){ seen[d.parent] = 1; d = docs[d.parent]; out.unshift(d); } return out; }
+function byTitle(title){ var n = norm(title).trim(); return liveDocs().filter(function(d){ return norm(d.title).trim() === n; })[0] || null; }
+function openDoc(id){ curDoc = id; if(id && docs[id]){ pathOf(docs[id]).forEach(function(p){ openNodes[p.id] = 1; }); store.set('ac.dopen', openNodes); } history.replaceState(null, '', location.pathname + location.search + '#docs' + (id ? '/' + id : '')); render(); var pg = $('#dpage'); if(pg && innerWidth <= 760) window.scrollTo(0, 0); }
+
+/* markdown → safe HTML: everything is escaped first, only http(s)/mailto/tel links survive */
+function mdInline(s){
+  var keep = [];
+  var stash = function(h){ keep.push(h); return '\u0000' + (keep.length - 1) + '\u0000'; };
+  s = s.replace(/`([^`]+)`/g, function(m, c){ return stash('<code>' + esc(c) + '</code>'); });
+  s = s.replace(/\[\[([^\]\n]{1,120})\]\]/g, function(m, title){ var d = byTitle(title); return stash('<a class="wl' + (d ? '' : ' missing') + '" data-wl="' + esc(title) + '">' + esc(title) + '</a>'); });
+  s = s.replace(/\[([^\]\n]+)\]\(([^)\s]+)\)/g, function(m, txt, url){ return /^(https?:|mailto:|tel:)/i.test(url) ? stash('<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(txt) + '</a>') : m; });
+  s = s.replace(/\bhttps?:\/\/[^\s<>()]+[^\s<>().,;:!?'"]/g, function(u){ return stash('<a href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' + esc(u) + '</a>'); });
+  s = esc(s);
+  s = s.replace(/\*\*(?=\S)([\s\S]*?\S)\*\*/g, '<strong>$1</strong>').replace(/__(?=\S)([\s\S]*?\S)__/g, '<strong>$1</strong>')
+       .replace(/(^|[^*\w])\*(?=\S)([^*\n]*?\S)\*(?!\*)/g, '$1<em>$2</em>').replace(/(^|[^_\w])_(?=\S)([^_\n]*?\S)_(?!\w)/g, '$1<em>$2</em>')
+       .replace(/~~(?=\S)([\s\S]*?\S)~~/g, '<del>$1</del>');
+  return s.replace(/\u0000(\d+)\u0000/g, function(m, i){ return keep[+i]; });
+}
+function md(src){
+  var lines = String(src || '').replace(/\r\n?/g, '\n').split('\n'), out = [], i = 0, cb = 0, para = [];
+  var flush = function(){ if(para.length){ out.push('<p>' + para.map(mdInline).join('<br>') + '</p>'); para = []; } };
+  while(i < lines.length){
+    var l = lines[i], m;
+    if(/^\s*```/.test(l)){ flush(); var code = []; i++; while(i < lines.length && !/^\s*```/.test(lines[i])) code.push(lines[i++]); i++; out.push('<pre><code>' + esc(code.join('\n')) + '</code></pre>'); continue; }
+    if(!l.trim()){ flush(); i++; continue; }
+    if((m = l.match(/^(#{1,4})\s+(.*)$/))){ flush(); out.push('<h' + m[1].length + '>' + mdInline(m[2]) + '</h' + m[1].length + '>'); i++; continue; }
+    if(/^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(l)){ flush(); out.push('<hr>'); i++; continue; }
+    if(/^\s*>/.test(l)){ flush(); var q = []; while(i < lines.length && /^\s*>/.test(lines[i])) q.push(lines[i++].replace(/^\s*>\s?/, '')); out.push('<blockquote>' + md(q.join('\n')) + '</blockquote>'); continue; }
+    if(/^\s*\|.*\|\s*$/.test(l) && i + 1 < lines.length && /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[i + 1]) && /-/.test(lines[i + 1])){
+      flush(); var row = function(r){ return r.trim().replace(/^\||\|$/g, '').split('|').map(function(c){ return c.trim(); }); };
+      var head = row(l); i += 2; var body = []; while(i < lines.length && /^\s*\|.*\|\s*$/.test(lines[i])) body.push(row(lines[i++]));
+      out.push('<table><thead><tr>' + head.map(function(c){ return '<th>' + mdInline(c) + '</th>'; }).join('') + '</tr></thead><tbody>' + body.map(function(r){ return '<tr>' + r.map(function(c){ return '<td>' + mdInline(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table>'); continue;
+    }
+    if((m = l.match(/^(\s*)([-*+]|\d+[.)])\s+(.*)$/))){
+      flush(); var ordered = /\d/.test(m[2]), items = [];
+      while(i < lines.length && (m = lines[i].match(/^(\s*)([-*+]|\d+[.)])\s+(.*)$/)) && /\d/.test(m[2]) === ordered){
+        var txt = m[3], tk = txt.match(/^\[([ xX])\]\s+(.*)$/), ind = m[1].length >= 2 ? ' style="margin-left:' + Math.min(4, Math.floor(m[1].length / 2)) * 1.2 + 'em"' : '';
+        if(tk){ var on = tk[1] !== ' '; items.push('<li class="task' + (on ? ' done' : '') + '"' + ind + '><input type="checkbox" data-cb="' + (cb++) + '"' + (on ? ' checked' : '') + '><span>' + mdInline(tk[2]) + '</span></li>'); }
+        else items.push('<li' + ind + '>' + mdInline(txt) + '</li>');
+        i++;
+      }
+      out.push((ordered ? '<ol>' : '<ul>') + items.join('') + (ordered ? '</ol>' : '</ul>')); continue;
+    }
+    para.push(l); i++;
+  }
+  flush(); return out.join('');
+}
+/* tick a checkbox in the page: flip the nth "- [ ]" outside code blocks */
+function toggleCheck(src, n){
+  var lines = src.split('\n'), inCode = false, k = 0;
+  for(var i = 0; i < lines.length; i++){
+    if(/^\s*```/.test(lines[i])){ inCode = !inCode; continue; }
+    if(inCode) continue;
+    var m = lines[i].match(/^(\s*(?:[-*+]|\d+[.)])\s+)\[([ xX])\](\s+.*)$/);
+    if(m){ if(k === n){ lines[i] = m[1] + '[' + (m[2] === ' ' ? 'x' : ' ') + ']' + m[3]; break; } k++; }
+  }
+  return lines.join('\n');
+}
+function treeHtml(pid){
+  return kids(pid).map(function(d){
+    var ch = kids(d.id), open = openNodes[d.id] || dquery;
+    return '<li><div class="node' + (d.id === curDoc ? ' on' : '') + '"><button class="tg' + (ch.length ? '' : ' leaf') + '" type="button" data-tg="' + esc(d.id) + '" aria-label="' + esc(docTitle(d)) + '">' + (open ? '▾' : '▸') + '</button><a data-doc="' + esc(d.id) + '">' + esc(docTitle(d)) + '</a></div>' + (ch.length && open ? '<ul>' + treeHtml(d.id) + '</ul>' : '') + '</li>';
+  }).join('');
+}
+var docWhen = function(d){ return dayText(iso(new Date(d.t))) + ' ' + hm(d.t); };
+function renderDocs(){
+  var all = liveDocs(), q = norm(dquery).trim();
+  if(curDoc && (!docs[curDoc] || docs[curDoc].del)) curDoc = '';
+  $('#docs').classList.toggle('reading', !!curDoc);
+  if(q){
+    var hits = all.filter(function(d){ var hay = norm(d.title + ' ' + d.body); return q.split(/\s+/).every(function(w){ return hay.indexOf(w) >= 0; }); });
+    $('#dtree').innerHTML = '<p class="hint" style="margin:4px 4px 8px">' + esc(hits.length ? t('d_hits', hits.length) : t('d_nohits')) + '</p><ul class="dhits">' + hits.map(function(d){
+      var b = String(d.body || '').replace(/\s+/g, ' '), at = norm(b).indexOf(q.split(/\s+/)[0]), snip = at >= 0 ? (at > 30 ? '…' : '') + b.slice(Math.max(0, at - 30), at + 70) + '…' : '';
+      return '<li data-doc="' + esc(d.id) + '"><b>' + esc(docTitle(d)) + '</b>' + (snip ? '<small>' + esc(snip) + '</small>' : '') + '</li>'; }).join('') + '</ul>';
+  } else $('#dtree').innerHTML = all.length ? '<ul class="tree">' + treeHtml('') + '</ul>' : '';
+  var d = curDoc ? docs[curDoc] : null;
+  if(!d){ $('#dpage').innerHTML = '<div class="dempty">' + esc(all.length ? t('d_pick') : t('d_empty')) + '</div>'; return; }
+  $('#dpage').innerHTML = '<button class="btn dback" type="button" id="dBack" style="min-height:40px;margin-bottom:10px">' + esc(t('d_back')) + '</button>' +
+    '<div class="crumbs">' + pathOf(d).map(function(p){ return '<a data-doc="' + esc(p.id) + '">' + esc(docTitle(p)) + '</a> / '; }).join('') + '</div>' +
+    '<h2 class="dt">' + esc(docTitle(d)) + '</h2><div class="dmeta">' + esc(t('d_by', d.by || '—', docWhen(d))) + '</div>' +
+    '<div class="dbar"><button class="btn primary" type="button" id="dEdit">' + esc(t('d_edit')) + '</button><button class="btn" type="button" id="dSub">' + esc(t('d_sub')) + '</button><button class="btn" type="button" id="dMore">' + esc(t('d_more')) + ' ⋯</button></div>' +
+    '<div class="md" id="dBody">' + (d.body ? md(d.body) : '<p class="hint">' + esc(t('d_ph')) + '</p>') + '</div>';
+}
+$('#dq').addEventListener('input', function(){ dquery = this.value; render(); });
+$('#dNew').onclick = function(){ newDoc(''); };
+$('#docs').addEventListener('click', function(e){
+  var tg = e.target.closest('[data-tg]'); if(tg){ var id = tg.dataset.tg; if(openNodes[id]) delete openNodes[id]; else openNodes[id] = 1; store.set('ac.dopen', openNodes); render(); return; }
+  var a = e.target.closest('[data-doc]'); if(a){ openDoc(a.dataset.doc); return; }
+  var wl = e.target.closest('[data-wl]'); if(wl){ var d = byTitle(wl.dataset.wl); if(d) openDoc(d.id); else confirmBox(t('d_missing', wl.dataset.wl), t('d_new').replace(/^\+\s*/, ''), function(){ newDoc(curDoc, wl.dataset.wl); }); return; }
+  var c = e.target.closest('input[data-cb]'); if(c && curDoc){ var x = copy(docs[curDoc]); x.body = toggleCheck(x.body, +c.dataset.cb); x.by = cfg.name; dtouch(x); return; }
+  if(e.target.closest('#dBack')){ openDoc(''); return; }
+  if(e.target.closest('#dEdit')){ editDoc(docs[curDoc]); return; }
+  if(e.target.closest('#dSub')){ newDoc(curDoc); return; }
+  if(e.target.closest('#dMore')){ docMenu(docs[curDoc]); return; }
+});
+function confirmBox(text, okLabel, fn){
+  modal('<p>' + esc(text) + '</p><div class="row2"><button class="btn" data-close type="button">' + esc(t('cancel')) + '</button><button class="btn primary" id="cfOk" type="button">' + esc(okLabel) + '</button></div>', function(el){ $('#cfOk', el).onclick = function(){ close(el); fn(); }; });
+}
+function pushHist(x, prev){
+  if(!prev || (prev.body === undefined && !prev.title)) return;
+  x.hist = (x.hist || []).concat([{ title: prev.title, body: prev.body, by: prev.by, t: prev.t }]).slice(-20);   /* the last 20 versions */
+}
+function newDoc(parent, title){
+  var sib = kids(parent || ''), x = { id: 'd' + uid(), k: 'doc', title: title || '', body: '', parent: parent || '', o: sib.length ? (sib[sib.length - 1].o || 0) + 1 : 1, by: cfg.name, c: Date.now() };
+  if(parent){ openNodes[parent] = 1; store.set('ac.dopen', openNodes); }
+  editDoc(x, true);
+}
+var DRAFT = 'ac.ddraft.';
+function editDoc(orig, isNew){
+  var x = copy(orig), base = isNew ? null : orig.t, draft = store.get(DRAFT + x.id, null);
+  var open = function(useDraft){
+    if(useDraft){ x.title = draft.title; x.body = draft.body; }
+    modal('<div class="field" style="margin-bottom:10px"><input id="eT" value="' + esc(x.title) + '" placeholder="' + esc(t('d_title')) + '" autocomplete="off" style="font-size:20px;font-weight:700"></div>' +
+      '<div class="etools">' + [['b', '<b>B</b>'], ['i', '<i>I</i>'], ['h', 'H'], ['ul', '•'], ['ol', '1.'], ['cb', '☐'], ['q', '❝'], ['code', '&lt;/&gt;'], ['a', '🔗'], ['wl', '[[ ]]'], ['tb', '▦']].map(function(b){ return '<button type="button" data-md="' + b[0] + '">' + b[1] + '</button>'; }).join('') +
+      '<div class="etabs"><button type="button" class="on" data-tab="w">' + esc(t('d_write')) + '</button><button type="button" data-tab="p">' + esc(t('d_preview')) + '</button></div></div>' +
+      '<div class="ebody"><textarea id="eB" placeholder="' + esc(t('d_ph')) + '">' + esc(x.body) + '</textarea><div class="md" id="eP" hidden></div></div>' +
+      '<div id="eMsg"></div><div class="row2" style="margin-top:10px"><button class="btn" data-close type="button" id="eCancel">' + esc(t('cancel')) + '</button><button class="btn primary" id="eSave" type="button">' + esc(t('save')) + '</button></div>', function(el){
+      $('.sheet', el).classList.add('big');
+      var ta = $('#eB', el), keepDraft = function(){ store.set(DRAFT + x.id, { title: $('#eT', el).value, body: ta.value, at: Date.now() }); };
+      ta.addEventListener('input', keepDraft); $('#eT', el).addEventListener('input', keepDraft);
+      var wrap = function(a, b, ph){ var s0 = ta.selectionStart, s1 = ta.selectionEnd, sel = ta.value.slice(s0, s1) || ph; ta.setRangeText(a + sel + b, s0, s1, 'end'); if(!(s1 > s0)){ ta.selectionStart = s0 + a.length; ta.selectionEnd = s0 + a.length + sel.length; } ta.focus(); keepDraft(); };
+      var linePrefix = function(pre){ var s0 = ta.selectionStart, s1 = ta.selectionEnd, v = ta.value, ls = v.lastIndexOf('\n', s0 - 1) + 1, le = v.indexOf('\n', s1); if(le < 0) le = v.length;
+        var block = v.slice(ls, le).split('\n').map(function(l, n){ return (typeof pre === 'function' ? pre(n) : pre) + l; }).join('\n'); ta.setRangeText(block, ls, le, 'end'); ta.focus(); keepDraft(); };
+      $('.etools', el).addEventListener('click', function(e){
+        var b = e.target.closest('[data-md]'); if(b){ ({ b: function(){ wrap('**', '**', 'fett'); }, i: function(){ wrap('*', '*', 'kursiv'); }, h: function(){ linePrefix('## '); }, ul: function(){ linePrefix('- '); }, ol: function(){ linePrefix(function(n){ return (n + 1) + '. '; }); }, cb: function(){ linePrefix('- [ ] '); }, q: function(){ linePrefix('> '); }, code: function(){ wrap('`', '`', 'code'); }, a: function(){ wrap('[', '](https://)', 'Text'); }, wl: function(){ wrap('[[', ']]', t('d_title')); }, tb: function(){ wrap('\n| A | B |\n|---|---|\n| ', ' |  |\n', '1'); } })[b.dataset.md](); return; }
+        var tb = e.target.closest('[data-tab]'); if(tb){ var p = tb.dataset.tab === 'p'; [].forEach.call(el.querySelectorAll('[data-tab]'), function(o){ o.classList.toggle('on', o === tb); }); ta.hidden = p; $('#eP', el).hidden = !p; if(p) $('#eP', el).innerHTML = md(ta.value) || '<p class="hint">—</p>'; }
+      });
+      ta.addEventListener('keydown', function(e){
+        if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'b'){ e.preventDefault(); wrap('**', '**', 'fett'); }
+        else if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'i'){ e.preventDefault(); wrap('*', '*', 'kursiv'); }
+        else if((e.metaKey || e.ctrlKey) && e.key === 'Enter'){ e.preventDefault(); $('#eSave', el).click(); }
+        else if(e.key === 'Enter' && !e.shiftKey){   /* continue lists */
+          var v = ta.value, s0 = ta.selectionStart, ls = v.lastIndexOf('\n', s0 - 1) + 1, line = v.slice(ls, s0), m = line.match(/^(\s*)([-*+]|(\d+)[.)])\s+(\[[ xX]\]\s+)?/);
+          if(m && ta.selectionStart === ta.selectionEnd){ e.preventDefault();
+            if(line.trim() === m[0].trim()){ ta.setRangeText('', ls, s0, 'end'); keepDraft(); return; }
+            var next = m[1] + (m[3] ? (+m[3] + 1) + m[2].slice(-1) : m[2]) + ' ' + (m[4] ? '[ ] ' : ''); ta.setRangeText('\n' + next, s0, s0, 'end'); keepDraft(); }
+        }
+      });
+      var doSave = function(){
+        x.title = $('#eT', el).value.trim() || t('d_untitled'); x.body = ta.value.replace(/\s+$/, '');
+        var cur = docs[x.id];
+        if(cur && !cur.del && cur.title === x.title && cur.body === x.body){ close(el); store.set(DRAFT + x.id, null); try{ localStorage.removeItem(DRAFT + x.id); }catch(e){} return; }
+        x.hist = cur && cur.hist ? cur.hist.slice() : [];
+        if(cur && !x.hist.some(function(h){ return h.t === cur.t; })) pushHist(x, cur);
+        x.by = cfg.name;
+        close(el); try{ localStorage.removeItem(DRAFT + x.id); }catch(e){}
+        dtouch(x); openDoc(x.id);
+      };
+      $('#eSave', el).onclick = function(){
+        var cur = docs[x.id];
+        if(base && cur && !cur.del && cur.t !== base){   /* someone saved this page while it was open here */
+          modal('<div class="msg warn">' + th('d_conflict', cur.by || '—') + '</div><div class="row2" style="margin-top:12px"><button class="btn" data-close type="button">' + esc(t('cancel')) + '</button><button class="btn primary" id="cfMine" type="button">' + esc(t('d_save_mine')) + '</button></div>', function(c){ $('#cfMine', c).onclick = function(){ close(c); doSave(); }; });
+          return;
+        }
+        doSave();
+      };
+      $('#eCancel', el).addEventListener('click', function(){ try{ localStorage.removeItem(DRAFT + x.id); }catch(e){} });
+      setTimeout(function(){ (x.title ? ta : $('#eT', el)).focus(); }, 50);
+    });
+  };
+  if(draft && (draft.title !== x.title || draft.body !== x.body)){
+    modal('<p>' + esc(t('d_draft', dayText(iso(new Date(draft.at))) + ' ' + hm(draft.at))) + '</p><div class="row2"><button class="btn" id="drNo" type="button">' + esc(t('d_draft_no')) + '</button><button class="btn primary" id="drYes" type="button">' + esc(t('d_draft_yes')) + '</button></div>', function(el){
+      $('#drYes', el).onclick = function(){ close(el); open(true); };
+      $('#drNo', el).onclick = function(){ close(el); try{ localStorage.removeItem(DRAFT + x.id); }catch(e){} open(false); };
+    });
+  } else open(false);
+}
+function docMenu(d){
+  var desc = {}; (function walk(id){ kids(id).forEach(function(k){ desc[k.id] = 1; walk(k.id); }); })(d.id);
+  var opts = '<option value="">' + esc(t('d_top')) + '</option>' + (function list(pid, depth){ return kids(pid).filter(function(k){ return k.id !== d.id && !desc[k.id]; }).map(function(k){ return '<option value="' + esc(k.id) + '"' + (k.id === d.parent ? ' selected' : '') + '>' + '  '.repeat(depth) + esc(docTitle(k)) + '</option>' + list(k.id, depth + 1); }).join(''); })('', 0);
+  modal('<h3>' + esc(docTitle(d)) + '</h3><div class="field"><label for="mvP">' + esc(t('d_parent')) + '</label><select id="mvP" style="width:100%;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--card)">' + opts + '</select></div>' +
+    '<div style="display:grid;gap:8px"><button class="btn" id="mvOk" type="button">' + esc(t('d_move')) + '</button><button class="btn" id="mvH" type="button">' + esc(t('d_hist')) + ' (' + (d.hist || []).length + ')</button><button class="btn" id="mvL" type="button">' + esc(t('d_link')) + '</button><button class="btn danger" id="mvD" type="button">' + esc(t('d_del')) + '</button>' + (kids(d.id).length ? '<p class="hint" style="margin:0">' + esc(t('d_del_kids')) + '</p>' : '') + '<button class="btn primary" data-close type="button">' + esc(t('close')) + '</button></div>', function(el){
+    $('#mvOk', el).onclick = function(){ var x = copy(d); x.parent = $('#mvP', el).value; var sib = kids(x.parent); x.o = sib.length ? (sib[sib.length - 1].o || 0) + 1 : 1; close(el); if(x.parent){ openNodes[x.parent] = 1; store.set('ac.dopen', openNodes); } dtouch(x); };
+    $('#mvH', el).onclick = function(){ close(el); docHistory(d); };
+    $('#mvL', el).onclick = function(){ var u = location.origin + location.pathname + '#docs/' + d.id; try{ navigator.clipboard.writeText(u).then(function(){ toast(t('d_copied')); }, function(){ prompt('', u); }); }catch(e){ prompt('', u); } close(el); };
+    $('#mvD', el).onclick = function(){
+      var moved = kids(d.id).map(function(k){ return copy(k); }), g = copy(d); g.del = true; close(el);
+      moved.forEach(function(k){ k.parent = d.parent || ''; dtouch(k); }); dtouch(g); openDoc(d.parent || '');
+      toast(t('deleted', docTitle(d)), t('undo'), function(){ var b = copy(d); delete b.del; dtouch(b); moved.forEach(function(k){ var y = copy(docs[k.id]); y.parent = d.id; dtouch(y); }); openDoc(d.id); });
+    };
+  });
+}
+function docHistory(d){
+  var h = (d.hist || []).slice().reverse();
+  modal('<h3>' + esc(t('d_hist')) + ' · ' + esc(docTitle(d)) + '</h3>' + (h.length ? '<ul class="hist">' + h.map(function(v, n){ return '<li><span>' + esc(v.title || t('d_untitled')) + '<small>' + esc((v.by || '—') + ' · ' + docWhen(v) + ' · ' + t('d_chars', (v.body || '').length)) + '</small></span><button type="button" data-hv="' + n + '">' + esc(t('d_preview')) + '</button><button type="button" data-hr="' + n + '">' + esc(t('d_restore')) + '</button></li>'; }).join('') + '</ul><div class="md" id="hvP" style="border:1.5px dashed var(--line);border-radius:12px;padding:12px;margin-bottom:10px" hidden></div>' : '<p class="hint">' + esc(t('d_hist_none')) + '</p>') + '<button class="btn primary wide" data-close type="button">' + esc(t('close')) + '</button>', function(el){
+    el.addEventListener('click', function(e){
+      var v = e.target.closest('[data-hv]'); if(v){ var p = $('#hvP', el); p.hidden = false; p.innerHTML = md(h[+v.dataset.hv].body) || '<p class="hint">—</p>'; return; }
+      var r = e.target.closest('[data-hr]'); if(r){ var ver = h[+r.dataset.hr], cur = docs[d.id], x = copy(cur); pushHist(x, cur); x.title = ver.title; x.body = ver.body; x.by = cfg.name; close(el); dtouch(x); toast(t('d_restored')); }
+    });
   });
 }
 
@@ -936,9 +1205,14 @@ function merge(remote, target, isTasks){
     var r = isTasks ? remote[id] : withCat(remote[id]), l = target[id];
     if(!r) return;
     if(!l){ target[id] = r; changed = true; return; }
-    var win = (r.t || 0) > (l.t || 0) ? copy(r) : l, seen = {}, log = [];
+    var win = (r.t || 0) > (l.t || 0) ? copy(r) : l, seen = {}, log = [], hs = {}, hist = [];
     (l.log || []).concat(r.log || []).forEach(function(e){ var k = e.t + '|' + e.by; if(!seen[k]){ seen[k] = 1; log.push(e); } });
-    if(win !== l || log.length !== (l.log || []).length){ if(log.length) win.log = log; target[id] = win; changed = true; }
+    /* doc versions from both sides are kept too, so a page saved on two devices loses nothing */
+    (l.hist || []).concat(r.hist || []).forEach(function(e){ var k = e.t + '|' + e.by; if(!hs[k]){ hs[k] = 1; hist.push(e); } });
+    hist.sort(function(a, b){ return a.t - b.t; });
+    var loser = win === l ? r : l;
+    if(win.k === 'doc' && loser.t !== win.t && !hs[loser.t + '|' + loser.by] && (loser.body !== win.body || loser.title !== win.title)){ hist.push({ title: loser.title, body: loser.body, by: loser.by, t: loser.t }); hist.sort(function(a, b){ return a.t - b.t; }); }
+    if(win !== l || log.length !== (l.log || []).length || hist.length !== (l.hist || []).length){ if(log.length) win.log = log; if(hist.length) win.hist = hist.slice(-20); target[id] = win; changed = true; }
   });
   return changed;
 }
@@ -980,6 +1254,9 @@ async function syncNow(){
     if(tdirty){ tdirty = false; store.set(TKEY.dirty, tdirty); try{ await save(TFILE, tasks, true); }catch(e){ tdirty = true; store.set(TKEY.dirty, tdirty); throw e; } }
     else { var tc = await load(TFILE); merge(tc.c, tasks, true); }
     store.set(TKEY.data, tasks);
+    if(ddirty){ ddirty = false; store.set(DKEY.dirty, ddirty); try{ await save(DFILE, docs, true); }catch(e){ ddirty = true; store.set(DKEY.dirty, ddirty); throw e; } }
+    else { var dc = await load(DFILE); merge(dc.c, docs, true); }
+    store.set(DKEY.data, docs);
     sync.err = null; setSync('ok', 's_saved', hm(Date.now()));
   }catch(e){
     if(/http 401/.test(e.message)){
@@ -990,7 +1267,7 @@ async function syncNow(){
     else {
       sync.err = { at: Date.now(), detail: e.detail || (e.name + ': ' + e.message), online: navigator.onLine };
       try{ console.error('[ausblick sync]', sync.err.detail, e); }catch(x){}
-      var anyDirty = dirty || tdirty;
+      var anyDirty = dirty || tdirty || ddirty;
       if(e.status) setSync(anyDirty ? 'wait' : 'err', anyDirty ? 's_later_err' : 's_error', e.status);
       else setSync(anyDirty ? 'wait' : 'err', anyDirty ? 's_later' : 's_offline');
     }
@@ -1004,8 +1281,8 @@ document.addEventListener('visibilitychange', function(){ if(document.visibility
 
 applyLang();
 show();
-if(cfg){ setSync(dirty || tdirty ? 'wait' : 'ok', '…'); syncNow(); }
-window.__ac = { get tasks(){ return tasks; }, get data(){ return data; }, get cfg(){ return cfg; }, syncNow: syncNow, sealAccess: sealAccess, setLang: setLang };
+if(cfg){ setSync(dirty || tdirty || ddirty ? 'wait' : 'ok', '…'); syncNow(); }
+window.__ac = { get docs(){ return docs; }, md: function(s){ return md(s); }, get tasks(){ return tasks; }, get data(){ return data; }, get cfg(){ return cfg; }, syncNow: syncNow, sealAccess: sealAccess, setLang: setLang };
 })();
 </script>
 </body>
