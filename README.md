@@ -15,6 +15,8 @@ Liste der möglichen Kunden von Ausblick: wen wir schon kontaktiert haben, mit *
 - **Export:** Configuración → Exportar lista (CSV, öffnet in Excel).
 - **Sprachen:** Español, English, Deutsch. Beim ersten Öffnen nach Gerätesprache (sonst Spanisch), umschaltbar oben im Einrichtungsbildschirm und in der Configuración; die Wahl bleibt pro Gerät gespeichert. Die Daten selbst sind sprachunabhängig.
 
+- **Design:** Ausblick Sistemas – schwarz/weiß wie Logo und ausblicksistemas.com (`#f6f6f6`, schwarzer Text), Logo-Zeichen als App-Icon (`icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, `logo-mark-96.png`), Dunkelmodus invertiert.
+
 ## Daten und Zugang
 
 - **Daten:** im privaten Repo `ausblick-clientes-data`, eine Datei `clientes.json`. Neuere Änderung gewinnt pro Kunde, Kontakte von zwei Geräten werden zusammengeführt. Offline-Änderungen werden später gespeichert.
