@@ -94,7 +94,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#111;color:#fff;border:1px solid #333;border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:center;z-index:60;width:max-content;max-width:calc(100% - 32px);font-size:16px}
 .toast button{background:none;border:0;color:#fff;text-decoration:underline;font-weight:700;cursor:pointer;font-size:16px}
 .req{color:var(--out)}
-.hub{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
+.hub{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
 .hub button{border:0;border-radius:10px;background:none;font-weight:750;font-size:16px;padding:10px;cursor:pointer;color:var(--muted)}
 .hub button.on{background:var(--accent);color:var(--on-accent)}
 .hub .n{font-weight:600;margin-left:6px;opacity:.8}
@@ -187,7 +187,51 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
   .dback{display:inline-flex;align-items:center} .dpage{padding:16px}
   .sheet.big{height:calc(100vh - 16px);padding:14px} .ov{padding:8px}
 }
-@media (max-width:480px){ .hub button{font-size:14px;padding:8px 2px;line-height:1.2} .hub .n{display:block;margin:0;font-size:12px} }
+@media (max-width:720px){ .hub button{font-size:14px;padding:8px 2px;line-height:1.2} .hub .n{display:block;margin:0;font-size:12px} }
+@media (max-width:400px){ .hub button{font-size:13px} }
+.fin{max-width:1200px;margin:0 auto;display:grid;gap:12px}
+.fmonth{display:flex;align-items:center;justify-content:center;gap:10px}
+.fmonth b{font-size:20px;min-width:190px;text-align:center}
+.fmonth button{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:20px;cursor:pointer}
+.fmonth .today{width:auto;padding:0 12px;font-size:14px;font-weight:700}
+.fsum{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:12px;align-items:center}
+.fsum small{display:block;color:var(--muted);font-size:13px;font-weight:600}
+.fsum b{font-size:22px;font-variant-numeric:tabular-nums}
+.fsum strong{display:block;font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}
+.fsum .run{margin-top:2px;color:var(--muted);font-size:13px}
+@media (max-width:620px){ .fsum{grid-template-columns:1fr 1fr} .fsum .fsal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:10px} .fsum strong{font-size:30px} }
+.pos{color:var(--in)} .neg{color:var(--out)}
+.ftabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.ftabs button{border:0;border-radius:10px;background:none;font-weight:750;font-size:16px;padding:9px;cursor:pointer;color:var(--muted)}
+.ftabs button.on[data-ft=in]{background:var(--in-soft);color:var(--in)} .ftabs button.on[data-ft=out]{background:var(--out-soft);color:var(--out)}
+.ftabs .n{font-weight:600;margin-left:6px;opacity:.8}
+.fbar{display:flex;gap:8px;flex-wrap:wrap} .fbar .search{flex:1 1 220px;width:auto} .fbar .btn{white-space:nowrap}
+.fbar .btn.in{background:var(--in);border-color:var(--in);color:#fff} .fbar .btn.out{background:var(--out);border-color:var(--out);color:#fff}
+@media (max-width:620px){ .fbar .search{flex-basis:100%} .fbar .btn{flex:1;padding-left:6px;padding-right:6px} }
+.fcols{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+@media (max-width:820px){ .fcols{grid-template-columns:minmax(0,1fr)} }
+.fcol h3{margin:0 0 8px;font-size:16px;display:flex;justify-content:space-between;gap:8px} .fcol h3 span{color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.flist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.flist li{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;background:var(--card)}
+.flist li:hover{border-color:var(--accent)}
+.flist .fd{color:var(--muted);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.flist .fw{min-width:0} .flist .fw b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flist .fw small{display:block;color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flist .fa{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ftag{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:0 7px;background:var(--accent-soft);color:var(--text);margin-right:4px;vertical-align:1px}
+.ftot{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:10px;padding-top:10px;font-weight:700;font-variant-numeric:tabular-nums}
+.ftot.sal{border-top:0;margin-top:0;padding-top:4px;color:var(--muted);font-weight:600}
+.fempty{color:var(--muted);margin:4px 0}
+.fchart svg{width:100%;height:auto;display:block}
+.fchart .bi{fill:var(--in)} .fchart .bo{fill:var(--out)} .fchart .ax{stroke:var(--line);stroke-width:1} .fchart .ln{fill:none;stroke:var(--text);stroke-width:2.2}
+.fchart .hit{fill:transparent;cursor:pointer} .fchart .hit:hover,.fchart .hit.on{fill:var(--accent-soft);opacity:.6}
+.fchart text{fill:var(--muted);font-size:11px}
+.fdet{min-height:22px;font-size:14px;margin:6px 0 10px;font-variant-numeric:tabular-nums}
+.ftab{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums} .ftab th,.ftab td{border-bottom:1px solid var(--line);padding:6px;text-align:right} .ftab th:first-child,.ftab td:first-child{text-align:left} .ftab th{color:var(--muted);font-weight:600}
+.ftabwrap{max-height:260px;overflow:auto;margin-top:8px}
+.sheet.wide{max-width:760px}
+.mvrow{display:grid;grid-template-columns:1fr 1fr;gap:10px} .mvrow .field{min-width:0} .mvrow input{width:100%;min-width:0}
+@media (max-width:420px){ .mvrow{grid-template-columns:minmax(0,1fr)} }
 .cauldron{max-width:1200px;margin:0 auto;display:grid;gap:16px}
 .cwrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start} .cwrap>*,.cwrap>*>*{min-width:0} .cside .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px} .cside .row2 .field{min-width:0} #cauldron select{width:100%;max-width:100%}
 @media (max-width:900px){ .cwrap{grid-template-columns:minmax(0,1fr)} }
@@ -318,6 +362,7 @@ li.hint{list-style:none;color:var(--muted);font-size:14px;padding:0 4px 4px}
         <article class="dpage" id="dpage"></article>
       </div>
     </div>
+    <div id="finView" hidden><div class="fin" id="fin"></div></div>
     <div id="potView" hidden><div class="cauldron" id="cauldron"></div></div>
     <div id="taskView" hidden>
       <div class="bar"><input class="search" id="tq" type="search" data-tp="t_search" autocomplete="off"><select id="twho" data-ta="t_who"></select></div>
@@ -333,7 +378,7 @@ var $ = function(s, el){ return (el || document).querySelector(s); };
 var APP_REPO = 'lucashcandido/ausblick-clientes';
 var DATA_REPO = 'lucashcandido/ausblick-clientes-data';
 var ACCESS_URL = 'https://api.github.com/repos/' + APP_REPO + '/contents/access.json';
-var FILE = 'clientes.json', TFILE = 'tareas.json', DFILE = 'docs.json', PFILE = 'cauldron.json';
+var FILE = 'clientes.json', TFILE = 'tareas.json', DFILE = 'docs.json', PFILE = 'cauldron.json', FFILE = 'finanzas.json';
 var KEY = { cfg:'ac.cfg.v1', data:'ac.data.v1', dirty:'ac.dirty.v1', lang:'ac.lang' };
 var store = {
   get: function(k, d){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
@@ -344,7 +389,7 @@ var store = {
    Every text on screen comes from here. {0}, {1} are filled in; texts used as HTML are escaped where they are filled. */
 var LANGS = [['es', 'Español'], ['en', 'English'], ['de', 'Deutsch']];
 var TX = {
-es: { locale:'es-AR', h_pot:'Cauldron', p_madd:'+ Aplicación', p_medit:'Editar aplicación', p_mnew:'Nueva aplicación', p_mname:'Nombre', p_mdesc:'Descripción', p_mbase:'Repositorio base', p_mfile:'Archivo de datos', p_mready:'Base lista (se puede copiar para clientes)', p_mteam:'Con acceso para el personal', p_mpub:'Página pública (p. ej. formulario QR)', p_micon:'Ícono', p_mreset:'Volver al original', p_mdel:'Quitar aplicación', p_mneed:'Poné un nombre a la aplicación.', p_mnote:'Los cambios valen para todo el equipo y en todos los idiomas.', p_hm:'Hosting', hm_r:'Repos (ahora)', hm_p:'Plataforma (más adelante)', p_repos:'Repositorios', p_vis:'Visibilidad', p_content:'Contenido', p_pub:'público (Pages)', p_priv:'privado', p_token:'Tokens', p_rnote:'Los datos quedan en un repo privado. El código de la app se ve en el repo público de Pages; para salir al mercado está pensada la plataforma.', p_vibe:'Estilo de la empresa', p_web:'Web del cliente', ph_web:'https://cliente.com.ar', p_fh:'Fuente de títulos', p_fb:'Fuente de texto', p_rad:'Esquinas', r_sq:'rectas', r_md:'suaves', r_rd:'redondas', p_den:'Densidad', d_c:'compacta', d_a:'aireada', p_tone:'Tono de los textos', tn_f:'formal', tn_c:'cercano', p_logo:'Logo (archivo o URL)', p_preview:'Vista previa (así la ve el cliente)', p_tenant:'Tenant en la plataforma', p_mods:'Módulos', p_theme:'Theme (tenant_settings)', p_safe:'El cliente solo recibe un acceso. El código queda en nuestros repos privados y la lógica corre en el servidor.', p_sug:'sugerencia', p_copyjson:'Copiar JSON', p_own:'dominio propio', p_hint:'Arrastrá aplicaciones al caldero (o tocalas) y fusionalas en la app del cliente, con su estilo.', p_empty:'El caldero está vacío.', p_n:'{0} aplicaciones en el caldero', p_apps:'Aplicaciones', p_ready:'base lista', p_ext:'de un proyecto', p_recipe:'Fusión', p_name:'Nombre del proyecto', ph_pname:'Ej. Cochera Palermo', p_slug:'Nombre corto', p_cust:'Cliente', p_rubro:'Rubro', p_color:'Color de la marca', p_domain:'Dominio propio (opcional)', ph_domain:'app.cliente.com.ar', p_fuse:'Fusionar', p_need:'Poné al menos una aplicación en el caldero.', p_need_name:'Poné un nombre al proyecto.', p_saved:'Fusiones guardadas', p_none:'Todavía no hay fusiones.', p_new:'+ Nueva fusión', p_open:'Abrir', p_result:'Resultado de la fusión', p_url:'Dirección de la app', p_steps:'Puesta en marcha', p_build:'Encargo de construcción (para Claude)', p_copy:'Copiar encargo', p_copied:'Copiado.', p_totasks:'Pasos pendientes → Tareas', p_tasks_done:'{0} tareas creadas.', p_edit:'Cambiar ingredientes', p_del:'Eliminar fusión', p_progress:'{0} de {1} pasos', p_of:'de {0}', rb_parking:'Cochera', rb_hair:'Peluquería', rb_food:'Gastronomía', rb_retail:'Comercio', rb_general:'General', p_tabs:'Pestañas', p_nocust:'(sin cliente)',
+es: { locale:'es-AR', h_fin:'Finanzas', f_in:'Ingresos', f_out:'Gastos', f_saldo:'Saldo del mes', f_run:'Saldo acumulado: {0}', f_newin:'+ Ingreso', f_newout:'+ Gasto', f_sum:'Resumen', f_search:'Buscar concepto, categoría, cliente, monto…', f_fix:'Fijos (todos los meses)', f_var:'Únicos', f_total:'Total', f_none:'Nada cargado.', f_found:'Resultados en ingresos y gastos', f_type:'Tipo', f_amt:'Monto ($)', f_date:'Fecha', f_what:'Concepto', ph_what:'Ej. Abono noviembre, Hosting…', f_cat:'Categoría', f_cust:'Cliente (opcional)', f_note:'Nota', f_rec:'Se repite todos los meses (fijo)', f_end:'Ya no se paga desde', f_from:'El nuevo monto vale desde {0}; los meses anteriores quedan igual.', f_again:'Guardar y cargar otro', f_need_amt:'Poné un monto.', f_need_date:'Poné la fecha.', f_e_in:'Editar ingreso', f_e_out:'Editar gasto', f_n_in:'Nuevo ingreso', f_n_out:'Nuevo gasto', f_days:'Días del mes', f_months:'Meses', f_csv:'Mes como CSV', f_fixed:'fijo', f_tap:'Tocá una barra para ver los montos.', f_day:'Día', f_month:'Mes', f_saved:'Guardado.', f_today:'Hoy', f_ended:'terminado', h_pot:'Cauldron', p_madd:'+ Aplicación', p_medit:'Editar aplicación', p_mnew:'Nueva aplicación', p_mname:'Nombre', p_mdesc:'Descripción', p_mbase:'Repositorio base', p_mfile:'Archivo de datos', p_mready:'Base lista (se puede copiar para clientes)', p_mteam:'Con acceso para el personal', p_mpub:'Página pública (p. ej. formulario QR)', p_micon:'Ícono', p_mreset:'Volver al original', p_mdel:'Quitar aplicación', p_mneed:'Poné un nombre a la aplicación.', p_mnote:'Los cambios valen para todo el equipo y en todos los idiomas.', p_hm:'Hosting', hm_r:'Repos (ahora)', hm_p:'Plataforma (más adelante)', p_repos:'Repositorios', p_vis:'Visibilidad', p_content:'Contenido', p_pub:'público (Pages)', p_priv:'privado', p_token:'Tokens', p_rnote:'Los datos quedan en un repo privado. El código de la app se ve en el repo público de Pages; para salir al mercado está pensada la plataforma.', p_vibe:'Estilo de la empresa', p_web:'Web del cliente', ph_web:'https://cliente.com.ar', p_fh:'Fuente de títulos', p_fb:'Fuente de texto', p_rad:'Esquinas', r_sq:'rectas', r_md:'suaves', r_rd:'redondas', p_den:'Densidad', d_c:'compacta', d_a:'aireada', p_tone:'Tono de los textos', tn_f:'formal', tn_c:'cercano', p_logo:'Logo (archivo o URL)', p_preview:'Vista previa (así la ve el cliente)', p_tenant:'Tenant en la plataforma', p_mods:'Módulos', p_theme:'Theme (tenant_settings)', p_safe:'El cliente solo recibe un acceso. El código queda en nuestros repos privados y la lógica corre en el servidor.', p_sug:'sugerencia', p_copyjson:'Copiar JSON', p_own:'dominio propio', p_hint:'Arrastrá aplicaciones al caldero (o tocalas) y fusionalas en la app del cliente, con su estilo.', p_empty:'El caldero está vacío.', p_n:'{0} aplicaciones en el caldero', p_apps:'Aplicaciones', p_ready:'base lista', p_ext:'de un proyecto', p_recipe:'Fusión', p_name:'Nombre del proyecto', ph_pname:'Ej. Cochera Palermo', p_slug:'Nombre corto', p_cust:'Cliente', p_rubro:'Rubro', p_color:'Color de la marca', p_domain:'Dominio propio (opcional)', ph_domain:'app.cliente.com.ar', p_fuse:'Fusionar', p_need:'Poné al menos una aplicación en el caldero.', p_need_name:'Poné un nombre al proyecto.', p_saved:'Fusiones guardadas', p_none:'Todavía no hay fusiones.', p_new:'+ Nueva fusión', p_open:'Abrir', p_result:'Resultado de la fusión', p_url:'Dirección de la app', p_steps:'Puesta en marcha', p_build:'Encargo de construcción (para Claude)', p_copy:'Copiar encargo', p_copied:'Copiado.', p_totasks:'Pasos pendientes → Tareas', p_tasks_done:'{0} tareas creadas.', p_edit:'Cambiar ingredientes', p_del:'Eliminar fusión', p_progress:'{0} de {1} pasos', p_of:'de {0}', rb_parking:'Cochera', rb_hair:'Peluquería', rb_food:'Gastronomía', rb_retail:'Comercio', rb_general:'General', p_tabs:'Pestañas', p_nocust:'(sin cliente)',
   m_turnos:'Turnos', md_turnos:'Turnos del personal, horarios, faltas, WhatsApp.', m_salon:'Restaurante', md_salon:'Mesas, reservas, pedidos y estadísticas.', m_cobros:'Cobros', md_cobros:'Pagos mensuales, parciales y recordatorios por WhatsApp.', m_registro:'Registro QR', md_registro:'Formulario público por QR que llega por WhatsApp.', m_finanzas:'Finanzas', md_finanzas:'Ingresos, gastos, costos fijos y resumen.', m_clientes:'Clientes', md_clientes:'Lista de clientes, contactos, estados, categorías.', m_tareas:'Tareas', md_tareas:'Tablero kanban con columnas.', m_docs:'Docs', md_docs:'Documentación interna tipo wiki.',
   title:'Clientes', h_cust:'Clientes', h_tasks:'Tareas', h_docs:'Docs',
   d_search:'Buscar en la documentación…', d_new:'+ Nueva página', d_sub:'+ Subpágina', d_edit:'Editar', d_more:'Más', d_untitled:'Sin título', d_empty:'Todavía no hay documentación. Creá la primera página: procesos, contactos, accesos, cómo se hace cada cosa.', d_pick:'Elegí una página a la izquierda.', d_by:'Última edición: {0}, {1}', d_ph:'Escribí acá. **negrita**, *cursiva*, # Título, - lista, - [ ] tarea, [texto](https://link), [[Otra página]]',
@@ -378,7 +423,7 @@ es: { locale:'es-AR', h_pot:'Cauldron', p_madd:'+ Aplicación', p_medit:'Editar 
   dev_of:'Dispositivo de <b>{0}</b>', data_in:'Datos en {0}', language:'Idioma', g_share:'Compartir acceso (código)', g_csv:'Exportar lista (CSV para Excel)',
   g_sync:'Sincronizar ahora', g_setup:'Cambiar nombre o acceso', close:'Cerrar',
   s_saving:'Guardando…', s_saved:'Guardado {0}', s_expired:'Token vencido: hay que renovarlo', s_later:'Sin conexión – se guarda después', s_offline:'Sin conexión', s_error:'Error {0} – tocá para ver', s_later_err:'Error {0} – no se guardó', err_title:'Problema de sincronización', err_retry:'Reintentar', err_write:'El token puede leer pero no guardar. En GitHub → Settings → Developer settings → Fine-grained tokens → Edit, poné «Contents» en «Read and write» para ausblick-clientes-data. El token sigue igual; después tocá Reintentar.' },
-en: { locale:'en-US', h_pot:'Cauldron', p_madd:'+ Application', p_medit:'Edit application', p_mnew:'New application', p_mname:'Name', p_mdesc:'Description', p_mbase:'Base repository', p_mfile:'Data file', p_mready:'Base ready (can be copied for customers)', p_mteam:'With staff access', p_mpub:'Public page (e.g. QR form)', p_micon:'Icon', p_mreset:'Restore original', p_mdel:'Remove application', p_mneed:'Give the application a name.', p_mnote:'Changes apply to the whole team and in every language.', p_hm:'Hosting', hm_r:'Repos (now)', hm_p:'Platform (later)', p_repos:'Repositories', p_vis:'Visibility', p_content:'Contents', p_pub:'public (Pages)', p_priv:'private', p_token:'Tokens', p_rnote:'Data stays in a private repo. The app code is visible in the public Pages repo; the platform is planned for the market launch.', p_vibe:'Company style', p_web:'Customer website', ph_web:'https://customer.com.ar', p_fh:'Heading font', p_fb:'Body font', p_rad:'Corners', r_sq:'square', r_md:'soft', r_rd:'round', p_den:'Density', d_c:'compact', d_a:'airy', p_tone:'Tone of voice', tn_f:'formal', tn_c:'casual', p_logo:'Logo (file or URL)', p_preview:'Preview (what the customer sees)', p_tenant:'Tenant on the platform', p_mods:'Modules', p_theme:'Theme (tenant_settings)', p_safe:'The customer only gets a login. The code stays in our private repos and the logic runs on the server.', p_sug:'suggestion', p_copyjson:'Copy JSON', p_own:'own domain', p_hint:'Drag applications into the cauldron (or tap them) and fuse them into the customer’s app, in their style.', p_empty:'The cauldron is empty.', p_n:'{0} applications in the cauldron', p_apps:'Applications', p_ready:'base ready', p_ext:'from a project', p_recipe:'Fusion', p_name:'Project name', ph_pname:'E.g. Palermo parking', p_slug:'Short name', p_cust:'Customer', p_rubro:'Industry', p_color:'Brand colour', p_domain:'Own domain (optional)', ph_domain:'app.customer.com.ar', p_fuse:'Fuse', p_need:'Put at least one application into the cauldron.', p_need_name:'Give the project a name.', p_saved:'Saved fusions', p_none:'No fusions yet.', p_new:'+ New fusion', p_open:'Open', p_result:'Fusion result', p_url:'App address', p_steps:'Setup', p_build:'Build brief (for Claude)', p_copy:'Copy brief', p_copied:'Copied.', p_totasks:'Open steps → Tasks', p_tasks_done:'{0} tasks created.', p_edit:'Change ingredients', p_del:'Delete fusion', p_progress:'{0} of {1} steps', p_of:'of {0}', rb_parking:'Parking', rb_hair:'Hairdresser', rb_food:'Food & drink', rb_retail:'Retail', rb_general:'General', p_tabs:'Tabs', p_nocust:'(no customer)',
+en: { locale:'en-US', h_fin:'Finances', f_in:'Income', f_out:'Expenses', f_saldo:'Balance this month', f_run:'Running balance: {0}', f_newin:'+ Income', f_newout:'+ Expense', f_sum:'Overview', f_search:'Search purpose, category, customer, amount…', f_fix:'Fixed (every month)', f_var:'One-off', f_total:'Total', f_none:'Nothing entered.', f_found:'Results in income and expenses', f_type:'Type', f_amt:'Amount ($)', f_date:'Date', f_what:'Purpose', ph_what:'E.g. November fee, hosting…', f_cat:'Category', f_cust:'Customer (optional)', f_note:'Note', f_rec:'Repeats every month (fixed)', f_end:'No longer paid from', f_from:'The new amount applies from {0}; earlier months stay the same.', f_again:'Save and add another', f_need_amt:'Enter an amount.', f_need_date:'Enter the date.', f_e_in:'Edit income', f_e_out:'Edit expense', f_n_in:'New income', f_n_out:'New expense', f_days:'Days of the month', f_months:'Months', f_csv:'Month as CSV', f_fixed:'fixed', f_tap:'Tap a bar to see the amounts.', f_day:'Day', f_month:'Month', f_saved:'Saved.', f_today:'Today', f_ended:'ended', h_pot:'Cauldron', p_madd:'+ Application', p_medit:'Edit application', p_mnew:'New application', p_mname:'Name', p_mdesc:'Description', p_mbase:'Base repository', p_mfile:'Data file', p_mready:'Base ready (can be copied for customers)', p_mteam:'With staff access', p_mpub:'Public page (e.g. QR form)', p_micon:'Icon', p_mreset:'Restore original', p_mdel:'Remove application', p_mneed:'Give the application a name.', p_mnote:'Changes apply to the whole team and in every language.', p_hm:'Hosting', hm_r:'Repos (now)', hm_p:'Platform (later)', p_repos:'Repositories', p_vis:'Visibility', p_content:'Contents', p_pub:'public (Pages)', p_priv:'private', p_token:'Tokens', p_rnote:'Data stays in a private repo. The app code is visible in the public Pages repo; the platform is planned for the market launch.', p_vibe:'Company style', p_web:'Customer website', ph_web:'https://customer.com.ar', p_fh:'Heading font', p_fb:'Body font', p_rad:'Corners', r_sq:'square', r_md:'soft', r_rd:'round', p_den:'Density', d_c:'compact', d_a:'airy', p_tone:'Tone of voice', tn_f:'formal', tn_c:'casual', p_logo:'Logo (file or URL)', p_preview:'Preview (what the customer sees)', p_tenant:'Tenant on the platform', p_mods:'Modules', p_theme:'Theme (tenant_settings)', p_safe:'The customer only gets a login. The code stays in our private repos and the logic runs on the server.', p_sug:'suggestion', p_copyjson:'Copy JSON', p_own:'own domain', p_hint:'Drag applications into the cauldron (or tap them) and fuse them into the customer’s app, in their style.', p_empty:'The cauldron is empty.', p_n:'{0} applications in the cauldron', p_apps:'Applications', p_ready:'base ready', p_ext:'from a project', p_recipe:'Fusion', p_name:'Project name', ph_pname:'E.g. Palermo parking', p_slug:'Short name', p_cust:'Customer', p_rubro:'Industry', p_color:'Brand colour', p_domain:'Own domain (optional)', ph_domain:'app.customer.com.ar', p_fuse:'Fuse', p_need:'Put at least one application into the cauldron.', p_need_name:'Give the project a name.', p_saved:'Saved fusions', p_none:'No fusions yet.', p_new:'+ New fusion', p_open:'Open', p_result:'Fusion result', p_url:'App address', p_steps:'Setup', p_build:'Build brief (for Claude)', p_copy:'Copy brief', p_copied:'Copied.', p_totasks:'Open steps → Tasks', p_tasks_done:'{0} tasks created.', p_edit:'Change ingredients', p_del:'Delete fusion', p_progress:'{0} of {1} steps', p_of:'of {0}', rb_parking:'Parking', rb_hair:'Hairdresser', rb_food:'Food & drink', rb_retail:'Retail', rb_general:'General', p_tabs:'Tabs', p_nocust:'(no customer)',
   m_turnos:'Shifts', md_turnos:'Staff shifts, hours, absences, WhatsApp.', m_salon:'Restaurant', md_salon:'Tables, reservations, orders and stats.', m_cobros:'Payments', md_cobros:'Monthly payments, partials and WhatsApp reminders.', m_registro:'QR sign-up', md_registro:'Public QR form that arrives via WhatsApp.', m_finanzas:'Finances', md_finanzas:'Income, expenses, fixed costs and overview.', m_clientes:'Customers', md_clientes:'Customer list, contacts, status, categories.', m_tareas:'Tasks', md_tareas:'Kanban board with lanes.', m_docs:'Docs', md_docs:'Internal wiki-style documentation.',
   title:'Customers', h_cust:'Customers', h_tasks:'Tasks', h_docs:'Docs',
   d_search:'Search the docs…', d_new:'+ New page', d_sub:'+ Subpage', d_edit:'Edit', d_more:'More', d_untitled:'Untitled', d_empty:'No documentation yet. Create the first page: processes, contacts, logins, how things are done.', d_pick:'Pick a page on the left.', d_by:'Last edited by {0}, {1}', d_ph:'Write here. **bold**, *italic*, # Heading, - list, - [ ] task, [text](https://link), [[Other page]]',
@@ -412,7 +457,7 @@ en: { locale:'en-US', h_pot:'Cauldron', p_madd:'+ Application', p_medit:'Edit ap
   dev_of:'Device of <b>{0}</b>', data_in:'Data in {0}', language:'Language', g_share:'Share access (code)', g_csv:'Export list (CSV for Excel)',
   g_sync:'Sync now', g_setup:'Change name or access', close:'Close',
   s_saving:'Saving…', s_saved:'Saved {0}', s_expired:'Token expired: it needs renewing', s_later:'Offline – will save later', s_offline:'Offline', s_error:'Error {0} – tap for details', s_later_err:'Error {0} – not saved', err_title:'Sync problem', err_retry:'Try again', err_write:'The token can read but not save. On GitHub → Settings → Developer settings → Fine-grained tokens → Edit, set “Contents” to “Read and write” for ausblick-clientes-data. The token stays the same; then tap Try again.' },
-de: { locale:'de-DE', h_pot:'Cauldron', p_madd:'+ Anwendung', p_medit:'Anwendung bearbeiten', p_mnew:'Neue Anwendung', p_mname:'Name', p_mdesc:'Beschreibung', p_mbase:'Basis-Repository', p_mfile:'Datendatei', p_mready:'Basis fertig (für Kunden kopierbar)', p_mteam:'Mit Zugang für das Personal', p_mpub:'Öffentliche Seite (z. B. QR-Formular)', p_micon:'Symbol', p_mreset:'Original wiederherstellen', p_mdel:'Anwendung entfernen', p_mneed:'Gib der Anwendung einen Namen.', p_mnote:'Änderungen gelten für das ganze Team und in allen Sprachen.', p_hm:'Hosting', hm_r:'Repos (jetzt)', hm_p:'Plattform (später)', p_repos:'Repositories', p_vis:'Sichtbarkeit', p_content:'Inhalt', p_pub:'öffentlich (Pages)', p_priv:'privat', p_token:'Tokens', p_rnote:'Die Daten liegen in einem privaten Repo. Der App-Code ist im öffentlichen Pages-Repo sichtbar; für den Marktstart ist die Plattform gedacht.', p_vibe:'Stil der Firma', p_web:'Website des Kunden', ph_web:'https://kunde.com.ar', p_fh:'Schrift Überschriften', p_fb:'Schrift Text', p_rad:'Ecken', r_sq:'eckig', r_md:'weich', r_rd:'rund', p_den:'Dichte', d_c:'kompakt', d_a:'luftig', p_tone:'Tonfall der Texte', tn_f:'sachlich', tn_c:'locker', p_logo:'Logo (Datei oder URL)', p_preview:'Vorschau (so sieht es der Kunde)', p_tenant:'Tenant auf der Plattform', p_mods:'Module', p_theme:'Theme (tenant_settings)', p_safe:'Der Kunde bekommt nur einen Login. Der Code bleibt in unseren privaten Repos, die Logik läuft auf dem Server.', p_sug:'Vorschlag', p_copyjson:'JSON kopieren', p_own:'eigene Domain', p_hint:'Zieh Anwendungen in den Kessel (oder tippe sie an) und fusioniere sie zur App des Kunden, in seinem Stil.', p_empty:'Der Kessel ist leer.', p_n:'{0} Anwendungen im Kessel', p_apps:'Anwendungen', p_ready:'Basis fertig', p_ext:'aus Projekt', p_recipe:'Fusion', p_name:'Projektname', ph_pname:'z. B. Garage Palermo', p_slug:'Kurzname', p_cust:'Kunde', p_rubro:'Branche', p_color:'Markenfarbe', p_domain:'Eigene Domain (optional)', ph_domain:'app.kunde.com.ar', p_fuse:'Fusionieren', p_need:'Leg mindestens eine Anwendung in den Kessel.', p_need_name:'Gib dem Projekt einen Namen.', p_saved:'Gespeicherte Fusionen', p_none:'Noch keine Fusionen.', p_new:'+ Neue Fusion', p_open:'Öffnen', p_result:'Ergebnis der Fusion', p_url:'Adresse der App', p_steps:'Inbetriebnahme', p_build:'Bauauftrag (für Claude)', p_copy:'Bauauftrag kopieren', p_copied:'Kopiert.', p_totasks:'Offene Schritte → Aufgaben', p_tasks_done:'{0} Aufgaben angelegt.', p_edit:'Zutaten ändern', p_del:'Fusion löschen', p_progress:'{0} von {1} Schritten', p_of:'von {0}', rb_parking:'Parkplatz', rb_hair:'Friseur', rb_food:'Gastronomie', rb_retail:'Handel', rb_general:'Allgemein', p_tabs:'Reiter', p_nocust:'(kein Kunde)',
+de: { locale:'de-DE', h_fin:'Finanzen', f_in:'Einnahmen', f_out:'Ausgaben', f_saldo:'Saldo des Monats', f_run:'Saldo insgesamt: {0}', f_newin:'+ Einnahme', f_newout:'+ Ausgabe', f_sum:'Überblick', f_search:'Zweck, Kategorie, Kunde, Betrag suchen…', f_fix:'Fix (jeden Monat)', f_var:'Einmalig', f_total:'Summe', f_none:'Nichts eingetragen.', f_found:'Treffer in Einnahmen und Ausgaben', f_type:'Art', f_amt:'Betrag ($)', f_date:'Datum', f_what:'Zweck', ph_what:'z. B. Abo November, Hosting…', f_cat:'Kategorie', f_cust:'Kunde (optional)', f_note:'Notiz', f_rec:'Wiederholt sich jeden Monat (fix)', f_end:'Nicht mehr bezahlt ab', f_from:'Der neue Betrag gilt ab {0}; frühere Monate bleiben.', f_again:'Speichern und weitere eintragen', f_need_amt:'Gib einen Betrag ein.', f_need_date:'Gib ein Datum ein.', f_e_in:'Einnahme bearbeiten', f_e_out:'Ausgabe bearbeiten', f_n_in:'Neue Einnahme', f_n_out:'Neue Ausgabe', f_days:'Tage des Monats', f_months:'Monate', f_csv:'Monat als CSV', f_fixed:'fix', f_tap:'Tippe auf eine Säule für die Beträge.', f_day:'Tag', f_month:'Monat', f_saved:'Gespeichert.', f_today:'Heute', f_ended:'beendet', h_pot:'Cauldron', p_madd:'+ Anwendung', p_medit:'Anwendung bearbeiten', p_mnew:'Neue Anwendung', p_mname:'Name', p_mdesc:'Beschreibung', p_mbase:'Basis-Repository', p_mfile:'Datendatei', p_mready:'Basis fertig (für Kunden kopierbar)', p_mteam:'Mit Zugang für das Personal', p_mpub:'Öffentliche Seite (z. B. QR-Formular)', p_micon:'Symbol', p_mreset:'Original wiederherstellen', p_mdel:'Anwendung entfernen', p_mneed:'Gib der Anwendung einen Namen.', p_mnote:'Änderungen gelten für das ganze Team und in allen Sprachen.', p_hm:'Hosting', hm_r:'Repos (jetzt)', hm_p:'Plattform (später)', p_repos:'Repositories', p_vis:'Sichtbarkeit', p_content:'Inhalt', p_pub:'öffentlich (Pages)', p_priv:'privat', p_token:'Tokens', p_rnote:'Die Daten liegen in einem privaten Repo. Der App-Code ist im öffentlichen Pages-Repo sichtbar; für den Marktstart ist die Plattform gedacht.', p_vibe:'Stil der Firma', p_web:'Website des Kunden', ph_web:'https://kunde.com.ar', p_fh:'Schrift Überschriften', p_fb:'Schrift Text', p_rad:'Ecken', r_sq:'eckig', r_md:'weich', r_rd:'rund', p_den:'Dichte', d_c:'kompakt', d_a:'luftig', p_tone:'Tonfall der Texte', tn_f:'sachlich', tn_c:'locker', p_logo:'Logo (Datei oder URL)', p_preview:'Vorschau (so sieht es der Kunde)', p_tenant:'Tenant auf der Plattform', p_mods:'Module', p_theme:'Theme (tenant_settings)', p_safe:'Der Kunde bekommt nur einen Login. Der Code bleibt in unseren privaten Repos, die Logik läuft auf dem Server.', p_sug:'Vorschlag', p_copyjson:'JSON kopieren', p_own:'eigene Domain', p_hint:'Zieh Anwendungen in den Kessel (oder tippe sie an) und fusioniere sie zur App des Kunden, in seinem Stil.', p_empty:'Der Kessel ist leer.', p_n:'{0} Anwendungen im Kessel', p_apps:'Anwendungen', p_ready:'Basis fertig', p_ext:'aus Projekt', p_recipe:'Fusion', p_name:'Projektname', ph_pname:'z. B. Garage Palermo', p_slug:'Kurzname', p_cust:'Kunde', p_rubro:'Branche', p_color:'Markenfarbe', p_domain:'Eigene Domain (optional)', ph_domain:'app.kunde.com.ar', p_fuse:'Fusionieren', p_need:'Leg mindestens eine Anwendung in den Kessel.', p_need_name:'Gib dem Projekt einen Namen.', p_saved:'Gespeicherte Fusionen', p_none:'Noch keine Fusionen.', p_new:'+ Neue Fusion', p_open:'Öffnen', p_result:'Ergebnis der Fusion', p_url:'Adresse der App', p_steps:'Inbetriebnahme', p_build:'Bauauftrag (für Claude)', p_copy:'Bauauftrag kopieren', p_copied:'Kopiert.', p_totasks:'Offene Schritte → Aufgaben', p_tasks_done:'{0} Aufgaben angelegt.', p_edit:'Zutaten ändern', p_del:'Fusion löschen', p_progress:'{0} von {1} Schritten', p_of:'von {0}', rb_parking:'Parkplatz', rb_hair:'Friseur', rb_food:'Gastronomie', rb_retail:'Handel', rb_general:'Allgemein', p_tabs:'Reiter', p_nocust:'(kein Kunde)',
   m_turnos:'Schichtplan', md_turnos:'Schichten, Stunden, Abwesenheiten, WhatsApp.', m_salon:'Restaurant', md_salon:'Tische, Reservierungen, Bestellungen, Statistik.', m_cobros:'Zahlungen', md_cobros:'Monatszahlungen, Teilzahlungen, WhatsApp-Erinnerungen.', m_registro:'QR-Anmeldung', md_registro:'Öffentliches QR-Formular, kommt per WhatsApp an.', m_finanzas:'Finanzen', md_finanzas:'Einnahmen, Ausgaben, Fixkosten, Überblick.', m_clientes:'Kunden', md_clientes:'Kundenliste, Kontakte, Status, Kategorien.', m_tareas:'Aufgaben', md_tareas:'Kanban-Board mit Spalten.', m_docs:'Doku', md_docs:'Interne Dokumentation als Wiki.',
   title:'Kunden', h_cust:'Kunden', h_tasks:'Aufgaben', h_docs:'Doku',
   d_search:'Doku durchsuchen…', d_new:'+ Neue Seite', d_sub:'+ Unterseite', d_edit:'Bearbeiten', d_more:'Mehr', d_untitled:'Ohne Titel', d_empty:'Noch keine Dokumentation. Leg die erste Seite an: Abläufe, Kontakte, Zugänge, wie was gemacht wird.', d_pick:'Wähle links eine Seite.', d_by:'Zuletzt bearbeitet von {0}, {1}', d_ph:'Hier schreiben. **fett**, *kursiv*, # Überschrift, - Liste, - [ ] Aufgabe, [Text](https://link), [[Andere Seite]]',
@@ -457,7 +502,7 @@ var estName = function(k){ return t('est_' + (EST.indexOf(k) >= 0 ? k : 'nuevo')
 function langButtons(cur){ return LANGS.map(function(l){ return '<button type="button" data-lang="' + l[0] + '"' + (l[0] === cur ? ' class="on"' : '') + ' title="' + l[1] + '">' + (this.big ? l[1] : l[0].toUpperCase()) + '</button>'; }, this || {}).join(''); }
 function applyLang(){
   document.documentElement.lang = lang;
-  document.title = 'Ausblick – ' + t({ cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs', pot: 'h_pot' }[hub]);
+  document.title = 'Ausblick – ' + t({ cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs', pot: 'h_pot', fin: 'h_fin' }[hub]);
   [].forEach.call(document.querySelectorAll('[data-t]'), function(el){ el.textContent = t(el.dataset.t); });
   [].forEach.call(document.querySelectorAll('[data-th]'), function(el){ el.innerHTML = t(el.dataset.th); });
   [].forEach.call(document.querySelectorAll('[data-tp]'), function(el){ el.placeholder = t(el.dataset.tp); });
@@ -525,10 +570,12 @@ var TKEY = { data: 'ac.tdata.v1', dirty: 'ac.tdirty.v1' };
 var tasks = store.get(TKEY.data, {}), tdirty = store.get(TKEY.dirty, false);
 var DKEY = { data: 'ac.ddata.v1', dirty: 'ac.ddirty.v1' };
 var PKEY = { data: 'ac.pdata.v1', dirty: 'ac.pdirty.v1' };
+var FKEY = { data: 'ac.fdata.v1', dirty: 'ac.fdirty.v1' };
+var fin = store.get(FKEY.data, {}), fdirty = store.get(FKEY.dirty, false);
 var fusions = store.get(PKEY.data, {}), pdirty = store.get(PKEY.dirty, false);
 var docs = store.get(DKEY.data, {}), ddirty = store.get(DKEY.dirty, false);
 var hashDoc = (location.hash.match(/^#docs\/([\w-]+)/) || [])[1] || '';
-var hub = /^#cauldron/i.test(location.hash) ? 'pot' : /^#docs/i.test(location.hash) ? 'docs' : /tareas|tasks|aufgaben/i.test(location.hash) ? 'tasks' : store.get('ac.hub', 'cust');
+var hub = /^#(finanzas|finanzen|finances)/i.test(location.hash) ? 'fin' : /^#cauldron/i.test(location.hash) ? 'pot' : /^#docs/i.test(location.hash) ? 'docs' : /tareas|tasks|aufgaben/i.test(location.hash) ? 'tasks' : store.get('ac.hub', 'cust');
 var tquery = '', twho = '';
 
 /* ---------- screens ---------- */
@@ -635,7 +682,7 @@ $('#sGo').onclick = async function(){
   var changedRepo = cfg && cfg.repo !== conf.repo;
   cfg = { repo: conf.repo, token: conf.token, code: code, name: name };
   store.set(KEY.cfg, cfg);
-  if(changedRepo){ data = {}; dirty = false; store.set(KEY.data, data); store.set(KEY.dirty, dirty); tasks = {}; tdirty = false; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); docs = {}; ddirty = false; store.set(DKEY.data, docs); store.set(DKEY.dirty, ddirty); fusions = {}; pdirty = false; store.set(PKEY.data, fusions); store.set(PKEY.dirty, pdirty); }
+  if(changedRepo){ data = {}; dirty = false; store.set(KEY.data, data); store.set(KEY.dirty, dirty); tasks = {}; tdirty = false; store.set(TKEY.data, tasks); store.set(TKEY.dirty, tdirty); docs = {}; ddirty = false; store.set(DKEY.data, docs); store.set(DKEY.dirty, ddirty); fusions = {}; pdirty = false; store.set(PKEY.data, fusions); store.set(PKEY.dirty, pdirty); fin = {}; fdirty = false; store.set(FKEY.data, fin); store.set(FKEY.dirty, fdirty); }
   $('#sCode').value = ''; $('#sToken').value = ''; $('#sMsg').innerHTML = '';
   show(); syncNow();
   if(mode === 'token') shareAccess(true);
@@ -669,13 +716,13 @@ var ICON = {
 function render(){
   if(!cfg) return;
   if(drag.active || drag.el || pdrag.active || pdrag.el){ drag.renderLater = true; return; }   /* rebuilding the board under a finger would drop the card */
-  $('#hub').innerHTML = [['cust', 'h_cust', live().filter(function(x){ return !pending(x); }).length], ['tasks', 'h_tasks', liveTasks().filter(function(k){ return !laneDone(k.lane); }).length], ['docs', 'h_docs', liveDocs().length], ['pot', 'h_pot', liveFusions().length]].map(function(h){ return '<button type="button" data-hub="' + h[0] + '"' + (hub === h[0] ? ' class="on"' : '') + '>' + esc(t(h[1])) + '<span class="n">' + h[2] + '</span></button>'; }).join('');
-  $('#custView').hidden = hub !== 'cust'; $('#taskView').hidden = hub !== 'tasks'; $('#docView').hidden = hub !== 'docs'; $('#potView').hidden = hub !== 'pot';
-  $('#add').setAttribute('aria-label', t(hub === 'tasks' ? 't_add' : hub === 'docs' ? 'd_new' : hub === 'pot' ? 'p_new' : 'add')); $('#add').title = $('#add').getAttribute('aria-label');
-  var h1 = document.querySelector('#app h1 > span[data-t]'); var HT = { cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs', pot: 'h_pot' };
+  $('#hub').innerHTML = [['cust', 'h_cust', live().filter(function(x){ return !pending(x); }).length], ['tasks', 'h_tasks', liveTasks().filter(function(k){ return !laneDone(k.lane); }).length], ['docs', 'h_docs', liveDocs().length], ['fin', 'h_fin', finRows(finMonth).length], ['pot', 'h_pot', liveFusions().length]].map(function(h){ return '<button type="button" data-hub="' + h[0] + '"' + (hub === h[0] ? ' class="on"' : '') + '>' + esc(t(h[1])) + '<span class="n">' + h[2] + '</span></button>'; }).join('');
+  $('#custView').hidden = hub !== 'cust'; $('#taskView').hidden = hub !== 'tasks'; $('#docView').hidden = hub !== 'docs'; $('#potView').hidden = hub !== 'pot'; $('#finView').hidden = hub !== 'fin';
+  $('#add').setAttribute('aria-label', t(hub === 'tasks' ? 't_add' : hub === 'docs' ? 'd_new' : hub === 'pot' ? 'p_new' : hub === 'fin' ? (finTab === 'out' ? 'f_n_out' : 'f_n_in') : 'add')); $('#add').title = $('#add').getAttribute('aria-label');
+  var h1 = document.querySelector('#app h1 > span[data-t]'); var HT = { cust: 'h_cust', tasks: 'h_tasks', docs: 'h_docs', pot: 'h_pot', fin: 'h_fin' };
   if(h1) h1.textContent = t(HT[hub]);
   document.title = 'Ausblick – ' + t(HT[hub]);
-  if(hub === 'tasks') renderBoard(); else if(hub === 'docs') renderDocs(); else if(hub === 'pot') renderPot(); else renderList();
+  if(hub === 'tasks') renderBoard(); else if(hub === 'docs') renderDocs(); else if(hub === 'pot') renderPot(); else if(hub === 'fin') renderFin(); else renderList();
 }
 function renderList(){
   var everything = live(), sorting = everything.filter(pending), all = everything.filter(function(x){ return !pending(x); });
@@ -731,7 +778,7 @@ $('#list').addEventListener('click', function(e){
     return;
   }
   if(e.target.closest('#more')){ shown += PAGE * 2; render(); return; } if(e.target.closest('[data-stop]')) return; var li = e.target.closest('[data-id]'); if(li) edit(data[li.dataset.id]); });
-$('#add').onclick = function(){ if(hub === 'tasks') editTask(null, { lane: lanes()[0].id }); else if(hub === 'docs') newDoc(''); else if(hub === 'pot') newFusion(); else edit(null); };
+$('#add').onclick = function(){ if(hub === 'tasks') editTask(null, { lane: lanes()[0].id }); else if(hub === 'docs') newDoc(''); else if(hub === 'pot') newFusion(); else if(hub === 'fin') editMov(null, finTab); else edit(null); };
 
 function touch(x){ x.t = Date.now(); data[x.id] = x; dirty = true; store.set(KEY.data, data); store.set(KEY.dirty, dirty); render(); syncSoon(); }
 var copy = function(x){ return JSON.parse(JSON.stringify(x)); };
@@ -872,7 +919,7 @@ function renderBoard(){
   }).join('') + '<button class="newlane" type="button" id="newLane">' + esc(t('l_new')) + '</button>';
   $('#board').scrollLeft = sc;
 }
-$('#hub').addEventListener('click', function(e){ var b = e.target.closest('[data-hub]'); if(!b || b.dataset.hub === hub) return; hub = b.dataset.hub; store.set('ac.hub', hub); history.replaceState(null, '', location.pathname + location.search + (hub === 'tasks' ? '#tareas' : hub === 'docs' ? '#docs' + (curDoc ? '/' + curDoc : '') : hub === 'pot' ? '#cauldron' : '')); render(); window.scrollTo(0, 0); });
+$('#hub').addEventListener('click', function(e){ var b = e.target.closest('[data-hub]'); if(!b || b.dataset.hub === hub) return; hub = b.dataset.hub; store.set('ac.hub', hub); history.replaceState(null, '', location.pathname + location.search + (hub === 'tasks' ? '#tareas' : hub === 'docs' ? '#docs' + (curDoc ? '/' + curDoc : '') : hub === 'pot' ? '#cauldron' : hub === 'fin' ? '#finanzas' : '')); render(); window.scrollTo(0, 0); });
 $('#tq').addEventListener('input', function(){ tquery = this.value; render(); });
 $('#twho').addEventListener('change', function(){ twho = this.value; render(); });
 $('#board').addEventListener('click', function(e){
@@ -960,6 +1007,160 @@ function editTask(orig, preset){
     };
     if(orig) $('#kDel', el).onclick = function(){ var g = copy(orig); g.del = true; close(el); ttouch(g); toast(t('deleted', orig.title), t('undo'), function(){ var b = copy(orig); delete b.del; ttouch(b); }); };
     if(!orig) setTimeout(function(){ $('#kT', el).focus(); }, 50);
+  });
+}
+
+/* ---------- finances: income and expenses like Rock La Ve in CastComercial, with fixed monthly entries ---------- */
+var CATS = { in: ['Abono mensual', 'Desarrollo', 'Instalación', 'Soporte', 'Hardware', 'Otros'], out: ['Hosting', 'Dominios', 'Software', 'Sueldos', 'Impuestos', 'Publicidad', 'Transporte', 'Hardware', 'Oficina', 'Otros'] };
+var todayStr = function(){ var d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
+var ymOf = function(d){ return (d || '').slice(0, 7); };
+var addYm = function(m, n){ var y = +m.slice(0, 4), mo = +m.slice(5, 7) - 1 + n; y += Math.floor(mo / 12); mo = ((mo % 12) + 12) % 12; return y + '-' + pad(mo + 1); };
+var daysIn = function(m){ return new Date(+m.slice(0, 4), +m.slice(5, 7), 0).getDate(); };
+var finMonth = store.get('ac.fmonth', ymOf(todayStr())), finTab = 'in', finQ = '';
+var monthName = function(m, short){ var s = new Date(+m.slice(0, 4), +m.slice(5, 7) - 1, 1).toLocaleDateString(TX[lang].locale, short ? { month: 'short' } : { month: 'long', year: 'numeric' }); return s.charAt(0).toUpperCase() + s.slice(1); };
+var money = function(v){ var neg = v < 0; v = Math.abs(Math.round(v * 100) / 100); return (neg ? '−' : '') + '$ ' + v.toLocaleString(TX[lang].locale, { maximumFractionDigits: 2, minimumFractionDigits: v % 1 ? 2 : 0 }); };
+function parseAmt(s){
+  s = String(s || '').replace(/[\s$]/g, ''); if(!s) return NaN;
+  if(s.indexOf(',') >= 0) s = s.replace(/\./g, '').replace(',', '.');
+  else if((s.match(/\./g) || []).length > 1 || /^\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, '');
+  return parseFloat(s);
+}
+var liveMovs = function(){ return Object.keys(fin).map(function(k){ return fin[k]; }).filter(function(x){ return x && x.k === 'mov' && !x.del; }); };
+/* fixed entries count every month from their first month until 'end'; a changed amount applies from the month it was changed */
+function amtAt(x, m){ if(!x.rec || !x.amts) return x.a; var ks = Object.keys(x.amts).filter(function(k){ return k <= m; }).sort(); return ks.length ? x.amts[ks[ks.length - 1]] : x.a; }
+function inMonth(x, m){ var s = ymOf(x.date); return x.rec ? s <= m && (!x.end || m < x.end) : s === m; }
+function finRows(m){ return liveMovs().filter(function(x){ return inMonth(x, m); }).map(function(x){ var day = x.rec && ymOf(x.date) !== m ? 1 : +x.date.slice(8, 10); return { x: x, a: amtAt(x, m), day: day }; }); }
+function finTotals(m){ var r = { in: 0, out: 0 }; finRows(m).forEach(function(o){ r[o.x.ty] += o.a; }); return r; }
+function finStart(){ var s = ''; liveMovs().forEach(function(x){ var y = ymOf(x.date); if(!s || y < s) s = y; }); return s; }
+function finRun(m){ var s = finStart(), sum = 0; if(!s || s > m) return 0; for(var k = s, n = 0; k <= m && n < 600; k = addYm(k, 1), n++){ var tt = finTotals(k); sum += tt.in - tt.out; } return sum; }
+function finMatch(o, q){ var x = o.x, cu = x.cust && data[x.cust] ? data[x.cust].n : ''; return norm([x.what, x.cat, x.note, cu, String(o.a), money(o.a)].join(' ')).indexOf(q) >= 0; }
+function movRow(o, m){
+  var x = o.x, cu = x.cust && data[x.cust] ? data[x.cust].n : '', sub = [x.cat, cu, x.note].filter(Boolean).join(' · ');
+  return '<li data-mov="' + esc(x.id) + '"><span class="fd">' + pad(o.day) + '.' + m.slice(5, 7) + '.</span><span class="fw"><b>' + (x.rec ? '<span class="ftag">' + esc(t('f_fixed')) + '</span>' : '') + esc(x.what || x.cat || '—') + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span><span class="fa ' + (x.ty === 'in' ? 'pos' : 'neg') + '">' + (x.ty === 'in' ? '+' : '−') + ' ' + esc(money(o.a).replace('−', '')) + '</span></li>';
+}
+function renderFin(){
+  var m = finMonth, rows = finRows(m), tt = finTotals(m), sal = tt.in - tt.out, start = finStart(), q = norm(finQ.trim());
+  var byNew = function(a, b){ return b.day - a.day || (b.x.t || 0) - (a.x.t || 0); };
+  var list = function(arr){ return arr.length ? '<ul class="flist">' + arr.sort(byNew).map(function(o){ return movRow(o, m); }).join('') + '</ul>' : '<p class="fempty">' + esc(t('f_none')) + '</p>'; };
+  var sumOf = function(arr){ return arr.reduce(function(a, o){ return a + o.a; }, 0); };
+  var nIn = rows.filter(function(o){ return o.x.ty === 'in'; }).length, nOut = rows.length - nIn;
+  var body;
+  if(q){
+    var hits = rows.filter(function(o){ return finMatch(o, q); });
+    body = '<div class="card fcol"><h3>' + esc(t('f_found')) + '<span>' + hits.length + '</span></h3>' + list(hits) + '</div>';
+  } else {
+    var mine = rows.filter(function(o){ return o.x.ty === finTab; }), fx = mine.filter(function(o){ return o.x.rec; }), vr = mine.filter(function(o){ return !o.x.rec; });
+    body = '<div class="fcols"><div class="card fcol"><h3>' + esc(t('f_var')) + '<span>' + esc(money(sumOf(vr))) + '</span></h3>' + list(vr) + '</div><div class="card fcol"><h3>' + esc(t('f_fix')) + '<span>' + esc(money(sumOf(fx))) + '</span></h3>' + list(fx) + '</div></div>' +
+      '<div class="card"><div class="ftot"><span>' + esc(t('f_total') + ' ' + t(finTab === 'in' ? 'f_in' : 'f_out')) + '</span><span class="' + (finTab === 'in' ? 'pos' : 'neg') + '">' + esc(money(sumOf(mine))) + '</span></div><div class="ftot sal"><span>' + esc(t('f_saldo')) + '</span><span class="' + (sal < 0 ? 'neg' : '') + '">' + esc(money(sal)) + '</span></div></div>';
+  }
+  $('#fin').innerHTML =
+    '<div class="fmonth"><button type="button" data-fm="-1" aria-label="‹">‹</button><b>' + esc(monthName(m)) + '</b><button type="button" data-fm="1" aria-label="›">›</button>' + (m !== ymOf(todayStr()) ? '<button type="button" class="today" data-fm="0">' + esc(t('f_today')) + '</button>' : '') + '</div>' +
+    '<div class="card fsum"><div><small>' + esc(t('f_in')) + '</small><b class="pos">' + esc(money(tt.in)) + '</b></div><div><small>' + esc(t('f_out')) + '</small><b class="neg">' + esc(money(tt.out)) + '</b></div><div class="fsal"><small>' + esc(t('f_saldo')) + '</small><strong class="' + (sal < 0 ? 'neg' : '') + '">' + esc(money(sal)) + '</strong>' + (start && start < m ? '<div class="run">' + esc(t('f_run', money(finRun(m)))) + '</div>' : '') + '</div></div>' +
+    '<div class="ftabs"><button type="button" data-ft="in"' + (finTab === 'in' ? ' class="on"' : '') + '>' + esc(t('f_in')) + '<span class="n">' + nIn + '</span></button><button type="button" data-ft="out"' + (finTab === 'out' ? ' class="on"' : '') + '>' + esc(t('f_out')) + '<span class="n">' + nOut + '</span></button></div>' +
+    '<div class="fbar"><input class="search" id="fq" type="search" autocomplete="off" placeholder="' + esc(t('f_search')) + '" value="' + esc(finQ) + '"><button class="btn" type="button" data-fsum>' + esc(t('f_sum')) + '</button><button class="btn in" type="button" data-fnew="in">' + esc(t('f_newin')) + '</button><button class="btn out" type="button" data-fnew="out">' + esc(t('f_newout')) + '</button></div>' +
+    body;
+  var fq = $('#fq'); fq.addEventListener('input', function(){ finQ = this.value; var pos = this.selectionStart; renderFin(); var n = $('#fq'); n.focus(); try{ n.setSelectionRange(pos, pos); }catch(e){} });
+}
+$('#fin').addEventListener('click', function(e){
+  var b;
+  if((b = e.target.closest('[data-fm]'))){ var d = +b.dataset.fm; finMonth = d ? addYm(finMonth, d) : ymOf(todayStr()); store.set('ac.fmonth', finMonth); render(); return; }
+  if((b = e.target.closest('[data-ft]'))){ finTab = b.dataset.ft; render(); return; }
+  if((b = e.target.closest('[data-fnew]'))){ editMov(null, b.dataset.fnew); return; }
+  if(e.target.closest('[data-fsum]')){ finSummary(); return; }
+  if((b = e.target.closest('[data-mov]'))){ editMov(fin[b.dataset.mov]); return; }
+});
+function ftouch(x){ x.t = Date.now(); fin[x.id] = x; fdirty = true; store.set(FKEY.data, fin); store.set(FKEY.dirty, fdirty); render(); syncSoon(); }
+function editMov(x, ty){
+  var isNew = !x, m = finMonth;
+  x = x ? copy(x) : { id: 'm' + uid(), k: 'mov', ty: ty || 'in', a: 0, date: ymOf(todayStr()) === m ? todayStr() : m + '-01', what: '', cat: '', cust: '', note: '', rec: false, c: Date.now() };
+  var cur = isNew ? 0 : amtAt(x, m), later = !isNew && x.rec && m > ymOf(x.date);
+  var used = {}; liveMovs().forEach(function(o){ if(o.cat) used[o.cat] = 1; });
+  var cats = function(tyy){ return CATS[tyy].concat(Object.keys(used).filter(function(c){ return CATS[tyy].indexOf(c) < 0; })); };
+  var ttl = function(tyy){ return t(isNew ? (tyy === 'in' ? 'f_n_in' : 'f_n_out') : (tyy === 'in' ? 'f_e_in' : 'f_e_out')); };
+  modal('<h2 style="margin:0 0 12px" id="mvT">' + esc(ttl(x.ty)) + '</h2>' +
+    '<div class="field"><span class="lbl">' + esc(t('f_type')) + '</span><div class="ftabs" id="mvTy"><button type="button" data-ty="in"' + (x.ty === 'in' ? ' class="on" data-ft="in"' : ' data-ft="in"') + '>' + esc(t('f_in')) + '</button><button type="button" data-ty="out" data-ft="out"' + (x.ty === 'out' ? ' class="on"' : '') + '>' + esc(t('f_out')) + '</button></div></div>' +
+    '<div class="mvrow"><div class="field"><label for="mvA">' + esc(t('f_amt')) + ' <span class="req">*</span></label><input id="mvA" inputmode="decimal" autocomplete="off" value="' + (isNew ? '' : esc(String(cur).replace('.', TX[lang].locale === 'en-US' ? '.' : ','))) + '"></div>' +
+    '<div class="field"><label for="mvD">' + esc(t('f_date')) + ' <span class="req">*</span></label><input id="mvD" type="date" value="' + esc(x.date) + '"></div></div>' +
+    '<div class="field"><label for="mvW">' + esc(t('f_what')) + '</label><input id="mvW" value="' + esc(x.what || '') + '" placeholder="' + esc(t('ph_what')) + '" autocomplete="off"></div>' +
+    '<div class="field"><label for="mvC">' + esc(t('f_cat')) + '</label><input id="mvC" value="' + esc(x.cat || '') + '" autocomplete="off" list="mvCL"><datalist id="mvCL"></datalist></div>' +
+    '<div class="field"><label for="mvK">' + esc(t('f_cust')) + '</label><input id="mvK" value="' + esc(x.cust && data[x.cust] ? custLabel(data[x.cust]) : '') + '" placeholder="' + esc(t('ph_cust')) + '" autocomplete="off" list="mvKL"><datalist id="mvKL"></datalist></div>' +
+    '<label class="prio-t" style="margin-bottom:10px"><input type="checkbox" id="mvR"' + (x.rec ? ' checked' : '') + '>' + esc(t('f_rec')) + '</label>' +
+    '<div class="field" id="mvEndF"' + (x.rec && !isNew ? '' : ' hidden') + '><label for="mvE">' + esc(t('f_end')) + '</label><input id="mvE" type="month" value="' + esc(x.end || '') + '"></div>' +
+    (later ? '<p class="hint" style="margin:0 0 10px">' + esc(t('f_from', monthName(m))) + '</p>' : '') +
+    '<div class="field"><label for="mvN">' + esc(t('f_note')) + '</label><input id="mvN" value="' + esc(x.note || '') + '" autocomplete="off"></div>' +
+    '<div id="mvMsg"></div><div class="row2"><button class="btn" data-close type="button">' + esc(t('cancel')) + '</button><button class="btn primary" id="mvS" type="button">' + esc(t('save')) + '</button></div>' +
+    (isNew ? '<button class="btn wide" id="mvS2" type="button" style="margin-top:8px">' + esc(t('f_again')) + '</button>' : '<button class="btn danger wide" id="mvDel" type="button" style="margin-top:8px">' + esc(t('delete')) + '</button>'), function(el){
+    var ty = x.ty, byLabel = {};
+    var fillCats = function(){ $('#mvCL', el).innerHTML = cats(ty).map(function(c){ return '<option value="' + esc(c) + '">'; }).join(''); };
+    fillCats();
+    $('#mvTy', el).addEventListener('click', function(e){ var b = e.target.closest('[data-ty]'); if(!b) return; ty = b.dataset.ty; [].forEach.call(el.querySelectorAll('[data-ty]'), function(o){ o.classList.toggle('on', o === b); }); $('#mvT', el).textContent = ttl(ty); fillCats(); });
+    $('#mvR', el).addEventListener('change', function(){ $('#mvEndF', el).hidden = !this.checked || isNew; });
+    $('#mvK', el).addEventListener('input', function(){ var q = norm(this.value).trim(), out = []; if(q.length >= 2){ var all = live(); for(var i = 0; i < all.length && out.length < 30; i++){ if(norm(all[i].n).indexOf(q) >= 0){ var lb = custLabel(all[i]); byLabel[lb] = all[i].id; out.push(lb); } } } $('#mvKL', el).innerHTML = out.map(function(lb){ return '<option value="' + esc(lb) + '">'; }).join(''); });
+    var save1 = function(again){
+      var msg = function(k){ $('#mvMsg', el).innerHTML = '<div class="msg err">' + esc(t(k)) + '</div>'; };
+      var a = parseAmt($('#mvA', el).value), d = $('#mvD', el).value;
+      if(!(a > 0)){ msg('f_need_amt'); $('#mvA', el).focus(); return; }
+      if(!/^\d{4}-\d\d-\d\d$/.test(d)){ msg('f_need_date'); $('#mvD', el).focus(); return; }
+      var y = copy(x); y.ty = ty; y.date = d; y.what = $('#mvW', el).value.trim(); y.cat = $('#mvC', el).value.trim(); y.note = $('#mvN', el).value.trim(); y.rec = $('#mvR', el).checked; y.by = cfg.name;
+      var kl = $('#mvK', el).value.trim(); y.cust = kl ? (byLabel[kl] || (x.cust && data[x.cust] && custLabel(data[x.cust]) === kl ? x.cust : '')) : '';
+      y.end = y.rec && !isNew ? $('#mvE', el).value : ''; if(!y.end) delete y.end;
+      /* a fixed entry changed in a later month: the new amount applies from this month on, earlier months keep theirs */
+      if(y.rec && later){ if(a !== cur){ y.amts = Object.assign({}, y.amts || {}); y.amts[m] = a; } }
+      else { y.a = a; if(!y.rec) delete y.amts; }
+      ftouch(y); toast(t('f_saved'));
+      if(again){ close(el); editMov(null, ty); var n = $('#mvD'); if(n) n.value = d; } else close(el);
+    };
+    $('#mvS', el).onclick = function(){ save1(false); };
+    if($('#mvS2', el)) $('#mvS2', el).onclick = function(){ save1(true); };
+    if($('#mvDel', el)) $('#mvDel', el).onclick = function(){ var old = copy(fin[x.id]), g = copy(old); g.del = true; close(el); ftouch(g); toast(t('deleted', old.what || old.cat || money(old.a)), t('undo'), function(){ var r = copy(old); delete r.del; ftouch(r); }); };
+    if(isNew) $('#mvA', el).focus();
+  });
+}
+/* overview: income up, expenses down, running balance below; days of the month or the last 12 months */
+function finSeries(mode){
+  var m = finMonth, out = [];
+  if(mode === 'months'){
+    for(var i = 11; i >= 0; i--){ var k = addYm(m, -i), tt = finTotals(k); out.push({ lbl: monthName(k, true), key: monthName(k), in: tt.in, out: tt.out, n: finRows(k).length }); }
+    var run = 0; out.forEach(function(o){ run += o.in - o.out; o.run = o.in - o.out; });
+  } else {
+    var nd = daysIn(m), rows = finRows(m), run2 = 0;
+    for(var d = 1; d <= nd; d++) out.push({ lbl: String(d), key: pad(d) + '.' + m.slice(5, 7) + '.', in: 0, out: 0, n: 0 });
+    rows.forEach(function(o){ var c = out[Math.min(o.day, nd) - 1]; c[o.x.ty] += o.a; c.n++; });
+    out.forEach(function(o){ run2 += o.in - o.out; o.run = run2; });
+  }
+  return out;
+}
+function finChart(mode){
+  var S = finSeries(mode), W = 640, H1 = 170, H2 = 90, G = 18, n = S.length, bw = W / n;
+  var mx = Math.max(1, Math.max.apply(null, S.map(function(o){ return Math.max(o.in, o.out); })));
+  var rmin = Math.min(0, Math.min.apply(null, S.map(function(o){ return o.run; }))), rmax = Math.max(0, Math.max.apply(null, S.map(function(o){ return o.run; }))), rr = (rmax - rmin) || 1;
+  var y0 = H1 / 2, sc = (H1 / 2 - 6) / mx, ly = function(v){ return H1 + G + 6 + (rmax - v) / rr * (H2 - 12); };
+  var bars = S.map(function(o, i){ var x = i * bw + bw * .18, w = Math.max(1.5, bw * .64); return '<rect class="hit" data-i="' + i + '" x="' + (i * bw) + '" y="0" width="' + bw + '" height="' + (H1 + G + H2) + '"/>' + (o.in ? '<rect class="bi" x="' + x + '" y="' + (y0 - o.in * sc) + '" width="' + w + '" height="' + (o.in * sc) + '" rx="2"/>' : '') + (o.out ? '<rect class="bo" x="' + x + '" y="' + y0 + '" width="' + w + '" height="' + (o.out * sc) + '" rx="2"/>' : ''); }).join('');
+  var line = mode === 'months' ? S.map(function(o, i){ var x = i * bw + bw * .18, w = Math.max(1.5, bw * .64), yz = ly(0), yv = ly(o.run); return '<rect class="' + (o.run < 0 ? 'bo' : 'bi') + '" x="' + x + '" y="' + Math.min(yz, yv) + '" width="' + w + '" height="' + Math.max(1, Math.abs(yv - yz)) + '" rx="2" opacity=".75"/>'; }).join('') :
+    '<polyline class="ln" points="' + S.filter(function(o, i){ return finMonth !== ymOf(todayStr()) || i < +todayStr().slice(8, 10); }).map(function(o, i){ return (i * bw + bw / 2).toFixed(1) + ',' + ly(o.run).toFixed(1); }).join(' ') + '"/>';
+  var ticks = S.map(function(o, i){ return (mode === 'months' || i === 0 || (i + 1) % 5 === 0) ? '<text x="' + (i * bw + bw / 2) + '" y="' + (H1 + 13) + '" text-anchor="middle">' + esc(o.lbl) + '</text>' : ''; }).join('');
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + (H1 + G + H2) + '" role="img"><line class="ax" x1="0" x2="' + W + '" y1="' + y0 + '" y2="' + y0 + '"/><line class="ax" x1="0" x2="' + W + '" y1="' + ly(0) + '" y2="' + ly(0) + '"/>' + bars + line + ticks + '</svg>';
+  var tab = '<div class="ftabwrap"><table class="ftab"><tr><th>' + esc(t(mode === 'months' ? 'f_month' : 'f_day')) + '</th><th>' + esc(t('f_in')) + '</th><th>' + esc(t('f_out')) + '</th><th>' + esc(mode === 'months' ? t('f_saldo') : 'Saldo') + '</th></tr>' + S.filter(function(o){ return mode === 'months' || o.in || o.out; }).map(function(o){ return '<tr><td>' + esc(o.key) + '</td><td class="pos">' + (o.in ? esc(money(o.in)) : '') + '</td><td class="neg">' + (o.out ? esc(money(o.out)) : '') + '</td><td class="' + (o.run < 0 ? 'neg' : '') + '">' + esc(money(o.run)) + '</td></tr>'; }).join('') + '</table></div>';
+  return { html: '<div class="fchart">' + svg + '</div><div class="fdet" id="fsDet">' + esc(t('f_tap')) + '</div>' + tab, S: S };
+}
+function finSummary(){
+  var mode = 'days';
+  modal('<h2 style="margin:0 0 4px">' + esc(t('f_sum')) + ' · ' + esc(monthName(finMonth)) + '</h2>' +
+    '<div class="opts" id="fsMode" style="margin:8px 0 10px"><button type="button" data-mode="days" class="on">' + esc(t('f_days')) + '</button><button type="button" data-mode="months">' + esc(t('f_months')) + '</button></div>' +
+    '<div id="fsBody"></div><div class="row2" style="margin-top:12px"><button class="btn" id="fsCsv" type="button">' + esc(t('f_csv')) + '</button><button class="btn primary" data-close type="button">OK</button></div>', function(el){
+    el.querySelector('.sheet').classList.add('wide');
+    var S = [];
+    var draw = function(){ var c = finChart(mode); S = c.S; $('#fsBody', el).innerHTML = c.html; };
+    draw();
+    $('#fsMode', el).addEventListener('click', function(e){ var b = e.target.closest('[data-mode]'); if(!b) return; mode = b.dataset.mode; [].forEach.call(el.querySelectorAll('[data-mode]'), function(o){ o.classList.toggle('on', o === b); }); draw(); });
+    var pick = function(e){ var r = e.target.closest('.hit'); if(!r) return; var o = S[+r.dataset.i]; [].forEach.call(el.querySelectorAll('.hit'), function(h){ h.classList.toggle('on', h === r); }); $('#fsDet', el).innerHTML = '<b>' + esc(o.key) + '</b> · <span class="pos">+' + esc(money(o.in)) + '</span> · <span class="neg">−' + esc(money(o.out).replace('−', '')) + '</span> · Saldo <b class="' + (o.run < 0 ? 'neg' : '') + '">' + esc(money(o.run)) + '</b>'; };
+    $('#fsBody', el).addEventListener('click', pick); $('#fsBody', el).addEventListener('mouseover', function(e){ if(matchMedia('(hover:hover)').matches) pick(e); });
+    $('#fsCsv', el).onclick = function(){
+      var q = function(v){ v = String(v == null ? '' : v); return /[";\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+      var lines = [['fecha', 'tipo', 'monto', 'concepto', 'categoria', 'cliente', 'fijo', 'nota'].join(';')].concat(finRows(finMonth).sort(function(a, b){ return a.day - b.day; }).map(function(o){ var x = o.x; return [finMonth + '-' + pad(o.day), x.ty === 'in' ? 'ingreso' : 'gasto', String(o.a).replace('.', ','), x.what, x.cat, x.cust && data[x.cust] ? data[x.cust].n : '', x.rec ? 'si' : '', x.note].map(q).join(';'); }));
+      var blob = new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' }), a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'ausblick-finanzas-' + finMonth + '.csv'; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    };
   });
 }
 
@@ -1629,6 +1830,9 @@ async function syncNow(){
     if(pdirty){ pdirty = false; store.set(PKEY.dirty, pdirty); try{ await save(PFILE, fusions, true); }catch(e){ pdirty = true; store.set(PKEY.dirty, pdirty); throw e; } }
     else { var pc = await load(PFILE); merge(pc.c, fusions, true); }
     store.set(PKEY.data, fusions);
+    if(fdirty){ fdirty = false; store.set(FKEY.dirty, fdirty); try{ await save(FFILE, fin, true); }catch(e){ fdirty = true; store.set(FKEY.dirty, fdirty); throw e; } }
+    else { var fc = await load(FFILE); merge(fc.c, fin, true); }
+    store.set(FKEY.data, fin);
     sync.err = null; setSync('ok', 's_saved', hm(Date.now()));
   }catch(e){
     if(/http 401/.test(e.message)){
@@ -1639,7 +1843,7 @@ async function syncNow(){
     else {
       sync.err = { at: Date.now(), detail: e.detail || (e.name + ': ' + e.message), online: navigator.onLine };
       try{ console.error('[ausblick sync]', sync.err.detail, e); }catch(x){}
-      var anyDirty = dirty || tdirty || ddirty || pdirty;
+      var anyDirty = dirty || tdirty || ddirty || pdirty || fdirty;
       if(e.status) setSync(anyDirty ? 'wait' : 'err', anyDirty ? 's_later_err' : 's_error', e.status);
       else setSync(anyDirty ? 'wait' : 'err', anyDirty ? 's_later' : 's_offline');
     }
@@ -1653,8 +1857,8 @@ document.addEventListener('visibilitychange', function(){ if(document.visibility
 
 applyLang();
 show();
-if(cfg){ setSync(dirty || tdirty || ddirty || pdirty ? 'wait' : 'ok', '…'); syncNow(); }
-window.__ac = { get fusions(){ return fusions; }, blueprint: function(f){ return blueprint(f); }, tenantSettings: function(f){ return tenantSettings(f); }, get docs(){ return docs; }, md: function(s){ return md(s); }, get tasks(){ return tasks; }, get data(){ return data; }, get cfg(){ return cfg; }, syncNow: syncNow, sealAccess: sealAccess, setLang: setLang };
+if(cfg){ setSync(dirty || tdirty || ddirty || pdirty || fdirty ? 'wait' : 'ok', '…'); syncNow(); }
+window.__ac = { get fin(){ return fin; }, finTotals: function(m){ return finTotals(m); }, finRun: function(m){ return finRun(m); }, get fusions(){ return fusions; }, blueprint: function(f){ return blueprint(f); }, tenantSettings: function(f){ return tenantSettings(f); }, get docs(){ return docs; }, md: function(s){ return md(s); }, get tasks(){ return tasks; }, get data(){ return data; }, get cfg(){ return cfg; }, syncNow: syncNow, sealAccess: sealAccess, setLang: setLang };
 })();
 </script>
 </body>
